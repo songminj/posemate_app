@@ -1,15 +1,16 @@
+// largebutton.js
+
 import React from 'react';
 import { 
   Pressable, 
   Dimensions,
-  Text
+  Text,
+  StyleSheet
 } from 'react-native';
 
+const { width } = Dimensions.get('window');
 
-
-const width = Dimensions.get('window').width;
 const LargeButton = (props) => {
-
   const handlePress = () => {
     if (typeof props.toward === 'function') {
       props.toward()
@@ -17,10 +18,13 @@ const LargeButton = (props) => {
       props.navigation.navigate(props.toward);
     }
   };
+
   return (
-    // 0.63버전 부터는 TouchableOpacity > Pressable로 권장
     <Pressable
-      style={styles.buttonStyle}
+      style={({ pressed }) => [
+        styles.buttonStyle,
+        pressed && styles.buttonPressed
+      ]}
       onPress={handlePress}
     >
       <Text style={styles.buttonTextStyle}>
@@ -34,21 +38,29 @@ LargeButton.defaultProps = {
   title: '', 
 }
 
-const styles = {
+const styles = StyleSheet.create({
   buttonStyle: {
-    backgroundColor: '#000000',
+    backgroundColor: '#007AFF',
     width: width * 0.9,
-    innerHeight: 24,
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
-    alignItems: 'center'
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  buttonPressed: {
+    backgroundColor: '#0056b3',
+    transform: [{ scale: 0.98 }],
   },
   buttonTextStyle: {
     color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontWeight: '600',
   },
-}
+});
 
 export default LargeButton;

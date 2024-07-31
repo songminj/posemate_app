@@ -1,3 +1,5 @@
+// app.js
+
 import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -20,7 +22,27 @@ const Tab = createBottomTabNavigator()
 
 const MainTabNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: '#0C1B2E',
+          borderTopColor: '#1A2A42',
+        },
+        tabBarActiveTintColor: '#007BFF',
+        tabBarInactiveTintColor: '#C0C0C0',
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '600',
+        },
+        headerStyle: {
+          backgroundColor: '#1A2A42',
+        },
+        headerTintColor: '#FFFFFF',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}
+    >
       <Tab.Screen
         name='Home'
         component={HomeScreen}
@@ -54,7 +76,21 @@ const MainTabNavigator = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Main'>
+      <Stack.Navigator 
+        initialRouteName='Main'
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#1A2A42',
+          },
+          headerTintColor: '#FFFFFF',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          contentStyle: {
+            backgroundColor: '#0C1B2E',
+          },
+        }}
+      >
         <Stack.Screen 
           name='MainTabs' 
           component={MainTabNavigator}

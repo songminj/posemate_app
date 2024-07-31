@@ -1,22 +1,28 @@
+// input.js
+
 import React from "react"
 import { 
   StyleSheet,
   TextInput,
   View,
   Dimensions,
+  Text
 } from "react-native"
 import PropTypes from 'prop-types'
 
 const width = Dimensions.get('window').width
 
-const Input = ({ title, placeholder, secureTextEntry }) => {
+const Input = ({ title, placeholder, secureTextEntry, onChangeText, value, style }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
+      {title && <Text style={styles.title}>{title}</Text>}
       <TextInput 
         style={styles.input}
         placeholder={placeholder ?? title}
-        placeholderTextColor={'#a3a3a3'}
+        placeholderTextColor={'#C0C0C0'}
         secureTextEntry={secureTextEntry} 
+        onChangeText={onChangeText}
+        value={value}
       />
     </View>
   )
@@ -26,6 +32,9 @@ Input.propTypes = {
   title: PropTypes.string,
   placeholder: PropTypes.string,
   secureTextEntry: PropTypes.bool, 
+  onChangeText: PropTypes.func,
+  value: PropTypes.string,
+  style: PropTypes.object
 }
 
 Input.defaultProps = {
@@ -35,18 +44,22 @@ Input.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#cccccc',
-    borderRadius: 5,
-    paddingHorizontal: 10,
+    marginBottom: 16,
+    width: width * 0.85,
+  },
+  title: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    marginBottom: 8,
+    fontWeight: '600',
   },
   input: {
-    flex: 1,
-    paddingVertical: 10,
-    width: width * 0.8,
+    backgroundColor: '#1A2A42',
+    color: '#FFFFFF',
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    fontSize: 16,
   },
 })
 

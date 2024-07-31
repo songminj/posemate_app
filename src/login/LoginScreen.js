@@ -1,10 +1,13 @@
+// LoginScreen.js
+
 import React, { useState } from 'react'
 import { 
   StyleSheet, 
   View, 
   Text, 
   TouchableOpacity,
-  Image
+  Image,
+  StatusBar
 } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
@@ -16,7 +19,7 @@ const LoginScreen = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.get('http://3.35.213.242:8080/api-member/', {
+      const response = await axios.get('http://i11a202.p.ssafy.io:8080/api-member/', {
         userId,
         password
       })
@@ -36,30 +39,33 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <Image
         source={require('../../assets/logo.png')}
         style={styles.image}
       />
       <Text style={styles.title}>로그인</Text>
       <Input 
+        title="아이디"
         placeholder='아이디를 입력하세요'
         onChangeText={text => setUserId(text)}
         value={userId}
       />
       <Input 
+        title="비밀번호"
         placeholder='비밀번호를 입력하세요'
         secureTextEntry={true}
         onChangeText={text => setPassword(text)}
         value={password}
       />
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.loginButtonText}>로그인</Text>
+        <Text style={styles.buttonText}>로그인</Text>
       </TouchableOpacity>
       <TouchableOpacity 
-        style={styles.loginButton} 
+        style={[styles.loginButton, styles.signUpButton]} 
         onPress={() => navigation.navigate('SignIn')}
       >
-        <Text style={styles.loginButtonText}>회원가입</Text>
+        <Text style={styles.buttonText}>회원가입</Text>
       </TouchableOpacity>
     </View>
   )
@@ -70,28 +76,45 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#0C1B2E',
     padding: 24
   },
   loginButton: {
     marginTop: 20,
-    backgroundColor: '#007bff',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
+    backgroundColor: '#007BFF',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    width: '100%',
+    alignItems: 'center',
   },
-  loginButtonText: {
-    color: '#ffffff',
+  signUpButton: {
+    backgroundColor: '#1A2A42',
+  },
+  buttonText: {
+    color: '#FFFFFF',
     fontSize: 16,
+    fontWeight: 'bold',
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     marginBottom: 40,
+    tintColor: '#FFFFFF',
   },
   title: {
-    fontSize: 24,
-    marginBottom: 20,
+    fontSize: 28,
+    marginBottom: 24,
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+  },
+  input: {
+    backgroundColor: '#1A2A42',
+    color: '#FFFFFF',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 16,
+    width: '100%',
   }
 })
 

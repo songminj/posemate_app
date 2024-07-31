@@ -1,9 +1,13 @@
+// signin.js
+
 import React, { useState } from 'react'
 import { 
   StyleSheet, 
   View, 
   TouchableOpacity, 
-  Text 
+  Text,
+  StatusBar,
+  ScrollView
 } from 'react-native'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -24,7 +28,7 @@ const SignInScreen = ({ navigation }) => {
     }
 
     try {
-      const response = await axios.post('http://3.35.213.242:8080/api-member/join', data)
+      const response = await axios.post('http://i11a202.p.ssafy.io:8080/api-member/join', data)
       console.log(response.data)
 
       if (response.data.token) {
@@ -40,33 +44,41 @@ const SignInScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Input
-        placeholder="이름"
-        value={username}
-        onChangeText={text => setUsername(text)}
-      />
-      <Input
-        placeholder="전화번호"
-        value={phone}
-        onChangeText={text => setPhone(text)}
-      />
-      <Input
-        placeholder="아이디"
-        value={userId}
-        onChangeText={text => setUserId(text)}
-      />
-      <Input
-        placeholder="비밀번호"
-        secureTextEntry={true}
-        value={password}
-        onChangeText={text => setPassword(text)}
-      />
-      <TouchableOpacity 
-        style={styles.signUpButton} 
-        onPress={requestPost}
-      >
-        <Text style={styles.signUpButtonText}>회원가입</Text>
-      </TouchableOpacity>
+      <StatusBar barStyle="light-content" />
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <Text style={styles.title}>회원가입</Text>
+        <Input
+          title="이름"
+          placeholder="이름을 입력하세요"
+          value={username}
+          onChangeText={text => setUsername(text)}
+        />
+        <Input
+          title="전화번호"
+          placeholder="전화번호를 입력하세요"
+          value={phone}
+          onChangeText={text => setPhone(text)}
+        />
+        <Input
+          title="아이디"
+          placeholder="아이디를 입력하세요"
+          value={userId}
+          onChangeText={text => setUserId(text)}
+        />
+        <Input
+          title="비밀번호"
+          placeholder="비밀번호를 입력하세요"
+          secureTextEntry={true}
+          value={password}
+          onChangeText={text => setPassword(text)}
+        />
+        <TouchableOpacity 
+          style={styles.signUpButton} 
+          onPress={requestPost}
+        >
+          <Text style={styles.signUpButtonText}>회원가입</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   )
 }
@@ -74,21 +86,33 @@ const SignInScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#0C1B2E',
+  },
+  scrollViewContent: {
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
-    padding: 20,
+    padding: 24,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginBottom: 24,
   },
   signUpButton: {
-    marginTop: 20,
-    backgroundColor: '#007bff',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
+    marginTop: 24,
+    backgroundColor: '#007BFF',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    width: '100%',
+    alignItems: 'center',
   },
   signUpButtonText: {
-    color: '#ffffff',
+    color: '#FFFFFF',
     fontSize: 16,
+    fontWeight: 'bold',
   },
 })
 
