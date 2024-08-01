@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import Icon from 'react-native-vector-icons/FontAwesome'
+// import Icon from 'react-native-vector-icons/FontAwesome'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
@@ -46,28 +46,28 @@ const MainTabNavigator = () => {
       <Tab.Screen
         name='Home'
         component={HomeScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Icon 
-              name='home' 
-              color={color} 
-              size={size} 
-            />
-          ),
-        }}
+        // options={{
+        //   tabBarIcon: ({ color, size }) => (
+        //     <Icon 
+        //       name='home' 
+        //       color={color} 
+        //       size={size} 
+        //     />
+        //   ),
+        // }}
       />
       <Tab.Screen
         name='Login'
         component={LoginScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Icon 
-              name='sign-in' 
-              color={color} 
-              size={size} 
-            />
-          ),
-        }}
+        // options={{
+        //   tabBarIcon: ({ color, size }) => (
+        //     <Icon 
+        //       name='sign-in' 
+        //       color={color} 
+        //       size={size} 
+        //     />
+        //   ),
+        // }}
       />
     </Tab.Navigator>
   )

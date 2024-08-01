@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Icon from 'react-native-vector-icons/Ionicons';
+// import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   SafeAreaView,
@@ -24,7 +24,7 @@ const HiUser = ({ navigation, userId, isLoggedIn }) => {
       onPress={() => navigation.navigate(isLoggedIn ? 'Profile' : 'Login')}
     >
       <View style={styles.avatarContainer}>
-        <Icon name="person" size={24} color="#007AFF" />
+        {/* <Icon name="person" size={24} color="#007AFF" /> */}
       </View>
       <Text style={styles.hiUserText}>{isLoggedIn ? `안녕하세요, ${userId}님` : '로그인'}</Text>
     </TouchableOpacity>
