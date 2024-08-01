@@ -44,7 +44,6 @@ const LoginScreen = ({ navigation }) => {
         source={require('../../assets/logo.png')}
         style={styles.image}
       />
-      <Text style={styles.title}>로그인</Text>
       <Input 
         title="아이디"
         placeholder='아이디를 입력하세요'

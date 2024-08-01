@@ -14,10 +14,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import Input from '../components/Input'
 
 const SignInScreen = ({ navigation }) => {
+  // 이름은 문자만 최소 두자 
   const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const nameRe = /\D{2,}$/g
+  // 아이디는 문자, 숫자 최소 4자~12자
   const [userId, setUserId] = useState('')
+  const idRe = /([-_.]?[0-9a-zA-Z]){4,12}$/g
+  // 비밀번호는 모든 문자열 가능 최소 4자
+  const [password, setPassword] = useState('')
+  const passwordRe = /(\.){4,}$/g
+  // 전화번호는 ###-####-#### 
   const [phone, setPhone] = useState('')
+  const phoneRe = /^(?:\d{3}|\(\d{3}\))([-])\d{4}\1\d{4}$/g
 
   const requestPost = async () => {
     const data = {
