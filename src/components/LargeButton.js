@@ -34,9 +34,7 @@ const LargeButton = (props) => {
   )
 }
 
-LargeButton.defaultProps = {
-  title: '', 
-}
+
 
 const styles = StyleSheet.create({
   buttonStyle: {
