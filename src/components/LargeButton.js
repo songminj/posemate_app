@@ -8,12 +8,15 @@ import {
 
 const { width } = Dimensions.get('window')
 
-const LargeButton = (props) => {
+const LargeButton = ({
+  toward = 'Home',
+  title = '버튼'
+}) => {
   const handlePress = () => {
-    if (typeof props.toward === 'function') {
-      props.toward()
+    if (typeof toward === 'function') {
+      toward()
     } else {
-      props.navigation.navigate(props.toward)
+      navigation.navigate(toward)
     }
   }
 
@@ -26,7 +29,7 @@ const LargeButton = (props) => {
       onPress={handlePress}
     >
       <Text style={styles.buttonTextStyle}>
-        {props.title}
+        {title}
       </Text>
     </Pressable>
   )

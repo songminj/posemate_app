@@ -1,32 +1,30 @@
-// input.js
-
-import React from "react"
+import React from 'react';
 import { 
   StyleSheet,
   TextInput,
   View,
   Dimensions,
   Text
-} from "react-native"
-import PropTypes from 'prop-types'
+} from 'react-native';
+import PropTypes from 'prop-types';
 
-const width = Dimensions.get('window').width
+const { width } = Dimensions.get('window');
 
 const Input = ({ title, placeholder, secureTextEntry, onChangeText, value, style }) => {
   return (
     <View style={[styles.container, style]}>
-      {title && <Text style={styles.title}>{title}</Text>}
+      {title ? <Text style={styles.title}>{title}</Text> : null}
       <TextInput 
         style={styles.input}
-        placeholder={placeholder ?? title}
-        placeholderTextColor={'#C0C0C0'}
+        placeholder={placeholder || title}
+        placeholderTextColor="#C0C0C0"
         secureTextEntry={secureTextEntry} 
         onChangeText={onChangeText}
         value={value}
       />
     </View>
-  )
-}
+  );
+};
 
 Input.propTypes = {
   title: PropTypes.string,
@@ -35,12 +33,13 @@ Input.propTypes = {
   onChangeText: PropTypes.func,
   value: PropTypes.string,
   style: PropTypes.object
-}
+};
 
 Input.defaultProps = {
-  title:'',
-  secureTextEntry: false, 
-}
+  title: '',
+  secureTextEntry: false,
+  placeholder: '', // 기본값을 빈 문자열로 설정
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -61,6 +60,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     fontSize: 16,
   },
-})
+});
 
-export default Input
+export default Input;

@@ -1,19 +1,21 @@
-import React from "react";
+import React from "react"
 import {
   View, 
   Text, 
   StyleSheet,
 } 
-from 'react-native';
+from 'react-native'
 
-import LargeButton from '../components/LargeButton';
-import Video from "react-native-video";
+import LargeButton from '../components/LargeButton'
+import CommentBox from "../components/CommentBox"
+import Video from "react-native-video"
+import api from "../api/apiServer"
 
 const AnalysisResult = ({navigation}) => {
   const rand = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min
   }
-  const score = rand(0, 101);
+  const score = rand(0, 101)
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>분석 결과</Text>
@@ -25,10 +27,26 @@ const AnalysisResult = ({navigation}) => {
           controls={false}
           style={styles.video}
         />
-        <Text>자세 리뷰</Text>
-        <Text>상체 자세는 </Text>
-        <Text>하체 자세는 </Text>
-        <Text>접지 자세는 </Text>
+        <CommentBox
+          bodyName='상체'
+          score='30'
+          comment='Test'
+        />
+        <CommentBox
+          bodyName='하체'
+          score='50'
+          comment='Test'
+        />
+        <CommentBox
+          bodyName='팔'
+          score='70'
+          comment='Test'
+        />
+        <CommentBox
+            bodyName='전신'
+            score='90'
+            comment='TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest'
+        />
       </View>
       <LargeButton
         title='처음으로'
@@ -36,8 +54,8 @@ const AnalysisResult = ({navigation}) => {
         navigation={navigation} 
       />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -67,6 +85,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   }
-});
+})
 
-export default AnalysisResult;
+export default AnalysisResult
