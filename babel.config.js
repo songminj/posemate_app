@@ -17,5 +17,6 @@ module.exports = {
         verbose: false,
       },
     ],
+    ['react-native-reanimated/plugin'], // 항상 가장 마지막에 위치해야함
   ],
 };
