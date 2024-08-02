@@ -1,23 +1,21 @@
-// largebutton.js
-
-import React from 'react';
+import React from 'react'
 import { 
   Pressable, 
   Dimensions,
   Text,
   StyleSheet
-} from 'react-native';
+} from 'react-native'
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get('window')
 
 const LargeButton = (props) => {
   const handlePress = () => {
     if (typeof props.toward === 'function') {
       props.toward()
     } else {
-      props.navigation.navigate(props.toward);
+      props.navigation.navigate(props.toward)
     }
-  };
+  }
 
   return (
     <Pressable
@@ -33,8 +31,6 @@ const LargeButton = (props) => {
     </Pressable>
   )
 }
-
-
 
 const styles = StyleSheet.create({
   buttonStyle: {
@@ -59,6 +55,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
-});
+})
 
-export default LargeButton;
+export default LargeButton
