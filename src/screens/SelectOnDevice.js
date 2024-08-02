@@ -37,7 +37,7 @@ const SelectOnDevice = ({navigation}) => {
       })
 
       try {
-        const response = await axios.post('http://3.35.213.242:8080/api-video/video', formData, {
+        const response = await axios.post('http://i11a202.p.ssafy.io:8080/api-video/video', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

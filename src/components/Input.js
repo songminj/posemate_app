@@ -10,7 +10,14 @@ import PropTypes from 'prop-types';
 
 const { width } = Dimensions.get('window');
 
-const Input = ({ title, placeholder, secureTextEntry, onChangeText, value, style }) => {
+const Input = ({ 
+  title = '', 
+  placeholder ='', 
+  secureTextEntry = false, 
+  onChangeText, 
+  value, 
+  style
+}) => {
   return (
     <View style={[styles.container, style]}>
       {title ? <Text style={styles.title}>{title}</Text> : null}
@@ -33,12 +40,6 @@ Input.propTypes = {
   onChangeText: PropTypes.func,
   value: PropTypes.string,
   style: PropTypes.object
-};
-
-Input.defaultProps = {
-  title: '',
-  secureTextEntry: false,
-  placeholder: '', // 기본값을 빈 문자열로 설정
 };
 
 const styles = StyleSheet.create({

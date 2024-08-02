@@ -10,7 +10,8 @@ const { width } = Dimensions.get('window')
 
 const LargeButton = ({
   toward = 'Home',
-  title = '버튼'
+  title = '버튼',
+  navigation
 }) => {
   const handlePress = () => {
     if (typeof toward === 'function') {

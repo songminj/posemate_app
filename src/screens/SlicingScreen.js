@@ -40,7 +40,7 @@ const SlicingScreen = ({ navigation }) => {
       /> */}
       <LargeButton
         title="결과확인하러 가기"
-        toward="Loading"
+        toward="AnalysisResult"
         navigation={navigation}
       />
     </View>
