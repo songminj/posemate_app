@@ -9,7 +9,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import AnalysisResult from './analysis/AnalysisResult'
 import AnalysisSelectScreen from './analysis/AnalysisSelectScreen'
 import HomeScreen from './screens/HomeScreen'
-import LoadingScreen from './screens/LoadingScreen'
 import SelectOnDevice from './screens/SelectOnDevice'
 import SelectOnServer from './screens/SelectOnServer'
 import LoginScreen from './login/LoginScreen'
@@ -54,6 +53,7 @@ const MainTabNavigator = () => {
                size={size}
              />
            ),
+           headerShown:false
          }}
       />
       <Tab.Screen
@@ -67,6 +67,7 @@ const MainTabNavigator = () => {
                size={size}
              />
            ),
+           headerShown:false
          }}
       />
     </Tab.Navigator>
@@ -96,15 +97,46 @@ const App = () => {
           component={MainTabNavigator}
           options={{headerShown: false}}
         />
-        <Stack.Screen name='Loading' component={LoadingScreen} />
-        <Stack.Screen name='AnalysisResult' component={AnalysisResult} />
-        <Stack.Screen name='Select' component={AnalysisSelectScreen} />
-        <Stack.Screen name='Device' component={SelectOnDevice} />
-        <Stack.Screen name='Server' component={SelectOnServer} />
-        <Stack.Screen name='Login' component={LoginScreen} />
-        <Stack.Screen name='SignIn' component={SignInScreen} />
-        <Stack.Screen name='Profile' component={ProfileScreen} />
-        <Stack.Screen name='Slicing'component={SlicingScreen}/>
+        <Stack.Screen 
+          name='AnalysisResult' 
+          component={AnalysisResult}
+          options= {{headerShown: false,}}
+        />
+        <Stack.Screen 
+          name='Select' 
+          component={AnalysisSelectScreen}
+          options= {{headerShown: false,}}
+        />
+        <Stack.Screen 
+          name='Device'
+          component={SelectOnDevice} 
+          options= {{headerShown: false,}}
+        />
+        <Stack.Screen 
+          name='Server' 
+          component={SelectOnServer} 
+          options= {{headerShown: false,}}
+        />
+        <Stack.Screen 
+          name='Login' 
+          component={LoginScreen} 
+          options= {{headerShown: false,}}
+        />
+        <Stack.Screen 
+          name='SignIn' 
+          component={SignInScreen} 
+          options= {{headerShown: false,}}
+        />
+        <Stack.Screen 
+          name='Profile' 
+          component={ProfileScreen} 
+          options= {{headerShown: false,}}
+        />
+        <Stack.Screen 
+          name='Slicing'
+          component={SlicingScreen}
+          options= {{headerShown: false,}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

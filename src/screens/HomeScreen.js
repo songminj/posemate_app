@@ -69,7 +69,7 @@ const HomeScreen = ({ navigation }) => {
       console.error('Error checking login status:', error)
     }
   }
-
+  // App.js로 이동? 
   const handleLogin = () => {
     navigation.navigate('Login')
   }
@@ -105,10 +105,6 @@ const HomeScreen = ({ navigation }) => {
               title='영상 분석하기'
               toward='Select'
               navigation={navigation}
-            />
-            <LargeButton
-              title={isLoggedIn ? '로그아웃' : '로그인'}
-              toward={isLoggedIn ? handleLogout : handleLogin}
             />
           </View>
         </View>
