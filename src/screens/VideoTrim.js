@@ -1,47 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   StyleSheet,
   View,
   Text,
   TouchableOpacity,
-  NativeEventEmitter,
-  NativeModules,
+  ActivityIndicator,
 } from 'react-native';
-import { isValidFile, showEditor } from 'react-native-video-trim';
+import {Slider} from '@miblanchard/react-native-slider';
+import Video from 'react-native-video';
 import { launchImageLibrary } from 'react-native-image-picker';
+import RNFS from 'react-native-fs';
+import axios from 'axios';
+import { FFmpegKit, FFmpegKitConfig } from 'ffmpeg-kit-react-native';
 
 const App = () => {
-  useEffect(() => {
-    const eventEmitter = new NativeEventEmitter(NativeModules.VideoTrim);
-    const subscription = eventEmitter.addListener('VideoTrim', (event) => {
-      switch (event.name) {
-        case 'onShow':
-          console.log('onShowListener', event);
-          break;
-        case 'onHide':
-          console.log('onHide', event);
-          break;
-        case 'onStartTrimming':
-          console.log('onStartTrimming', event);
-          break;
-        case 'onFinishTrimming':
-          console.log('onFinishTrimming', event);
-          break;
-        case 'onCancelTrimming':
-          console.log('onCancelTrimming', event);
-          break;
-        case 'onError':
-          console.log('onError', event);
-          break;
-        default:
-          console.log('Unknown event', event);
-      }
-    });
-
-    return () => {
-      subscription.remove();
-    };
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
+  const [videoUri, setVideoUri] = useState(null);
+  const [duration, setDuration] = useState(0);
+  const [startTime, setStartTime] = useState(0);
+  const [endTime, setEndTime] = useState(10);
+  const videoPlayer = useRef(null);
 
   const handleLaunchLibrary = async () => {
     try {
@@ -51,34 +29,93 @@ const App = () => {
       });
 
       if (result.assets && result.assets.length > 0) {
-        const videoUri = result.assets[0].uri || '';
-        const isValid = await isValidFile(videoUri);
-        console.log(isValid);
-
-        showEditor(videoUri, { maxDuration: 20 });
+        const uri = result.assets[0].uri || '';
+        setVideoUri(uri);
+        videoPlayer.current.seek(0);
       }
     } catch (error) {
       console.error('Error launching image library:', error);
     }
   };
 
-  const handleCheckVideoValid = async () => {
+  const trimVideo = async () => {
+    setIsLoading(true);
+    const outputUri = `${RNFS.CachesDirectoryPath}/trimmedVideo.mp4`;
+
+    const command = `-i ${videoUri} -ss ${startTime} -t ${endTime - startTime} -c copy ${outputUri}`;
+
     try {
-      const isValid = await isValidFile('invalid file path');
-      console.log(isValid);
+      await FFmpegKit.execute(command);
+      setIsLoading(false);
+      await uploadVideo(outputUri);
     } catch (error) {
-      console.error('Error checking video validity:', error);
+      console.error('Error trimming video:', error);
+      setIsLoading(false);
+    }
+  };
+
+  const uploadVideo = async (uri) => {
+    setIsLoading(true);
+
+    const formData = new FormData();
+    formData.append('file', {
+      uri,
+      type: 'video/mp4',
+      name: 'trimmedVideo.mp4',
+    });
+
+    try {
+      const response = await axios.post('YOUR_SERVER_URL', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      console.log('Upload successful:', response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error uploading video:', error);
+      setIsLoading(false);
     }
   };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleLaunchLibrary} style={styles.launchButton}>
-        <Text>Launch Library</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleCheckVideoValid} style={styles.checkButton}>
-        <Text>Check Video Valid</Text>
-      </TouchableOpacity>
+      {isLoading && <ActivityIndicator size="large" color="#0000ff" />}
+      {videoUri ? (
+        <>
+          <Video
+            source={{ uri: videoUri }}
+            ref={videoPlayer}
+            style={styles.video}
+            onLoad={(data) => setDuration(data.duration)}
+            resizeMode="contain"
+          />
+          <Text>Start Time: {startTime.toFixed(2)}s</Text>
+          <Slider
+            style={styles.slider}
+            minimumValue={0}
+            maximumValue={duration}
+            value={startTime}
+            onValueChange={setStartTime}
+          />
+          <Text>End Time: {endTime.toFixed(2)}s</Text>
+          <Slider
+            style={styles.slider}
+            minimumValue={0}
+            maximumValue={duration}
+            value={endTime}
+            onValueChange={setEndTime}
+          />
+          <TouchableOpacity onPress={trimVideo} style={styles.trimButton}>
+            <Text>Trim Video</Text>
+          </TouchableOpacity>
+        </>
+      ) : (
+        <TouchableOpacity onPress={handleLaunchLibrary} style={styles.launchButton}>
+          <Text>Launch Library</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -89,11 +126,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  video: {
+    width: '100%',
+    height: 200,
+  },
+  slider: {
+    width: '80%',
+    height: 40,
+  },
   launchButton: {
     padding: 10,
     backgroundColor: 'red',
   },
-  checkButton: {
+  trimButton: {
     padding: 10,
     backgroundColor: 'blue',
     marginTop: 20,
