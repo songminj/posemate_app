@@ -5,7 +5,8 @@ import {
   Text, 
   TouchableOpacity,
   Image,
-  StatusBar
+  StatusBar,
+  SafeAreaView
 } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
@@ -36,49 +37,68 @@ const LoginScreen = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      <Image
-        source={require('../../assets/logo.png')}
-        style={styles.image}
-      />
-      <Input 
-        title="아이디"
-        placeholder='아이디를 입력하세요'
-        onChangeText={text => setUserId(text)}
-        value={userId}
-      />
-      <Input 
-        title="비밀번호"
-        placeholder='비밀번호를 입력하세요'
-        secureTextEntry={true}
-        onChangeText={text => setPassword(text)}
-        value={password}
-      />
-      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.buttonText}>로그인</Text>
-      </TouchableOpacity>
-      <TouchableOpacity 
-        style={[styles.loginButton, styles.signUpButton]} 
-        onPress={() => navigation.navigate('SignIn')}
-      >
-        <Text style={styles.buttonText}>회원가입</Text>
-      </TouchableOpacity>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" />
+      <View style={styles.content}>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('../../assets/logo.png')}
+            style={styles.image}
+          />
+        </View>
+        <View style={styles.formContainer}>
+          <Input 
+            title="아이디"
+            placeholder='아이디를 입력하세요'
+            onChangeText={text => setUserId(text)}
+            value={userId}
+            style={styles.input}
+          />
+          <Input 
+            title="비밀번호"
+            placeholder='비밀번호를 입력하세요'
+            secureTextEntry={true}
+            onChangeText={text => setPassword(text)}
+            value={password}
+            style={styles.input}
+          />
+          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+            <Text style={styles.buttonText}>로그인</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={[styles.loginButton, styles.signUpButton]} 
+            onPress={() => navigation.navigate('SignIn')}
+          >
+            <Text style={styles.buttonText}>회원가입</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F5F5F5',
+  },
+  content: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0C1B2E',
-    padding: 24
+    paddingHorizontal: 24,
+  },
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 40,
+  },
+  formContainer: {
+    width: '100%',
+    alignItems: 'center',
   },
   loginButton: {
     marginTop: 20,
-    backgroundColor: '#007BFF',
+    backgroundColor: '#2C3E50',
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
@@ -86,7 +106,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   signUpButton: {
-    backgroundColor: '#1A2A42',
+    backgroundColor: '#34495E',
+    marginTop: 12,
   },
   buttonText: {
     color: '#FFFFFF',
@@ -96,20 +117,9 @@ const styles = StyleSheet.create({
   image: {
     width: 120,
     height: 120,
-    marginBottom: 40,
-    tintColor: '#FFFFFF',
-  },
-  title: {
-    fontSize: 28,
-    marginBottom: 24,
-    color: '#FFFFFF',
-    fontWeight: 'bold',
+    tintColor: '#2C3E50',
   },
   input: {
-    backgroundColor: '#1A2A42',
-    color: '#FFFFFF',
-    borderRadius: 8,
-    padding: 12,
     marginBottom: 16,
     width: '100%',
   }

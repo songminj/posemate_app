@@ -106,6 +106,11 @@ const HomeScreen = ({ navigation }) => {
               toward='Select'
               navigation={navigation}
             />
+            <LargeButton
+              title='영상 분석하기'
+              toward='VideoTrim'
+              navigation={navigation}
+            />
           </View>
         </View>
       </ScrollView>

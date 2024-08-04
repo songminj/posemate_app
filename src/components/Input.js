@@ -24,7 +24,7 @@ const Input = ({
       <TextInput 
         style={styles.input}
         placeholder={placeholder || title}
-        placeholderTextColor="#C0C0C0"
+        placeholderTextColor="#999999"
         secureTextEntry={secureTextEntry} 
         onChangeText={onChangeText}
         value={value}
@@ -48,14 +48,16 @@ const styles = StyleSheet.create({
     width: width * 0.85,
   },
   title: {
-    color: '#FFFFFF',
+    color: '#333333',
     fontSize: 14,
     marginBottom: 8,
     fontWeight: '600',
   },
   input: {
-    backgroundColor: '#1A2A42',
-    color: '#FFFFFF',
+    backgroundColor: '#FFFFFF',
+    color: '#333333',
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
     borderRadius: 8,
     paddingVertical: 12,
     paddingHorizontal: 16,

@@ -10,6 +10,7 @@ import {
 import axios from 'axios'
 import LargeButton from '../components/LargeButton'
 
+
 const SelectOnDevice = ({navigation}) => {
   const [afterSelect, setAfterSelect] = useState(false)
   const [modalVisible, setModalVisible] = useState(false)

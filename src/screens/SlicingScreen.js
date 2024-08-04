@@ -8,11 +8,11 @@ import {
   NativeModules,
   Button,
 } from "react-native";
-import {
-  VESDK,
-  VideoEditorModal,
-  Configuration,
-} from "react-native-videoeditorsdk";
+// import {
+//   VESDK,
+//   VideoEditorModal,
+//   Configuration,
+// } from "react-native-videoeditorsdk";
 
 // import Video from "react-native-video";
 import LargeButton from "../components/LargeButton";
