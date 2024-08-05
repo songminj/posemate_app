@@ -18,15 +18,21 @@ const LoginScreen = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.get('http://i11a202.p.ssafy.io:8080/api-member/', {
+      console.log(userId, password)
+      const response = await axios.post('http://3.35.213.242:8080/api-member/login', {
         userId,
         password
+      }, 
+      { 
+        headers:{
+          'Content-Type': 'multipart/form-data',
+        }
       })
 
       if (response.status === 200) {
-        const { token } = response.data
-        await AsyncStorage.setItem('userData', token)
-        navigation.navigate('Main')
+        const token = response.headers.authorization
+        await AsyncStorage.setItem('userToken', token)
+        navigation.navigate('Home')
       } else {
         alert('아이디 또는 비밀번호가 올바르지 않습니다.')
       }

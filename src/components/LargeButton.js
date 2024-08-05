@@ -38,17 +38,13 @@ const LargeButton = ({
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    backgroundColor: '#007AFF',
-    width: width * 0.9,
-    paddingVertical: 16,
-    borderRadius: 12,
+    marginTop: 10,
+    backgroundColor: '#2C3E50',
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
   },
   buttonPressed: {
     backgroundColor: '#0056b3',

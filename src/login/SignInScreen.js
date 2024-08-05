@@ -34,11 +34,11 @@ const SignInScreen = ({ navigation }) => {
     }
 
     try {
-      const response = await axios.post('http://i11a202.p.ssafy.io:8080/api-member/join', data)
+      const response = await axios.post('http://3.35.213.242:8080/api-member/join', data)
       console.log(response.data)
 
-      if (response.data.token) {
-        await AsyncStorage.setItem('userData', response.data.token)
+      if (response.headers.authorization) {
+        await AsyncStorage.setItem('userData', response.headers.authorization)
         navigation.navigate('Home')
       } else {
         console.error('Token is missing in the response')
