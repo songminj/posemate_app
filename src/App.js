@@ -14,7 +14,7 @@ import LoginScreen from './login/LoginScreen'
 import SignInScreen from './login/SignInScreen'
 import ProfileScreen from './login/ProfileScreen'
 import SlicingScreen from './screens/SlicingScreen'
-// import VideoTrim from './screens/VideoTrim'
+import VideoTrim from './screens/VideoTrim'
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -159,11 +159,11 @@ const App = () => {
           component={SlicingScreen}
           options= {{headerShown: false,}}
         />
-        {/* <Stack.Screen 
+        <Stack.Screen 
           name='VideoTrim'
           component={VideoTrim}
           options= {{headerShown: false,}}
-        /> */}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

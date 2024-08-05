@@ -1,26 +1,32 @@
-import React from "react";
-import { 
-  View, 
-  Text, 
-  StyleSheet, 
-} from 'react-native';
-import LargeButton from "../components/LargeButton";
-
+import React from 'react'
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  Dimensions,
+  Image,
+} from 'react-native'
+import LargeButton from '../components/LargeButton'
+import CarouselComponent from '../components/CarouselComponent'
 
 const SelectScreen = ({ navigation }) => {
+  const { width } = Dimensions.get('window')
+
   return (
-    <View>
+    <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
         <Text style={styles.headerText}>운동 기록</Text>
       </View>
       <View style={styles.container}>
         <Text style={styles.description}>
-          여러분의 달리기 자세를 분석하여 
+          여러분의 달리기 자세를 분석하여
         </Text>
         <Text style={styles.description}>
           자세교정이 필요한 부분을 알려드립니다.
         </Text>
       </View>
+      <CarouselComponent/>
       <View style={styles.buttonContainer}>
         <LargeButton
           title='갤러리에서 영상 가져오기'
@@ -33,11 +39,15 @@ const SelectScreen = ({ navigation }) => {
           navigation={navigation}
         />
       </View>
-    </View>
-  );
-};
+    </SafeAreaView>
+  )
+}
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
   header: {
     marginTop: 20,
     marginBottom: 20,
@@ -58,8 +68,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     margin: 20,
     justifyContent: 'center',
-    alignItems: 'center', 
+    alignItems: 'center',
   },
-});
+})
 
-export default SelectScreen;
+export default SelectScreen

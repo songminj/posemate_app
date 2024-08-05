@@ -8,16 +8,17 @@ import {
   Alert,
   Dimensions,
 } from 'react-native'
-import Slider from "@miblanchard/react-native-slider"
+import {Slider} from '@miblanchard/react-native-slider'
 import Video from 'react-native-video'
 import { launchImageLibrary } from 'react-native-image-picker'
 import RNFS from 'react-native-fs'
 import axios from 'axios'
 import { FFmpegKit } from 'ffmpeg-kit-react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const { width } = Dimensions.get('window')
 
-const videoTrim = () => {
+const VideoTrim = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [videoUri, setVideoUri] = useState(null)
   const [trimmedVideoUri, setTrimmedVideoUri] = useState(null)
@@ -87,6 +88,7 @@ const videoTrim = () => {
     try {
       const response = await axios.post('http://3.35.213.242:8080/api-video', formData, {
         headers: {
+          'Authorization': `${AsyncStorage.getItem('userToken')}`,
           'Content-Type': 'multipart/form-data',
         },
         timeout: 30000, // 30 seconds timeout
@@ -259,4 +261,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default videoTrim;
+export default VideoTrim
