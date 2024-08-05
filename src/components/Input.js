@@ -44,7 +44,7 @@ Input.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 16,
+    marginBottom: 8,
     width: width * 0.85,
   },
   title: {

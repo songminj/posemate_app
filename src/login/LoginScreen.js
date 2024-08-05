@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { 
   StyleSheet, 
   View, 
@@ -15,16 +15,26 @@ import Input from '../components/Input'
 const LoginScreen = ({ navigation }) => {
   const [userId, setUserId] = useState('')
   const [password, setPassword] = useState('')
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false)
+
+  const userIdRegex = /([-_.]?[0-9a-zA-Z]){4,12}$/
+  const passwordRegex =/(.{4,})$/
+
+  useEffect(() => {
+    // 로그인 버튼 활성화 상태 업데이트
+    const isUserIdValid = userIdRegex.test(userId)
+    const isPasswordValid = passwordRegex.test(password)
+    setIsButtonEnabled(isUserIdValid && isPasswordValid)
+  }, [userId, password])
 
   const handleLogin = async () => {
     try {
-      console.log(userId, password)
       const response = await axios.post('http://3.35.213.242:8080/api-member/login', {
         userId,
         password
       }, 
       { 
-        headers:{
+        headers: {
           'Content-Type': 'multipart/form-data',
         }
       })
@@ -68,7 +78,11 @@ const LoginScreen = ({ navigation }) => {
             value={password}
             style={styles.input}
           />
-          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+          <TouchableOpacity 
+            style={[styles.loginButton, { backgroundColor: isButtonEnabled ? '#2C3E50' : '#BDC3C7' }]} 
+            onPress={handleLogin}
+            disabled={!isButtonEnabled}
+          >
             <Text style={styles.buttonText}>로그인</Text>
           </TouchableOpacity>
           <TouchableOpacity 
@@ -104,7 +118,6 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     marginTop: 20,
-    backgroundColor: '#2C3E50',
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,

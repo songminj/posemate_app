@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   StatusBar
 } from 'react-native';
-
+import { useFocusEffect } from '@react-navigation/native'
 import LargeButton from '../components/LargeButton';
 
 const { width } = Dimensions.get('window');
@@ -44,7 +44,7 @@ const HomeImage = () => {
 };
 
 const HomeScreen = ({ navigation }) => {
-
+  const [data, setData] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userId, setUserId] = useState('')
 
@@ -69,7 +69,12 @@ const HomeScreen = ({ navigation }) => {
       console.error('Error checking login status:', error)
     }
   }
-  // App.js로 이동? 
+  useFocusEffect(
+    React.useCallback(() => {
+      checkLoginStatus()
+    }, [])
+  )
+
   const handleLogin = () => {
     navigation.navigate('Login')
   }
