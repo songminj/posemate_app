@@ -8,13 +8,17 @@ import {
   Alert 
 } from 'react-native'
 import axios from 'axios'
-import LargeButton from '../components/LargeButton'
-
+import LargeButton from './LargeButton'
+import Video from "react-native-video"
 
 const SelectOnDevice = ({navigation}) => {
   const [afterSelect, setAfterSelect] = useState(false)
-  const [modalVisible, setModalVisible] = useState(false)
+  const [modalVisible, setModalVisible] = useState(true)
   const [selectedVideo, setSelectedVideo] = useState(null)
+
+  useEffect(()=> {
+    pickVideo()
+  }, [])
 
   const pickVideo = () => {
     ImagePicker.openPicker({
@@ -44,11 +48,9 @@ const SelectOnDevice = ({navigation}) => {
           },
         })
         console.log('Video uploaded successfully:', response.data)
-        Alert.alert("Success", "Video uploaded successfully.")
-        
       } catch (error) {
         console.error('Error uploading video:', error)
-        Alert.alert("Error", "Error uploading video.")
+        Alert.alert("Error", "비디오 저장에 실패했습니다😥")
       }
     }
     setModalVisible(false)
@@ -58,15 +60,43 @@ const SelectOnDevice = ({navigation}) => {
     <View style={styles.container}>
       {!afterSelect? (
         <>
-          <Text style={styles.title}>갤러리에서 영상 가져오기</Text>
-          <LargeButton
-            title='비디오 선택하기'
-            toward={pickVideo}
-          />
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert('Modal has been closed.')
+              setModalVisible(!modalVisible)
+          }}>
+            <View style={styles.centeredView}>
+              {selectedVideo && (
+                <Video
+                  source={{ uri: selectedVideo.path }}
+                  style={styles.video}
+                  resizeMode="cover"
+                  controls={false}
+                />
+              )}
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>이 비디오를 선택하겠습니까?</Text>
+                <View style={styles.buttonContainer}>
+                  <LargeButton
+                    title='예'
+                    toward={sendVideoToServer}
+                  />
+                  <LargeButton
+                    title='아니요'
+                    toward='Select'
+                    navigation={navigation}
+                  />
+                </View>
+              </View>
+            </View>
+          </Modal>
         </>
       ) : (
         <>
-        <Text style={styles.title}>이 비디오로 분석을 시작하겠습니다</Text>
+          <Text style={styles.title}>이 비디오로 분석을 시작하겠습니다</Text>
           <LargeButton
             title='분석하러 가기'
             toward='Slicing'
@@ -74,34 +104,6 @@ const SelectOnDevice = ({navigation}) => {
           />
         </>
       )}
-
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.')
-          setModalVisible(!modalVisible)
-      }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>이 비디오를 선택하겠습니까?</Text>
-            <View style={styles.buttonContainer}>
-              <View>
-                <LargeButton
-                  title='예'
-                  toward={sendVideoToServer}
-                />
-                <LargeButton
-                  title='아니요'
-                  toward={() => setModalVisible(!modalVisible)}
-                />
-              </View>
-            </View>
-          </View>
-        </View>
-      </Modal>
     </View>
   )
 }
@@ -156,6 +158,11 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: 'center',
     fontSize: 16,
+  },
+  video: {
+    width: 300,
+    height: 300,
+    backgroundColor: 'black',
   },
 })
 

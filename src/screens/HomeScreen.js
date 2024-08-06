@@ -21,7 +21,7 @@ const HiUser = ({ navigation, userId, isLoggedIn }) => {
   return (
     <TouchableOpacity 
       style={styles.hiUserContainer}
-      onPress={() => navigation.navigate(isLoggedIn ? 'Profile' : 'Login')}
+      onPress={() => navigation.navigate(isLoggedIn ? 'Home' : 'Login')}
     >
       <View style={styles.avatarContainer}>
         <Icon name="person" size={24} color="#007AFF" />

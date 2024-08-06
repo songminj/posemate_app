@@ -7,11 +7,16 @@ import {
   Dimensions
 } from 'react-native'
 
-import LargeButton from '../components/LargeButton'
+import LargeButton from './LargeButton'
 
 const width = Dimensions.get('window').width
 
 const SelectOnServer = ({ navigation }) => {
+
+  useEffect(() => {
+    requestGet()
+  }, [])
+
   const requestGet = async () => {
     try {
       const response = await axios.get('http://i11a202.p.ssafy.io:8080/api-video')
@@ -21,13 +26,11 @@ const SelectOnServer = ({ navigation }) => {
     }
   }
 
-  useEffect(() => {
-    requestGet()
-  }, [])
-
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>로봇카로 촬영한 영상 찾아보기</Text>
+      
+      
       <LargeButton
         title='분석하러 가기'
         toward='Slicing'

@@ -10,6 +10,7 @@ import {
 import LargeButton from '../components/LargeButton'
 import CarouselComponent from '../components/CarouselComponent'
 
+
 const SelectScreen = ({ navigation }) => {
   const { width } = Dimensions.get('window')
 

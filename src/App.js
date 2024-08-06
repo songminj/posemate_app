@@ -7,12 +7,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import AnalysisResult from './analysis/AnalysisResult'
 import AnalysisSelectScreen from './analysis/AnalysisSelectScreen'
 import HomeScreen from './screens/HomeScreen'
-import SelectOnDevice from './screens/SelectOnDevice'
-import SelectOnServer from './screens/SelectOnServer'
 import LoginScreen from './login/LoginScreen'
 import SignInScreen from './login/SignInScreen'
 import SlicingScreen from './screens/SlicingScreen'
 import VideoTrim from './screens/VideoTrim'
+import DeviceComponent from './components/SelectDevice'
+import ServerComponent from './components/SelectServer'
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -115,47 +115,47 @@ const App = () => {
         <Stack.Screen 
           name='MainTabs' 
           component={MainTabNavigator}
-          options={{headerShown: false}}
+          // options={{headerShown: false}}
         />
         <Stack.Screen 
           name='AnalysisResult' 
           component={AnalysisResult}
-          options= {{headerShown: false,}}
+          // options= {{headerShown: false,}}
         />
         <Stack.Screen 
           name='Select' 
           component={AnalysisSelectScreen}
-          options= {{headerShown: false,}}
-        />
-        <Stack.Screen 
-          name='Device'
-          component={SelectOnDevice} 
-          options= {{headerShown: false,}}
-        />
-        <Stack.Screen 
-          name='Server' 
-          component={SelectOnServer} 
-          options= {{headerShown: false,}}
+          // options= {{headerShown: false,}}
         />
         <Stack.Screen 
           name='Login' 
           component={LoginScreen} 
-          options= {{headerShown: false,}}
+          // options= {{headerShown: false,}}
         />
         <Stack.Screen 
           name='SignIn' 
           component={SignInScreen} 
-          options= {{headerShown: false,}}
+          // options= {{headerShown: false,}}
         />
         <Stack.Screen 
           name='Slicing'
           component={SlicingScreen}
-          options= {{headerShown: false,}}
+          // options= {{headerShown: false,}}
+        />
+        <Stack.Screen 
+          name='Device'
+          component={DeviceComponent}
+          // options= {{headerShown: false,}}
+        />
+        <Stack.Screen 
+          name='Server'
+          component={ServerComponent}
+          // options= {{headerShown: false,}}
         />
         <Stack.Screen 
           name='VideoTrim'
           component={VideoTrim}
-          options= {{headerShown: false,}}
+          // options= {{headerShown: false,}}
         />
       </Stack.Navigator>
     </NavigationContainer>
