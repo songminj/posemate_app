@@ -50,7 +50,7 @@ const SelectOnDevice = ({navigation}) => {
         console.log('Video uploaded successfully:', response.data)
       } catch (error) {
         console.error('Error uploading video:', error)
-        Alert.alert("Error", "비디오 저장에 실패했습니다😥")
+        Alert.alert("앗!", "비디오 저장에 실패했습니다😥")
       }
     }
     setModalVisible(false)
@@ -99,7 +99,7 @@ const SelectOnDevice = ({navigation}) => {
           <Text style={styles.title}>이 비디오로 분석을 시작하겠습니다</Text>
           <LargeButton
             title='분석하러 가기'
-            toward='Slicing'
+            toward='VideoTrim'
             navigation={navigation}
           />
         </>

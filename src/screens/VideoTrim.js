@@ -147,6 +147,7 @@ const VideoTrim = () => {
               }}
               resizeMode="contain"
               paused={paused}
+              controls={true}
               onProgress={onVideoProgress}
             />
           </TouchableOpacity>

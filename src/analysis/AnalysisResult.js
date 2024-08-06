@@ -4,7 +4,8 @@ import {
   Text, 
   StyleSheet,
   ScrollView,
-  SafeAreaView
+  SafeAreaView,
+  Modal
 } 
 from 'react-native'
 import AsyncStorage from "@react-native-async-storage/async-storage"
@@ -18,9 +19,13 @@ const AnalysisResult = ({navigation}) => {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
-
+  const [report, setReport] = useState(true)
   const rand = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+
+  const reportHandler = () => {
+    {!report ? setReport(true) : setReport(false)}
   }
 
   useEffect(() => {
@@ -43,47 +48,72 @@ const AnalysisResult = ({navigation}) => {
   }
   const score = rand(0, 101)
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View style={styles.container}>
-          <Text style={styles.headerText}>분석 결과</Text>
-          <Text>사용자님의 자세는 {score}점 입니다!</Text>
-          <View style={styles.reviewContainer}>
-            <Video
-              source={require("../../assets/jwtest.mp4")}
-              resizeMode="cover"
-              controls={false}
-              style={styles.video}
-            />
-            <CommentBox
-              bodyName='상체'
-              score='30'
-              comment='Test'
-            />
-            <CommentBox
-              bodyName='하체'
-              score='50'
-              comment='Test'
-            />
-            <CommentBox
-              bodyName='팔'
-              score='70'
-              comment='Test'
-            />
-            <CommentBox
-                bodyName='전신'
-                score='90'
-                comment='TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest'
-            />
-          </View>
-          <LargeButton
-            title='처음으로'
-            toward='Home'
-            navigation={navigation} 
-          />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <View>
+      <SafeAreaView>
+        <ScrollView>
+          {!report?(
+            <>
+              <Modal>
+                <View>
+                  <Text>짜잔</Text>
+                  <LargeButton
+                    title="리포트 닫기"
+                    toward={reportHandler}
+                  />
+                </View>
+              </Modal>
+            </>
+          ) : (
+            <>
+              <View style={styles.container}>
+                <Text style={styles.headerText}>분석 결과</Text>
+                <Text>사용자님의 자세는 {score}점 입니다!</Text>
+                <View style={styles.reviewContainer}>
+                  <Video
+                    source={require("../../assets/jwtest.mp4")}
+                    resizeMode="cover"
+                    controls={false}
+                    style={styles.video}
+                  />
+                  <CommentBox
+                    bodyName='상체'
+                    score='30'
+                    comment='Test'
+                  />
+                  <CommentBox
+                    bodyName='하체'
+                    score='50'
+                    comment='Test'
+                  />
+                  <CommentBox
+                    bodyName='팔'
+                    score='70'
+                    comment='Test'
+                  />
+                  <CommentBox
+                      bodyName='전신'
+                      score='90'
+                      comment='TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest'
+                  />
+                </View>
+                <LargeButton
+                  title='처음으로'
+                  toward='Home'
+                  navigation={navigation} 
+                />
+                <LargeButton
+                  title='리포트 확인하기'
+                  toward={reportHandler}
+                />
+              </View>
+            </>
+            )
+          }
+        </ScrollView>
+      </SafeAreaView>
+      
+    </View>
+    
   )
 }
 

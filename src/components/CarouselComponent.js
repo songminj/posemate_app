@@ -18,10 +18,7 @@ const imageData = [
   { id: 3, source: require('../../assets/carousel3.jpg') },
 ];
 
-const colors = ["#fda282", "#fdba4e", "#800015"];
-
 function Index() {
-  const [isAutoPlay, setIsAutoPlay] = useState(false);
 
   const baseOptions = {
     vertical: false,
@@ -38,7 +35,7 @@ function Index() {
         withAnimation={{
           type: "spring",
           config: {
-            damping: 13,
+            damping: 12,
           },
         }}
         autoPlayInterval={1500}
@@ -96,7 +93,7 @@ const Card = ({ item, index, animationValue }) => {
     const translateX = interpolate(
       animationValue.value,
       [-1, 0, 1],
-      [0, 60, 60],
+      [0, 0, 0],
     );
 
     const translateY = interpolate(
@@ -126,12 +123,13 @@ const Card = ({ item, index, animationValue }) => {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        
       }}
     >
-      <Animated.View
+      {/* <Animated.View
         style={[
           {
-            backgroundColor: colors[index % colors.length],
+            // backgroundColor: colors[index % colors.length],
             alignSelf: "center",
             justifyContent: "center",
             alignItems: "center",
@@ -149,17 +147,26 @@ const Card = ({ item, index, animationValue }) => {
           },
           cardStyle,
         ]}
-      />
+      /> */}
 
       <Animated.Image
         source={item.source}
         style={[
-          {
-            width: WIDTH * 0.8,
-            height: HEIGHT * 0.8,
-            borderRadius: 16,
-            position: "absolute",
-            zIndex: 999,
+          { 
+            alignSelf: "center",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 20,
+            width: WIDTH,
+            height: HEIGHT,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 8,
+            },
+            shadowOpacity: 0.44,
+            shadowRadius: 10.32,
+            elevation: 16,
           },
           imageStyle,
         ]}

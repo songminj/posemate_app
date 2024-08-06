@@ -116,6 +116,11 @@ const HomeScreen = ({ navigation }) => {
               toward='VideoTrim'
               navigation={navigation}
             />
+            <LargeButton
+              title='ffmpeg'
+              toward='FFmpeg'
+              navigation={navigation}
+            />
           </View>
         </View>
       </ScrollView>

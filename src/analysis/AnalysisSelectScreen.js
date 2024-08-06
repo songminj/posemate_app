@@ -5,7 +5,6 @@ import {
   StyleSheet,
   SafeAreaView,
   Dimensions,
-  Image,
 } from 'react-native'
 import LargeButton from '../components/LargeButton'
 import CarouselComponent from '../components/CarouselComponent'
@@ -17,7 +16,8 @@ const SelectScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>운동 기록</Text>
+        <Text style={styles.headerText}>POSE MATE를</Text>
+        <Text style={styles.headerText}>이용해주셔서 감사합니다!</Text>
       </View>
       <View style={styles.container}>
         <Text style={styles.description}>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   header: {
-    marginTop: 20,
+    marginTop: 30,
     marginBottom: 20,
     justifyContent: 'center',
     alignItems: 'center',

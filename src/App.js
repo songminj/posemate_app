@@ -13,7 +13,7 @@ import SlicingScreen from './screens/SlicingScreen'
 import VideoTrim from './screens/VideoTrim'
 import DeviceComponent from './components/SelectDevice'
 import ServerComponent from './components/SelectServer'
-
+import FFmpegTrim from './screens/FFmpegTrim'
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
@@ -155,6 +155,11 @@ const App = () => {
         <Stack.Screen 
           name='VideoTrim'
           component={VideoTrim}
+          // options= {{headerShown: false,}}
+        />
+        <Stack.Screen 
+          name='FFmpeg'
+          component={FFmpegTrim}
           // options= {{headerShown: false,}}
         />
       </Stack.Navigator>

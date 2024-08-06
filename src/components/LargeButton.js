@@ -38,7 +38,7 @@ const LargeButton = ({
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    marginTop: 10,
+    margin: 10,
     backgroundColor: '#2C3E50',
     paddingVertical: 12,
     paddingHorizontal: 12,
