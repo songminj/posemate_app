@@ -13,7 +13,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import ImagePicker from 'react-native-image-crop-picker';
 import Video from 'react-native-video';
 import FFmpegWrapper from '../components/FFmpegWrapper';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width; // 화면 width 사이즈
 const SCREEN_HEIGHT = Dimensions.get('screen').height; // 화면 height 사이즈
@@ -171,178 +171,180 @@ const Camera = () => {
   }
 
   return (
-    <SafeAreaView style={styles.mainContainer}>
-      {selectedVideo ? ( // 선택된 비디오가 있다면
-        <>
-          <View style={styles.videoContainer}>
-            <Video
-              style={styles.video}
-              resizeMode={'cover'}
-              source={{ uri: selectedVideo.uri }}
-              repeat={false}
-              onLoad={handleVideoLoad}
-              onEnd={(res) => setisPlaying(false)}
-              onProgress={onProgress}
-              paused={!isPlaying}
-              currentTime={currentTime}
-            />
-          </View>
-          {frames && (
-            <View style={styles.durationWindowAndFramesLineContainer}>
-              <View style={{ flexDirection: 'row', overflow: 'hidden', paddingVertical: 10 }}>
-                <View style={{ zIndex: 10, backgroundColor: '#676666', width: FRAME_WIDTH + 10 }}>
-                  <Text style={{ justifyContent: 'center', fontSize: 10, alignSelf: 'center', color: 'white' }}>
-                    {parseInt(((x / FRAME_WIDTH) % 3600) / 60) + '.' + parseInt((x / FRAME_WIDTH) % 60) + '.' + parseInt(x % 100)}
-                  </Text>
-                </View>
-                <View style={{ left: -x, flexDirection: 'row' }}>
-                  <View style={{ width: FRAME_WIDTH * 2, backgroundColor: '#60000096' }}></View>
-                  <View style={{ width: FRAME_WIDTH * frames.length, flexDirection: 'row' }}>
-                    {frames.map((frame, index) => renderFrameSecond(frame, index))}
+    <GestureHandlerRootView style={{flex:1}}>
+      <SafeAreaView style={styles.mainContainer}>
+        {selectedVideo ? ( // 선택된 비디오가 있다면
+          <>
+            <View style={styles.videoContainer}>
+              <Video
+                style={styles.video}
+                resizeMode={'cover'}
+                source={{ uri: selectedVideo.uri }}
+                repeat={false}
+                onLoad={handleVideoLoad}
+                onEnd={(res) => setisPlaying(false)}
+                onProgress={onProgress}
+                paused={!isPlaying}
+                currentTime={currentTime}
+              />
+            </View>
+            {frames && (
+              <View style={styles.durationWindowAndFramesLineContainer}>
+                <View style={{ flexDirection: 'row', overflow: 'hidden', paddingVertical: 10 }}>
+                  <View style={{ zIndex: 10, backgroundColor: '#676666', width: FRAME_WIDTH + 10 }}>
+                    <Text style={{ justifyContent: 'center', fontSize: 10, alignSelf: 'center', color: 'white' }}>
+                      {parseInt(((x / FRAME_WIDTH) % 3600) / 60) + '.' + parseInt((x / FRAME_WIDTH) % 60) + '.' + parseInt(x % 100)}
+                    </Text>
                   </View>
-                  <View style={{ width: SCREEN_WIDTH, backgroundColor: '#60000096' }}></View>
-                </View>
-              </View>
-              <ScrollView
-                vertical
-                bounces={true}
-                style={{ width: DURATION_WINDOW_WIDTH * 2, overflow: 'hidden', height: SCREEN_HEIGHT * 0.2}}
-              >
-                <View style={{ flexDirection: 'row' }}>
-                  <View style={{ width: FRAME_WIDTH + 10}}>
-                    <View style={{ height: FRAME_WIDTH, borderWidth: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 5, backgroundColor: '#676666' }}>
-                      <TouchableOpacity style={{}}>
-                        <Ionicons name={"musical-notes"} color="white" size={25} />
-                      </TouchableOpacity>
+                  <View style={{ left: -x, flexDirection: 'row' }}>
+                    <View style={{ width: FRAME_WIDTH * 2, backgroundColor: '#60000096' }}></View>
+                    <View style={{ width: FRAME_WIDTH * frames.length, flexDirection: 'row' }}>
+                      {frames.map((frame, index) => renderFrameSecond(frame, index))}
                     </View>
-                    <View style={{ height: FRAME_WIDTH, borderWidth: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 5, backgroundColor: '#676666' }}>
-                      <TouchableOpacity style={{}}>
-                        <Ionicons name={"scan-sharp"} color="white" size={25} />
-                      </TouchableOpacity>
-                    </View>
-                    <View style={{ height: FRAME_WIDTH, borderWidth: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 5, backgroundColor: '#676666' }}>
-                      <TouchableOpacity style={{}}>
-                        <Ionicons name={"mic"} color="white" size={25} />
-                      </TouchableOpacity>
-                    </View>
-                    <View style={{ height: FRAME_WIDTH, borderWidth: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 5, backgroundColor: '#676666' }}>
-                      <TouchableOpacity style={{}}>
-                        <Ionicons name={"md-add"} color="white" size={25} />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                  <View style={styles.popLineContainer}>
-                    <View style={styles.popLine} />
-                  </View>
-                  <View>
-                    <View style={{ marginBottom: 5 }}>
-                      <ScrollView
-                        ref={ref => setPlayScroll(ref)}
-                        onScroll={handleScroll}
-                        showsHorizontalScrollIndicator={false}
-                        horizontal={true}
-                        bounces={true}
-                        style={styles.framesLine}
-                        scrollEventThrottle={1}>
-                        <View style={{ width: FRAME_WIDTH * 2 }}></View>
-                        <View>
-                          <View style={{ flexDirection: 'row', borderRadius: 10, marginBottom: 5, height: FRAME_WIDTH}}>
-                            {audioBitRates.map((frame, index) => renderBitRateFrame(frame, index))}
-                          </View>
-                          <View style={{ flexDirection: 'row', borderRadius: 10, marginBottom: 5 }}>
-                            {frames.map((frame, index) => renderFrame(frame, index))}
-                          </View>
-                        </View>
-                        <View style={{ width: FRAME_WIDTH * 8 - 10 }}></View>
-                      </ScrollView>
-                    </View>
+                    <View style={{ width: SCREEN_WIDTH, backgroundColor: '#60000096' }}></View>
                   </View>
                 </View>
-              </ScrollView>
-              <View style={{
-                width: SCREEN_WIDTH,
-                shadowColor: "black",
-                shadowOffset: {
-                  width: 0,
-                  height: -10,
-                },
-                shadowOpacity: 0.9,
-              }}>
-                <View style={{ width: SCREEN_WIDTH, flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 25,alignItems: 'center' }}>
-                  <View>
-                    <TouchableOpacity style={{}}>
-                      <Ionicons name={"ios-options-sharp"} color="white" size={25} />
-                    </TouchableOpacity>
-                  </View>
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: SCREEN_WIDTH * 0.45,alignItems: 'center' }}>
-                    <View>
-                      <TouchableOpacity style={{}}>
-                        <Ionicons name={"play-skip-back"} color="white" size={25} />
-                      </TouchableOpacity>
-                    </View>
-                    <View>
-                      <TouchableOpacity style={{}}>
-                        <Ionicons name={"radio-button-on"} color="red" size={55} />
-                      </TouchableOpacity>
-                    </View>
-                    <View>
-                      <TouchableOpacity onPress={() => setisPlaying(!isPlaying)}>
-                        <Ionicons name={isPlaying ? "pause" : 'play'} color="white" size={25} />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                  <View>
-                    <TouchableOpacity style={{}}>
-                      <View style={{ backgroundColor: 'white', borderRadius: 20, paddingHorizontal: 10, paddingVertical: 10 }}>
-                        <Text style={{ fontWeight: 'bold' }}>다음 </Text>
-                      </View>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </View>
-              <View style={{width: SCREEN_WIDTH, paddingHorizontal: 15}}>
                 <ScrollView
-                  horizontal
+                  vertical
+                  bounces={true}
+                  style={{ width: DURATION_WINDOW_WIDTH * 2, overflow: 'hidden', height: SCREEN_HEIGHT * 0.2}}
                 >
-                  <View style={{flexDirection: 'row'}}>
-                    <TouchableOpacity style={{backgroundColor: '#676666', paddingHorizontal: 16, paddingVertical: 8, borderRadius: 8, marginRight: 5}}>
-                      <Ionicons name={"md-pulse-sharp"} color="white" size={20} style={{marginBottom: 3,alignSelf: 'center'}}/>
-                      <Text style={{color: 'white', fontSize: 10}}>이팩트</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{backgroundColor: '#676666', paddingHorizontal: 10, paddingVertical: 8, borderRadius: 8, marginRight: 5}}>
-                      <Ionicons name={"md-pause-outline"} color="white" size={20} style={{marginBottom: 3,alignSelf: 'center'}}/>
-                      <Text style={{color: 'white', fontSize: 10}}>브레이크</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{backgroundColor: '#676666', paddingHorizontal: 10, paddingVertical: 8, borderRadius: 8, marginRight: 5}}>
-                      <Ionicons name={"speedometer-outline"} color="white" size={20} style={{marginBottom: 3,alignSelf: 'center'}}/>
-                      <Text style={{color: 'white', fontSize: 10}}>싱크 조정</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{backgroundColor: '#676666', paddingHorizontal: 10, paddingVertical: 8, borderRadius: 8, marginRight: 5}}>
-                      <Ionicons name={"md-copy-outline"} color="white" size={20} style={{marginBottom: 3,alignSelf: 'center'}}/>
-                      <Text style={{color: 'white', fontSize: 10}}>트랙 복제</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{backgroundColor: '#676666', paddingHorizontal: 10, paddingVertical: 8, borderRadius: 8, marginRight: 5}}>
-                      <Ionicons name={"trash-outline"} color="white" size={20} style={{marginBottom: 3,alignSelf: 'center'}}/>
-                      <Text style={{color: 'white', fontSize: 10}}>트랙 삭제</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{backgroundColor: '#676666', paddingHorizontal: 16, paddingVertical: 9, borderRadius: 8, marginRight: 5}}>
-                      <Ionicons name={"reload"} color="white" size={20} style={{marginBottom: 3,alignSelf: 'center'}}/>
-                      <Text style={{color: 'white', fontSize: 10}}>초기화</Text>
-                    </TouchableOpacity>
+                  <View style={{ flexDirection: 'row' }}>
+                    <View style={{ width: FRAME_WIDTH + 10}}>
+                      <View style={{ height: FRAME_WIDTH, borderWidth: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 5, backgroundColor: '#676666' }}>
+                        <TouchableOpacity style={{}}>
+                          <Ionicons name={"musical-notes"} color="white" size={25} />
+                        </TouchableOpacity>
+                      </View>
+                      <View style={{ height: FRAME_WIDTH, borderWidth: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 5, backgroundColor: '#676666' }}>
+                        <TouchableOpacity style={{}}>
+                          <Ionicons name={"scan-sharp"} color="white" size={25} />
+                        </TouchableOpacity>
+                      </View>
+                      <View style={{ height: FRAME_WIDTH, borderWidth: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 5, backgroundColor: '#676666' }}>
+                        <TouchableOpacity style={{}}>
+                          <Ionicons name={"mic"} color="white" size={25} />
+                        </TouchableOpacity>
+                      </View>
+                      <View style={{ height: FRAME_WIDTH, borderWidth: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 5, backgroundColor: '#676666' }}>
+                        <TouchableOpacity style={{}}>
+                          <Ionicons name={"md-add"} color="white" size={25} />
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                    <View style={styles.popLineContainer}>
+                      <View style={styles.popLine} />
+                    </View>
+                    <View>
+                      <View style={{ marginBottom: 5 }}>
+                        <ScrollView
+                          ref={ref => setPlayScroll(ref)}
+                          onScroll={handleScroll}
+                          showsHorizontalScrollIndicator={false}
+                          horizontal={true}
+                          bounces={true}
+                          style={styles.framesLine}
+                          scrollEventThrottle={1}>
+                          <View style={{ width: FRAME_WIDTH * 2 }}></View>
+                          <View>
+                            <View style={{ flexDirection: 'row', borderRadius: 10, marginBottom: 5, height: FRAME_WIDTH}}>
+                              {audioBitRates.map((frame, index) => renderBitRateFrame(frame, index))}
+                            </View>
+                            <View style={{ flexDirection: 'row', borderRadius: 10, marginBottom: 5 }}>
+                              {frames.map((frame, index) => renderFrame(frame, index))}
+                            </View>
+                          </View>
+                          <View style={{ width: FRAME_WIDTH * 8 - 10 }}></View>
+                        </ScrollView>
+                      </View>
+                    </View>
                   </View>
                 </ScrollView>
+                <View style={{
+                  width: SCREEN_WIDTH,
+                  shadowColor: "black",
+                  shadowOffset: {
+                    width: 0,
+                    height: -10,
+                  },
+                  shadowOpacity: 0.9,
+                }}>
+                  <View style={{ width: SCREEN_WIDTH, flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 25,alignItems: 'center' }}>
+                    <View>
+                      <TouchableOpacity style={{}}>
+                        <Ionicons name={"ios-options-sharp"} color="white" size={25} />
+                      </TouchableOpacity>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: SCREEN_WIDTH * 0.45,alignItems: 'center' }}>
+                      <View>
+                        <TouchableOpacity style={{}}>
+                          <Ionicons name={"play-skip-back"} color="white" size={25} />
+                        </TouchableOpacity>
+                      </View>
+                      <View>
+                        <TouchableOpacity style={{}}>
+                          <Ionicons name={"radio-button-on"} color="red" size={55} />
+                        </TouchableOpacity>
+                      </View>
+                      <View>
+                        <TouchableOpacity onPress={() => setisPlaying(!isPlaying)}>
+                          <Ionicons name={isPlaying ? "pause" : 'play'} color="white" size={25} />
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                    <View>
+                      <TouchableOpacity style={{}}>
+                        <View style={{ backgroundColor: 'white', borderRadius: 20, paddingHorizontal: 10, paddingVertical: 10 }}>
+                          <Text style={{ fontWeight: 'bold' }}>다음 </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
                 </View>
-            </View>
-          )}
-        </>
-      ) : ( // 선택된 비디오가 없다면
-        <Pressable
-          style={styles.buttonContainer}
-          onPress={handlePressSelectVideoButton}>
-          <Text style={styles.buttonText}>Select a video</Text>
-        </Pressable>
-      )}
-    </SafeAreaView>
+                <View style={{width: SCREEN_WIDTH, paddingHorizontal: 15}}>
+                  <ScrollView
+                    horizontal
+                  >
+                    <View style={{flexDirection: 'row'}}>
+                      <TouchableOpacity style={{backgroundColor: '#676666', paddingHorizontal: 16, paddingVertical: 8, borderRadius: 8, marginRight: 5}}>
+                        <Ionicons name={"md-pulse-sharp"} color="white" size={20} style={{marginBottom: 3,alignSelf: 'center'}}/>
+                        <Text style={{color: 'white', fontSize: 10}}>이팩트</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={{backgroundColor: '#676666', paddingHorizontal: 10, paddingVertical: 8, borderRadius: 8, marginRight: 5}}>
+                        <Ionicons name={"md-pause-outline"} color="white" size={20} style={{marginBottom: 3,alignSelf: 'center'}}/>
+                        <Text style={{color: 'white', fontSize: 10}}>브레이크</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={{backgroundColor: '#676666', paddingHorizontal: 10, paddingVertical: 8, borderRadius: 8, marginRight: 5}}>
+                        <Ionicons name={"speedometer-outline"} color="white" size={20} style={{marginBottom: 3,alignSelf: 'center'}}/>
+                        <Text style={{color: 'white', fontSize: 10}}>싱크 조정</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={{backgroundColor: '#676666', paddingHorizontal: 10, paddingVertical: 8, borderRadius: 8, marginRight: 5}}>
+                        <Ionicons name={"md-copy-outline"} color="white" size={20} style={{marginBottom: 3,alignSelf: 'center'}}/>
+                        <Text style={{color: 'white', fontSize: 10}}>트랙 복제</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={{backgroundColor: '#676666', paddingHorizontal: 10, paddingVertical: 8, borderRadius: 8, marginRight: 5}}>
+                        <Ionicons name={"trash-outline"} color="white" size={20} style={{marginBottom: 3,alignSelf: 'center'}}/>
+                        <Text style={{color: 'white', fontSize: 10}}>트랙 삭제</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={{backgroundColor: '#676666', paddingHorizontal: 16, paddingVertical: 9, borderRadius: 8, marginRight: 5}}>
+                        <Ionicons name={"reload"} color="white" size={20} style={{marginBottom: 3,alignSelf: 'center'}}/>
+                        <Text style={{color: 'white', fontSize: 10}}>초기화</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </ScrollView>
+                  </View>
+              </View>
+            )}
+          </>
+        ) : ( // 선택된 비디오가 없다면
+          <Pressable
+            style={styles.buttonContainer}
+            onPress={handlePressSelectVideoButton}>
+            <Text style={styles.buttonText}>Select a video</Text>
+          </Pressable>
+        )}
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 };
 
