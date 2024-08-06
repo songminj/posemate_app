@@ -4,7 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { View, TouchableOpacity, Text } from 'react-native'
 import AnalysisResult from './analysis/AnalysisResult'
 import AnalysisSelectScreen from './analysis/AnalysisSelectScreen'
 import HomeScreen from './screens/HomeScreen'
@@ -12,7 +11,6 @@ import SelectOnDevice from './screens/SelectOnDevice'
 import SelectOnServer from './screens/SelectOnServer'
 import LoginScreen from './login/LoginScreen'
 import SignInScreen from './login/SignInScreen'
-import ProfileScreen from './login/ProfileScreen'
 import SlicingScreen from './screens/SlicingScreen'
 import VideoTrim from './screens/VideoTrim'
 
@@ -147,11 +145,6 @@ const App = () => {
         <Stack.Screen 
           name='SignIn' 
           component={SignInScreen} 
-          options= {{headerShown: false,}}
-        />
-        <Stack.Screen 
-          name='Profile' 
-          component={ProfileScreen} 
           options= {{headerShown: false,}}
         />
         <Stack.Screen 

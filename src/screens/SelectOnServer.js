@@ -14,7 +14,7 @@ const width = Dimensions.get('window').width
 const SelectOnServer = ({ navigation }) => {
   const requestGet = async () => {
     try {
-      const response = await axios.get('http://3.35.213.242:8080/api-video')
+      const response = await axios.get('http://i11a202.p.ssafy.io:8080/api-video')
       console.log(response.data)
     } catch (error) {
       console.error(error)
