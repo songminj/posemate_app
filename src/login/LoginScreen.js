@@ -29,7 +29,7 @@ const LoginScreen = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://3.35.213.242:8080/api-member/login', {
+      const response = await axios.post('http://i11a202.p.ssafy.io:8080/api-member/login', {
         userId,
         password
       }, 

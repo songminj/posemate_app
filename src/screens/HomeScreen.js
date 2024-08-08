@@ -121,6 +121,11 @@ const HomeScreen = ({ navigation }) => {
               toward='FFmpeg'
               navigation={navigation}
             />
+            <LargeButton
+              title='Api Test'
+              toward='ApiTest'
+              navigation={navigation}
+            />
           </View>
         </View>
       </ScrollView>
@@ -182,6 +187,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     gap: 16,
+    alignItems:'center'
   }
 });
 

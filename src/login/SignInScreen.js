@@ -24,10 +24,10 @@ const SignInScreen = ({ navigation }) => {
   const [passwordError, setPasswordError] = useState('')
   const [phoneError, setPhoneError] = useState('')
 
-  const nameRe = /\D{2,}$/g
-  const idRe = /([-_.]?[0-9a-zA-Z]){4,12}$/g
-  const passwordRe = /(.{4,})$/g
-  const phoneRe = /^(?:\d{3}|\(\d{3}\))([-])\d{4}\1\d{4}$/g
+  const nameRe = /\D{2,10}$/
+  const idRe = /([-_.]?[0-9a-zA-Z]){4,12}$/
+  const passwordRe = /(.{4,})$/
+  const phoneRe = /^(?:\d{3}|\(\d{3}\))([-])\d{4}\1\d{4}$/
 
   const validateInput = (value, regex, setError, inputThis) => {
     if (!regex.test(value)) {
@@ -77,7 +77,7 @@ const SignInScreen = ({ navigation }) => {
     }
 
     try {
-      const response = await axios.post('http://3.35.213.242:8080/api-member/join', data)
+      const response = await axios.post('http://i11a202.p.ssafy.io:8080/api-member/join', data)
       console.log(response.data)
 
       if (response.headers.authorization) {

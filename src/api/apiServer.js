@@ -1,4 +1,4 @@
-import { api, userApi } from './Index'
+import {api, userApi, videoApi} from './Index'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 // 공통된 AbortController와 타임아웃 설정 로직을 함수로 분리
@@ -9,52 +9,57 @@ const createAbortController = (timeout) => {
 }
 
 const aiGet = async () => {
-  const abortController = createAbortController(3000)
+  const abortController = createAbortController(3000);
   try {
-    const response = await api.get('/api-ai', { signal: abortController.signal })
-    console.log(response.data)
+    const apiInstance = await api()
+    const response = await apiInstance.get('/api-ai', { signal: abortController.signal });
+    console.log(response.data);
   } catch (error) {
     if (abortController.signal.aborted) {
-      console.log('api-ai 점수 get 실패')
+      console.log('api-ai 점수 get 실패');
     } else {
-      console.log('API 호출 중 오류', error)
+      console.log('API 호출 중 오류', error);
     }
   }
 }
 
-const aiPost = async () => {
-  const abortController = createAbortController(3000)
+const aiPost = async (exerciseId) => {
+  const abortController = createAbortController(3000);
   try {
-    const response = await api.post('/api-ai', {}, { signal: abortController.signal })
-    console.log(response.data)
+    const apiInstance = await api()
+    const response = await apiInstance.post(`/api-ai`, {exerciseId}, { signal: abortController.signal });
+    console.log(response.data);
+    console.log()
   } catch (error) {
     if (abortController.signal.aborted) {
-      console.log('api-ai 점수 post 실패')
+      console.log('서버 잘 작동');
     } else {
-      console.log('API 호출 중 오류', error)
+      console.log('API 호출 중 오류', error);
     }
   }
 }
 
 const healthGet = async () => {
-  const abortController = createAbortController(3000)
+  const abortController = createAbortController(3000);
   try {
-    const response = await api.get('/api-health', { signal: abortController.signal })
-    console.log(response.data)
+    const apiInstance = await api()
+    const response = await apiInstance.get('/api-health', { signal: abortController.signal });
+    console.log(response.data);
   } catch (error) {
     if (abortController.signal.aborted) {
-      console.log('서버 잘 작동')
+      console.log('서버 잘 작동');
     } else {
-      console.log('API 호출 중 오류', error)
+      console.log('API 호출 중 오류', error);
     }
   }
 }
 
-const healthPost = async () => {
+const healthPost = async (msg) => {
   const abortController = createAbortController(3000)
   try {
-    const response = await api.post('/api-health', {}, { signal: abortController.signal })
-    console.log(response.data)
+    const apiInstance = await api()
+    const response = await apiInstance.post('/api-health', {msg}, { signal: abortController.signal })
+    console.log(response.data.msg)
   } catch (error) {
     if (abortController.signal.aborted) {
       console.log('api-health 점수 post 실패')
@@ -64,40 +69,42 @@ const healthPost = async () => {
   }
 }
 
-const joinGet = async () => {
-  const abortController = createAbortController(3000)
-  try {
-    const response = await api.get('/api-member/join', { signal: abortController.signal })
-    console.log(response.data)
-  } catch (error) {
-    if (abortController.signal.aborted) {
-      console.log('id중복확인 실패')
-    } else {
-      console.log('API 호출 중 오류', error)
-    }
-  }
-}
+// // 403에러 
+// const joinPost = async (navigation) => {
+//   const abortController = createAbortController(3000);
+//   try {
+//     const member = {
+//       username: "김씃픗",
+//       password: "1234",
+//       userId: "sssssafy",
+//       phone: "010-1234-2303",
+//     };
+//     const response = await joinApi.post('/api-member/join', member, { signal: abortController.signal });
+//     console.log(response.data);
+//     if (response.headers.authorization) {
+//       await AsyncStorage.setItem('userToken', response.headers.authorization);
+//       navigation.navigate('Home');
+//     } else {
+//       console.error('Token is missing in the response');
+//     }
+//   } catch (error) {
+//     if (abortController.signal.aborted) {
+//       console.log('id중복확인 실패');
+//     } else {
+//       console.log('API 호출 중 오류', error);
+//     }
+//   }
+// };
 
-const joinPost = async () => {
-  const abortController = createAbortController(3000)
-  try {
-    const response = await api.post('/api-member/join', {}, { signal: abortController.signal })
-    console.log(response.data)
-  } catch (error) {
-    if (abortController.signal.aborted) {
-      console.log('id중복확인 실패')
-    } else {
-      console.log('API 호출 중 오류', error)
-    }
-  }
-}
 
 const loginPost = async (userId, password, navigation) => {
   try {
-    const response = await userApi.post('/api-member/login', {
+    const userApiInstance = await userApi()
+    const response = await userApiInstance.post('/api-member/login', {
       userId,
       password,
     })
+    console.log(response.data)
     if (response.status === 200) {
       const token = response.headers.authorization
       await AsyncStorage.setItem('userData', token)
@@ -114,8 +121,26 @@ const loginPost = async (userId, password, navigation) => {
 const videoGet = async () => {
   const abortController = createAbortController(3000)
   try {
-    const response = await api.get('/api-video', { signal: abortController.signal })
+    const apiInstance = await api()
+    const response = await apiInstance.get(`/api-file`, { signal: abortController.signal })
     console.log(response.data)
+    return response.data
+  } catch (error) {
+    if (abortController.signal.aborted) {
+      console.log('비디오 데이터 get 실패')
+    } else {
+      console.log('API 호출 중 오류', error)
+    }
+  }
+}
+
+const videoTargetGet = async (videoId) => {
+  const abortController = createAbortController(3000)
+  try {
+    const apiInstance = await api()
+    const response = await apiInstance.get(`/api-video/${videoId}`, { signal: abortController.signal })
+    // console.log(response.data)
+    return response
   } catch (error) {
     if (abortController.signal.aborted) {
       console.log('비디오 데이터 get 실패')
@@ -128,7 +153,8 @@ const videoGet = async () => {
 const videoPost = async () => {
   const abortController = createAbortController(3000)
   try {
-    const response = await api.post('/api-video', {}, { signal: abortController.signal })
+    const apiInstance = await videoApi()
+    const response = await apiInstance.post('/api-video', {}, { signal: abortController.signal })
     console.log(response.data)
   } catch (error) {
     if (abortController.signal.aborted) {
@@ -142,7 +168,8 @@ const videoPost = async () => {
 const videoJsonPost = async () => {
   const abortController = createAbortController(3000)
   try {
-    const response = await api.post('/api-video/json', {}, { signal: abortController.signal })
+    const apiInstance = await videoApi()
+    const response = await apiInstance.post('/api-video/json', {}, { signal: abortController.signal })
     console.log(response.data)
   } catch (error) {
     if (abortController.signal.aborted) {
@@ -172,10 +199,10 @@ export {
   aiPost, 
   healthGet, 
   healthPost, 
-  joinGet, 
-  joinPost, 
+  // joinPost, 
   loginPost, 
-  videoGet, 
+  videoGet,
+  videoTargetGet, 
   videoPost, 
   videoJsonPost, 
   videoVideoPost 

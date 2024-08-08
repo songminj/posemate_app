@@ -1,0 +1,51 @@
+[
+  {
+    "angle": {
+      "angleId": 1,
+      "leftArm": 161.54007160701414,
+      "leftLeg": 143
+.5099273437608,
+      "rightArm": 100.11087016558095,
+      "rightLeg": 147.5538751696934
+4,
+      "upperBody": 114.8035789829448
+    },
+    "exerciseId": 52,
+    "json": {
+      "originalName": "240802_16_16_50_output.json",
+      "saveDate": null,
+      "uuidName": "1722997374228
+_240802_16_16_50_output.json", "videoId": 202}, "score": {"arms": 39.60238265991211,
+      "body": 35.99787521362305,
+      "legs": 42.24266052246094,
+      "scoreId": 1, "
+upperBody": 70.94884490966797}, "video": {"originalName": "240801_17_27_06_ou
+tput.mp4", "saveDate": "2024-08-07", "selected": false, "thumbnailUrl": null,"uuidName": "1722997374195_240801_17_27_06_output.mp4",
+      "videoId": 252
+    }
+  },
+  {"
+angle": null, "exerciseId": 53, "json": {"originalName": "240802_16_34_33_out
+put.json", "saveDate": null, "uuidName": "1723093271848_240802_16_34_33_outpu
+t.json", "videoId": 203}, "score": null, "video": {"originalName": "input_vid
+eo.mp4", "saveDate": "2024-08-08", "selected": false, "thumbnailUrl": null, "
+uuidName": "1723093271844_input_video.mp4", "videoId": 253}}, {"angle": null,"exerciseId": 54,
+    "json": {
+      "originalName": "240808_140440_output.json", "sav
+eDate": null, "uuidName": "1723093489267_240808_140440_output.json", "videoId
+": 204}, "score": null, "video": {"originalName": "240808_140440_output.mp4","saveDate": "2024-08-08",
+      "selected": false,
+      "thumbnailUrl": null, "uuidName": "1723093489266_240808_140440_output.mp4", "videoId": 254}}, {"angle": null,
+      "exerciseId": 55,
+      "json": {
+        "originalName": "240808_153727_output.json", "sa
+veDate": null, "uuidName": "1723099110021_240808_153727_output.json", "videoI
+d": 205}, "score": null, "video": {"originalName": "240808_153727_output.mp4",
+        "saveDate": "2024-08-08",
+        "selected": false,
+        "thumbnailUrl": null,
+        "uuidName": "1723099110018_240808_153727_output.mp4",
+        "videoId": 255
+      }
+    }
+  ]
