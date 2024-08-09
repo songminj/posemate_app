@@ -17,7 +17,8 @@ import {aiPost} from "../api/ApiServer"
 
 const AnalysisResult = ({navigation}) => {
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState(null)
+  const [data, setData] = useState([])
+  const [angle, setAngle] = useState([])
   const [error, setError] = useState(null)
   const [report, setReport] = useState(true)
   const [token, setToken] = useState(null)
@@ -40,8 +41,11 @@ const AnalysisResult = ({navigation}) => {
         setToken(tk)
         const exerciseId = 52
         const response = await aiPost(exerciseId) // API 호출
-        setData(response) 
+        // console.log(response)
+        setData(response?.score || [])
+        setAngle(response?.angle || []) 
         console.log(data)
+        console.log(angle)
       } catch (err) {
         setError(err)
       } finally {
@@ -94,17 +98,17 @@ const AnalysisResult = ({navigation}) => {
                 />
                   <CommentBox
                     bodyName='상체'
-                    score={data.score.arms}
+                    score={data.arms}
                     comment='Test'
                   />
                   <CommentBox
                     bodyName='하체'
-                    score={data.score.legs}
+                    score={data.legs}
                     comment='Test'
                   />
                   <CommentBox
                     bodyName='팔'
-                    score={data.score.upperBody}
+                    score={data.upperBody}
                     comment='Test'
                   />
    

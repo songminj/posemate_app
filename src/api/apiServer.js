@@ -28,7 +28,7 @@ const aiPost = async (exerciseId) => {
   try {
     const apiInstance = await api()
     const response = await apiInstance.post(`/api-ai`, {exerciseId}, { signal: abortController.signal });
-    // console.log(response.data);
+    console.log(response.data);
     return response.data
   } catch (error) {
     if (abortController.signal.aborted) {
