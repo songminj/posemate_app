@@ -13,40 +13,48 @@ import Loading from "../components/Loading"
 import LargeButton from '../components/LargeButton'
 import CommentBox from "../components/CommentBox"
 import Video from "react-native-video"
-import api from "../api/ApiServer"
+import {aiPost} from "../api/ApiServer"
 
 const AnalysisResult = ({navigation}) => {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
   const [report, setReport] = useState(true)
-  const rand = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min
-  }
+  const [token, setToken] = useState(null)
+  const [selectedVideoId, setSelectedVideoId] = useState(null)
+
 
   const reportHandler = () => {
+    AsyncStorage.clear()
     {!report ? setReport(true) : setReport(false)}
   }
 
   useEffect(() => {
-    const getData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await api.aiGet() // API 호출
-        setData({ aiScore: 50 }) // 받은데이터
+        const id = await AsyncStorage.getItem("selectedVideoId")
+        const tk = await AsyncStorage.getItem("userToken")
+        console.log(id)
+        console.log(tk)
+        setSelectedVideoId(id)
+        setToken(tk)
+        const exerciseId = 52
+        const response = await aiPost(exerciseId) // API 호출
+        setData(response) 
+        console.log(data)
       } catch (err) {
         setError(err)
       } finally {
         setLoading(false)
       }
     }
-    
-    getData()
+
+    fetchData()
   }, [])
 
   if (loading) {
     return <Loading />
   }
-  const score = rand(0, 101)
   return (
     <View>
       <SafeAreaView>
@@ -67,34 +75,39 @@ const AnalysisResult = ({navigation}) => {
             <>
               <View style={styles.container}>
                 <Text style={styles.headerText}>분석 결과</Text>
-                <Text>사용자님의 자세는 {score}점 입니다!</Text>
+                <Text>사용자님의 자세는 점 입니다!</Text>
                 <View style={styles.reviewContainer}>
-                  <Video
-                    source={require("../../assets/jwtest.mp4")}
-                    resizeMode="cover"
-                    controls={false}
-                    style={styles.video}
-                  />
+                <Video
+                  source={{
+                    uri: `http://i11a202.p.ssafy.io:8080/api-video/${selectedVideoId}`,
+                    headers: {
+                      Authorization: token,
+                    },
+                    type: 'mp4'
+                  }}
+                  style={styles.video}
+                  controls={true}
+                  controlsStyles={{
+                    hideSeekBar: true,
+                    seekIncrementMS: 10000,
+                  }}
+                />
                   <CommentBox
                     bodyName='상체'
-                    score='30'
+                    score={data.score.arms}
                     comment='Test'
                   />
                   <CommentBox
                     bodyName='하체'
-                    score='50'
+                    score={data.score.legs}
                     comment='Test'
                   />
                   <CommentBox
                     bodyName='팔'
-                    score='70'
+                    score={data.score.upperBody}
                     comment='Test'
                   />
-                  <CommentBox
-                      bodyName='전신'
-                      score='90'
-                      comment='TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest'
-                  />
+   
                 </View>
                 <LargeButton
                   title='처음으로'

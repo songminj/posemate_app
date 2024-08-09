@@ -14,13 +14,25 @@ const api = async () =>{
   }); 
 } 
 
+const videoPostApi = async () =>{
+  const token = await AsyncStorage.getItem('userToken')
+  return axios.create({
+    baseURL: config.API_URL,
+    timeout: 3000,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Authorization' :token,
+    },
+  }); 
+} 
+
 const videoApi = async () =>{
   const token = await AsyncStorage.getItem('userToken')
   return axios.create({
     baseURL: config.API_URL,
     timeout: 3000,
     headers: {
-      'Content-Type': 'video',
+      'Content-Type': 'multipart/form-data',
       'Authorization' :token,
     },
   }); 
@@ -35,4 +47,4 @@ const userApi = axios.create({
 })
 
 
-export { api, userApi, videoApi };
+export { api, userApi, videoApi, videoPostApi };

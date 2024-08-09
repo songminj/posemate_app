@@ -7,9 +7,11 @@ import {
   Modal, 
   Alert 
 } from 'react-native'
-import axios from 'axios'
 import LargeButton from './LargeButton'
 import Video from "react-native-video"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import { videoPost } from "../api/ApiServer"
+import { videoPostApi } from "../api/Index"
 
 const SelectOnDevice = ({navigation}) => {
   const [afterSelect, setAfterSelect] = useState(false)
@@ -33,28 +35,61 @@ const SelectOnDevice = ({navigation}) => {
 
   const sendVideoToServer = async () => {
     if (selectedVideo) {
-      setAfterSelect(true)
-      const formData = new FormData()
-      formData.append('video', {
-        uri: selectedVideo.path,
-        type: selectedVideo.mime,
-        name: 'video.mp4',
-      })
-
       try {
-        const response = await axios.post('http://i11a202.p.ssafy.io:8080/api-video/video', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-        console.log('Video uploaded successfully:', response.data)
+        console.log("Selected video:", String(selectedVideo));
+        setAfterSelect(true);
+    
+        const formData = new FormData();
+        formData.append('formData', {
+          uri: selectedVideo.path,
+          type: selectedVideo.mime,
+          name: 'video.mp4'
+        });
+        
+        const response = await videoPost(formData);
+        
+        if (response && response.data !== undefined) {
+          // response.data를 문자열로 변환
+          const videoIdString = String(response.data);
+          await AsyncStorage.setItem('selectedVideoId', videoIdString);
+          console.log('Video ID saved:', videoIdString);
+        } else {
+          console.error('Invalid response from server:', response);
+          Alert.alert("오류", "서버로부터 유효한 응답을 받지 못했습니다.");
+        }
       } catch (error) {
-        console.error('Error uploading video:', error)
-        Alert.alert("앗!", "비디오 저장에 실패했습니다😥")
+        console.error('Error in sendVideoToServer:', error);
+        Alert.alert("앗!", "비디오 저장에 실패했습니다😥");
       }
     }
-    setModalVisible(false)
-  }
+    setModalVisible(false);
+  };
+
+  // const sendVideoToServer = async () => {
+  //   if (selectedVideo) {
+  //     console.log(selectedVideo)
+  //     setAfterSelect(true)
+  //     const formData = new FormData()
+  //     formData.append('video', {
+  //       uri: selectedVideo.path,
+  //       type: selectedVideo.mime,
+  //       name: 'device_video.mp4',
+  //     })
+  //     const response = videoPost(formData)
+  //     // try {
+  //     //   const response = await axios.post('http://i11a202.p.ssafy.io:8080/api-video/video', formData, {
+  //     //     headers: {
+  //     //       'Content-Type': 'multipart/form-data',
+  //     //     },
+  //     //   })
+  //     //   console.log('Video uploaded successfully:', response.data)
+  //     // } catch (error) {
+  //     //   console.error('Error uploading video:', error)
+  //     //   Alert.alert("앗!", "비디오 저장에 실패했습니다😥")
+  //     // }
+  //   }
+  //   setModalVisible(false)
+  // }
 
   return (
     <View style={styles.container}>
@@ -99,7 +134,7 @@ const SelectOnDevice = ({navigation}) => {
           <Text style={styles.title}>이 비디오로 분석을 시작하겠습니다</Text>
           <LargeButton
             title='분석하러 가기'
-            toward='VideoTrim'
+            toward='AnalysisResult'
             navigation={navigation}
           />
         </>
@@ -131,7 +166,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    margin: 22,
   },
   modalView: {
     margin: 20,

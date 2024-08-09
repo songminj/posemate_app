@@ -1,4 +1,4 @@
-import {api, userApi, videoApi} from './Index'
+import {api, userApi, videoApi, videoPostApi} from './Index'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 // 공통된 AbortController와 타임아웃 설정 로직을 함수로 분리
@@ -28,8 +28,8 @@ const aiPost = async (exerciseId) => {
   try {
     const apiInstance = await api()
     const response = await apiInstance.post(`/api-ai`, {exerciseId}, { signal: abortController.signal });
-    console.log(response.data);
-    console.log()
+    // console.log(response.data);
+    return response.data
   } catch (error) {
     if (abortController.signal.aborted) {
       console.log('서버 잘 작동');
@@ -150,17 +150,19 @@ const videoTargetGet = async (videoId) => {
   }
 }
 
-const videoPost = async () => {
+const videoPost = async (video) => {
   const abortController = createAbortController(3000)
   try {
-    const apiInstance = await videoApi()
-    const response = await apiInstance.post('/api-video', {}, { signal: abortController.signal })
-    console.log(response.data)
+    const apiInstance = await videoPostApi()
+    const response = await apiInstance.post('/api-video', video, { signal: abortController.signal })
+    console.log(response)
+    return response
   } catch (error) {
     if (abortController.signal.aborted) {
       console.log('비디오 데이터 post 실패')
     } else {
       console.log('API 호출 중 오류', error)
+      alert("앗! 비디오 저장에 실패했습니다😥")
     }
   }
 }

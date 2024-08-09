@@ -9,7 +9,7 @@ import {
 const Loading = ({navigation}) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('AnalysisResult');
+      navigation.navigate('AnalysisResult');
     }, 3000);
     return () => clearTimeout(timer);
   }, [navigation]);

@@ -59,7 +59,6 @@ const HomeScreen = ({ navigation }) => {
       if (token) {
         setIsLoggedIn(true)
         setUserId(id)
-        console.log(token)
         console.log('로그인중')
       } else {
         setIsLoggedIn(false)
@@ -114,11 +113,6 @@ const HomeScreen = ({ navigation }) => {
             <LargeButton
               title='영상 분석하기'
               toward='VideoTrim'
-              navigation={navigation}
-            />
-            <LargeButton
-              title='ffmpeg'
-              toward='FFmpeg'
               navigation={navigation}
             />
             <LargeButton

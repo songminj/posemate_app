@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { 
   View, 
-  Text, 
+  Text,
+  ScrollView,
   StyleSheet,
   Dimensions,
   TouchableOpacity,
   Modal,
   Image,
+  SafeAreaView,
+  ActivityIndicator
 } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import LargeButton from './LargeButton';
 import { videoGet } from '../api/ApiServer';
 import Video from "react-native-video";
+import Loading from "./Loading";
 
 const width = Dimensions.get('window').width;
 
 const SelectOnServer = ({ navigation }) => {
   const [videos, setVideos] = useState([]);
-  const [checkVideo, setCheckVideo] = useState(true);
+  const [loading, setLoading] = useState(true); // Loading state
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedVideoId, setSelectedVideoId] = useState(null);
-  const [token, setToken] = useState(null)
-
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
     const fetchTokenAndVideos = async () => {
@@ -32,6 +35,7 @@ const SelectOnServer = ({ navigation }) => {
       if (data) {
         setVideos(data);
       }
+      setLoading(false); // Set loading to false once data is fetched
     };
     
     fetchTokenAndVideos();
@@ -42,10 +46,18 @@ const SelectOnServer = ({ navigation }) => {
     setModalVisible(true);
   };
 
-  const videoTrimNav = (selectedVideoId, navigation) => {
-    setModalVisible(false)
-    AsyncStorage.setItem('selectedVideoId', selectedVideoId)
-    navigation.navigate('VideoTrim')
+  const videoTrimNav = async (selectedVideoId, navigation) => {
+    try {
+      await AsyncStorage.setItem('selectedVideoId', String(selectedVideoId)); 
+      setModalVisible(false);
+      navigation.navigate('AnalysisResult');
+    } catch (error) {
+      console.error("Error storing selectedVideoId: ", error);
+    }
+  };
+  
+  if (loading) {
+    return <Loading navigation={navigation} />;
   }
 
   return (
@@ -68,10 +80,6 @@ const SelectOnServer = ({ navigation }) => {
               }}
               style={styles.video}
               controls={true}
-              controlsStyles={{
-                hideSeekBar: true,
-                seekIncrementMS: 10000,
-              }}
             />
           <LargeButton
             title='선택하기'
@@ -80,33 +88,31 @@ const SelectOnServer = ({ navigation }) => {
         </View>
       </Modal>
       
-      <View>
-        {videos.length > 0 ? (
-          checkVideo ? (
-            videos.map((video, index) => (
-              <TouchableOpacity 
-                key={index} 
-                style={styles.videoItem}
-                onPress={() => videoNav(video.video.videoId)}
-              >
-                {/* <Image></Image> */}
-                <Text>{video.video.saveDate}에 촬영한 영상</Text>
-                {/* 필요한 속성들을 추가로 렌더링 */}
-              </TouchableOpacity>
-            ))
-          ) : (
-            <Text>얍얍얍얍얍</Text>
-          )
-        ) : (
-          <Text style={styles.loadingText}>비디오가 없어요...</Text>
-        )}
-      </View>
+      <SafeAreaView>
+        <ScrollView>
+          <View>
+            {videos.length > 0 ? (
+              videos.map((video, index) => (
+                <TouchableOpacity 
+                  key={index} 
+                  style={styles.videoItem}
+                  onPress={() => videoNav(video.video.videoId)}
+                >
+                  <Image
+                    style={styles.videoImage}
+                    source={require('../../assets/video.png')}
+                    resizeMode="cover"
+                  />
+                  <Text>{video.video.saveDate}에 촬영한 영상</Text>
+                </TouchableOpacity>
+              ))
+            ) : (
+              <Text style={styles.loadingText}>촬영한 video가 없어요</Text>
+            )}
+          </View>
+        </ScrollView>
+      </SafeAreaView>
       
-      <LargeButton
-        title='분석하러 가기'
-        toward='Slicing'
-        navigation={navigation}
-      />
     </View>
   );
 };
@@ -145,6 +151,12 @@ const styles = StyleSheet.create({
   video: {
     width: width * 0.9,
     height: width * 0.6,
+  },
+  videoImage: {
+    width: width * 0.3, 
+    height: width * 0.3, 
+    marginBottom: 10, 
+    alignItems:'center'
   },
 });
 
