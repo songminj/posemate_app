@@ -1,4 +1,6 @@
-import {api, userApi, videoApi, videoPostApi} from './Index'
+import {api, userApi, videoApi, aiApi, videoPostApi} from './Index'
+import axios from 'axios';
+import config from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 // 공통된 AbortController와 타임아웃 설정 로직을 함수로 분리
@@ -23,12 +25,154 @@ const aiGet = async () => {
   }
 }
 
+
+// const aiPost = async (exerciseId, token) => {
+//   // AbortController를 사용하여 타임아웃 설정
+//   const abortController = createAbortController(3000);  // 3초 후 자동 취소
+
+//   try {
+//     // axios 인스턴스 생성 시 타임아웃 옵션 추가
+//     const apiInstance = axios.create({
+//       baseURL: 'http://i11a202.p.ssafy.io:8080/',  // API 기본 URL
+//       timeout: 3000,  // 3초 타임아웃 설정
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': token,
+//       }
+//     });
+
+//     // POST 요청 수행
+//     const response = await apiInstance.post(`/api-ai`, 
+//       { exerciseId }, 
+//       { signal: abortController.signal }  // AbortController의 signal 전달
+//     );
+//     await console.log('ai Post:', response.data);
+//     return await response.data;
+
+//   } catch (error) {
+//     // 에러가 발생한 경우 에러 응답 객체에서 status를 확인
+//     if (error.response) {
+//       if (error.response.status === 403) {
+//         console.log('권한 오류: 재시도 중...');
+//         // 권한 오류 발생 시 다시 요청 시도
+//         try {
+//           const response = await apiInstance.post(`/api-ai`, 
+//             { exerciseId }, 
+//             { signal: abortController.signal }  // AbortController의 signal 전달
+//           );
+//           console.log('ai Post 재시도 성공:', response.data);
+//           return response.data;
+//         } catch (retryError) {
+//           console.log('재시도 중 오류 발생:', retryError);
+//           throw retryError; // 재시도 중 발생한 오류를 다시 던짐
+//         }
+//       } else {
+//         console.log(`API 호출 중 오류 발생: ${error.response.status}`, error.response.data);
+//       }
+//     } else if (abortController.signal.aborted) {
+//       console.log('요청이 중단되었습니다.');
+//     } else if (error.code === 'ECONNABORTED') {
+//       console.log('요청이 시간 초과되었습니다.');
+//     } else {
+//       console.log('API 호출 중 알 수 없는 오류 발생:', error);
+//     }
+//   }
+// };
+
+
+
+// const aiPost = async (exerciseId, token) => {
+//   // AbortController를 사용하여 타임아웃 설정
+//   const abortController = createAbortController(3000);  // 3초 후 자동 취소
+//   // const token = await AsyncStorage.getItem('userToken');
+//   try {
+//     // axios 인스턴스 생성 시 타임아웃 옵션 추가
+//     const apiInstance = axios.create({
+//       baseURL: 'http://i11a202.p.ssafy.io:8080/',  // API 기본 URL
+//       timeout: 3000,  // 5초 타임아웃 설정
+//       headers: {
+//         // 필요에 따라 추가 헤더를 설정합니다.
+//         'Content-Type': 'application/json',
+//         'Authorization' : token,
+//       }
+//     });
+
+//     // POST 요청 수행
+//     const response = await apiInstance.post(`/api-ai`, 
+//       { exerciseId }, 
+//       //{ signal: abortController.signal}  // AbortController의 signal 전달
+//     );
+//     console.log('ai Post:', response.data);
+//     return response.data;
+//   } catch (error) {
+//     if (response.error == 403) {
+//       const response = await apiInstance.post(`/api-ai`, 
+//         { exerciseId }, 
+//         //{ signal: abortController.signal}  // AbortController의 signal 전달
+//       );
+//       console.log('ai Post:', response.data);
+//       return response.data;
+//     } else if (abortController.signal.aborted) {
+//       console.log('요청이 중단되었습니다.');
+//     } else if (error.code === 'ECONNABORTED') {
+//       console.log('요청이 시간 초과되었습니다.');
+//     } else {
+//       console.log('API 호출 중 오류 발생:', error);
+//     }
+//   }
+// };
+
+// // 토큰 갱신 함수 예시
+// const refreshAuthToken = async () => {
+//   try {
+//     const refreshToken = await AsyncStorage.getItem('refreshToken');
+//     const response = await axios.post(`${config.API_URL}/auth/refresh`, { refreshToken });
+
+//     const newToken = response.data.accessToken;
+//     await AsyncStorage.setItem('userToken', newToken);
+
+//     return newToken;
+//   } catch (error) {
+//     console.error('토큰 갱신 실패:', error);
+//     return null;
+//   }
+// };
+
+
+// const aiPost = async (exerciseId) => {
+//   const abortController = createAbortController(3000);
+//   try {
+//     const apiInstance = await aiApi();
+//     const response = await apiInstance.post(`/api-ai`, { exerciseId }, { signal: abortController.signal });
+//     console.log('ai Post :', response.data);
+//     return response.data;
+//   } catch (error) {
+//     if (error.response && error.response.status === 403) {
+//       console.log('토큰 만료 - 갱신 시도 중...');
+//       // 토큰 갱신 로직 추가
+//       const refreshedToken = await refreshAuthToken();  // 토큰 갱신 함수 호출
+//       if (refreshedToken) {
+//         // 새로 받은 토큰으로 다시 요청 시도
+//         const apiInstance = await aiApi(); // 갱신된 토큰으로 새 인스턴스 생성
+//         const retryResponse = await apiInstance.post(`/api-ai`, { exerciseId }, { signal: abortController.signal });
+//         console.log('ai Post 재시도 성공:', retryResponse.data);
+//         return retryResponse.data;
+//       }
+//     } else if (abortController.signal.aborted) {
+//       console.log('서버 잘 작동');
+//     } else {
+//       console.log('API 호출 중 오류', error);
+//     }
+//   }
+// }
+
+
 const aiPost = async (exerciseId) => {
   const abortController = createAbortController(3000);
   try {
     const apiInstance = await api()
-    const response = await apiInstance.post(`/api-ai`, {exerciseId}, { signal: abortController.signal });
-    console.log(response.data);
+    const response = await apiInstance.post(`/api-ai`, {exerciseId}, { signal: abortController.signal} )
+    console.log('ai Post :', response.data)
     return response.data
   } catch (error) {
     if (abortController.signal.aborted) {
@@ -107,23 +251,25 @@ const loginPost = async (userId, password, navigation) => {
     console.log(response.data)
     if (response.status === 200) {
       const token = response.headers.authorization
-      await AsyncStorage.setItem('userData', token)
+      await AsyncStorage.setItem('userToken', token)
+      await AsyncStorage.setItem('userId', userId)
       navigation.navigate('Home')
     } else {
       alert('아이디 또는 비밀번호가 올바르지 않습니다.')
     }
   } catch (error) {
     console.error('Error during login:', error)
-    alert('로그인 중 오류가 발생했습니다.')
+    Alert.alert('앗!', '아이디 또는 비밀번호가 올바르지 않습니다.')
   }
 }
+
 
 const videoGet = async () => {
   const abortController = createAbortController(3000)
   try {
     const apiInstance = await api()
     const response = await apiInstance.get(`/api-file`, { signal: abortController.signal })
-    console.log(response.data)
+    // console.log(response.data)
     return response.data
   } catch (error) {
     if (abortController.signal.aborted) {

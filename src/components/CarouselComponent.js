@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, TouchableOpacity, Text, Dimensions } from "react-native";
+import React from "react";
+import { View, Dimensions, StyleSheet } from "react-native";
 import Animated, {
   Extrapolation,
   interpolate,
@@ -11,7 +11,6 @@ const window = Dimensions.get('window');
 const PAGE_WIDTH = window.width;
 const PAGE_HEIGHT = window.width * 1.2;
 
-// 이미지 데이터 추가
 const imageData = [
   { id: 1, source: require('../../assets/carousel1.jpg') },
   { id: 2, source: require('../../assets/carousel2.jpg') },
@@ -19,7 +18,6 @@ const imageData = [
 ];
 
 function Index() {
-
   const baseOptions = {
     vertical: false,
     width: PAGE_WIDTH,
@@ -27,11 +25,11 @@ function Index() {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <Carousel
         {...baseOptions}
         loop
-        autoPlay= {true}
+        autoPlay={true}
         withAnimation={{
           type: "spring",
           config: {
@@ -49,15 +47,11 @@ function Index() {
           />
         )}
       />
-      
     </View>
   );
 }
 
 const Card = ({ item, index, animationValue }) => {
-  const WIDTH = PAGE_WIDTH / 1.5;
-  const HEIGHT = PAGE_HEIGHT / 1.5;
-
   const cardStyle = useAnimatedStyle(() => {
     const scale = interpolate(
       animationValue.value,
@@ -69,7 +63,7 @@ const Card = ({ item, index, animationValue }) => {
     const translateX = interpolate(
       animationValue.value,
       [-1, -0.2, 0, 1],
-      [0, WIDTH * 0.3, 0, 0],
+      [0, styles.image.width * 0.3, 0, 0],
     );
 
     return {
@@ -118,62 +112,38 @@ const Card = ({ item, index, animationValue }) => {
   }, [index]);
 
   return (
-    <Animated.View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        
-      }}
-    >
-      {/* <Animated.View
-        style={[
-          {
-            // backgroundColor: colors[index % colors.length],
-            alignSelf: "center",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: 20,
-            width: WIDTH,
-            height: HEIGHT,
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 8,
-            },
-            shadowOpacity: 0.44,
-            shadowRadius: 10.32,
-            elevation: 16,
-          },
-          cardStyle,
-        ]}
-      /> */}
-
+    <Animated.View style={styles.cardContainer}>
       <Animated.Image
         source={item.source}
-        style={[
-          { 
-            alignSelf: "center",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: 20,
-            width: WIDTH,
-            height: HEIGHT,
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 8,
-            },
-            shadowOpacity: 0.44,
-            shadowRadius: 10.32,
-            elevation: 16,
-          },
-          imageStyle,
-        ]}
+        style={[styles.image, imageStyle, cardStyle]}
         resizeMode={"contain"}
       />
     </Animated.View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  cardContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: PAGE_WIDTH / 1.5,
+    height: PAGE_HEIGHT / 1.5,
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 16, // 그림자 표현을 위한 속성
+  },
+});
 
 export default Index;

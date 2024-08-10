@@ -10,14 +10,14 @@ const Loading = ({navigation}) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('AnalysisResult');
-    }, 3000);
+    }, 10000);
     return () => clearTimeout(timer);
   }, [navigation]);
 
   return(
     <View style={styles.container}>
       <ActivityIndicator size="large" style={styles.loadingIndicator} />
-      <Text style={styles.loadingText}>운동 결과를 분석중입니다.</Text>
+      <Text style={styles.loadingText}>데이터를 불러오는 중입니다.</Text>
     </View>
   )
 }

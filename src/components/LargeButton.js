@@ -6,12 +6,13 @@ import {
   StyleSheet
 } from 'react-native'
 
-const { width } = Dimensions.get('window')
 
 const LargeButton = ({
   toward = 'Home',
   title = '버튼',
-  navigation
+  navigation,
+  buttonStyle = {}, // 추가: 외부에서 전달받는 버튼 스타일
+  buttonTextStyle = {} // 추가: 외부에서 전달받는 텍스트 스타일
 }) => {
   const handlePress = () => {
     if (typeof toward === 'function') {
@@ -25,11 +26,12 @@ const LargeButton = ({
     <Pressable
       style={({ pressed }) => [
         styles.buttonStyle,
+        buttonStyle, // 추가: 전달된 버튼 스타일 적용
         pressed && styles.buttonPressed
       ]}
       onPress={handlePress}
     >
-      <Text style={styles.buttonTextStyle}>
+      <Text style={[styles.buttonTextStyle, buttonTextStyle]}>
         {title}
       </Text>
     </Pressable>
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
   },
   buttonTextStyle: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
   },
 })

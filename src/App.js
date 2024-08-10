@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import { NavigationContainer } from '@react-navigation/native'
+import React, { useEffect, useState } from 'react'
+import { NavigationContainer, useFocusEffect } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -18,34 +18,44 @@ import ApiTest from './screens/ApiTest'
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
+const LogoutScreen = ({ navigation }) => {
+  useFocusEffect(
+    React.useCallback(() => {
+      const performLogout = async () => {
+        try {
+          await AsyncStorage.clear()
+          await setIsLoggedIn(false)
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+          })
+        } catch (error) {
+          console.log('Error logging out:', error)
+        }
+      }
+      performLogout()
+    }, [navigation])
+  )
 
-// 로그아웃 버튼 컴포넌트
-const LogoutScreen = async ({ navigation }) => {
-  try {
-    await AsyncStorage.clear()
-    navigation.reset({
-      index:0,
-      routes: [{name:'Home'}],
-    }) // 로그아웃 후 Home 화면으로 이동
-  } catch (error) {
-    console.log('Error logging out:', error)
-  }
+  return null // 로그아웃 처리 후, 화면에 아무것도 렌더링하지 않음
 }
 
-const MainTabNavigator = ({ navigation }) => {
+const MainTabNavigator = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      try {
-        const token = await AsyncStorage.getItem('userToken')
-        setIsLoggedIn(!!token)
-      } catch (error) {
-        console.log('Error checking login status:', error)
+  useFocusEffect(
+    React.useCallback(() => {
+      const checkLoginStatus = async () => {
+        try {
+          const token = await AsyncStorage.getItem('userToken')
+          setIsLoggedIn(!!token)
+        } catch (error) {
+          console.log('Error checking login status:', error)
+        }
       }
-    }
-    checkLoginStatus()
-  }, [])
+      checkLoginStatus()
+    }, [])
+  )
 
   return (
     <Tab.Navigator
@@ -105,63 +115,54 @@ const MainTabNavigator = ({ navigation }) => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator 
-        initialRouteName='Main'
+      <Stack.Navigator
+        initialRouteName='MainTabs'
         screenOptions={{
           contentStyle: {
             backgroundColor: '#F5F5F5',
           },
         }}
       >
-        <Stack.Screen 
-          name='MainTabs' 
+        <Stack.Screen
+          name='MainTabs'
           component={MainTabNavigator}
-          // options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
-        <Stack.Screen 
-          name='AnalysisResult' 
+        <Stack.Screen
+          name='AnalysisResult'
           component={AnalysisResult}
-          // options= {{headerShown: false,}}
         />
-        <Stack.Screen 
-          name='Select' 
+        <Stack.Screen
+          name='Select'
           component={AnalysisSelectScreen}
-          // options= {{headerShown: false,}}
         />
-        <Stack.Screen 
-          name='Login' 
-          component={LoginScreen} 
-          // options= {{headerShown: false,}}
+        <Stack.Screen
+          name='Login'
+          component={LoginScreen}
         />
-        <Stack.Screen 
-          name='SignIn' 
-          component={SignInScreen} 
-          // options= {{headerShown: false,}}
+        <Stack.Screen
+          name='SignIn'
+          component={SignInScreen}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name='Slicing'
           component={SlicingScreen}
-          // options= {{headerShown: false,}}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name='Device'
           component={DeviceComponent}
-          // options= {{headerShown: false,}}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name='Server'
           component={ServerComponent}
-          // options= {{headerShown: false,}}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name='VideoTrim'
           component={VideoTrim}
-          // options= {{headerShown: false,}}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name='ApiTest'
           component={ApiTest}
-          // options= {{headerShown: false,}}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -6,11 +6,14 @@ import {
   TouchableOpacity,
   Image,
   StatusBar,
-  SafeAreaView
+  SafeAreaView,
+  Alert
 } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
 import Input from '../components/Input'
+import LargeButton from '../components/LargeButton'
+import { loginPost } from '../api/ApiServer'
 
 const LoginScreen = ({ navigation }) => {
   const [userId, setUserId] = useState('')
@@ -27,30 +30,6 @@ const LoginScreen = ({ navigation }) => {
     setIsButtonEnabled(isUserIdValid && isPasswordValid)
   }, [userId, password])
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post('http://i11a202.p.ssafy.io:8080/api-member/login', {
-        userId,
-        password
-      }, 
-      { 
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        }
-      })
-
-      if (response.status === 200) {
-        const token = response.headers.authorization
-        await AsyncStorage.setItem('userToken', token)
-        navigation.navigate('Home')
-      } else {
-        alert('아이디 또는 비밀번호가 올바르지 않습니다.')
-      }
-    } catch (error) {
-      console.error('Error during login:', error)
-      alert('로그인 중 오류가 발생했습니다.')
-    }
-  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -58,7 +37,7 @@ const LoginScreen = ({ navigation }) => {
       <View style={styles.content}>
         <View style={styles.logoContainer}>
           <Image
-            source={require('../../assets/logo.png')}
+            source={require('../../assets/posemate2.png')}
             style={styles.image}
           />
         </View>
@@ -80,16 +59,15 @@ const LoginScreen = ({ navigation }) => {
           />
           <TouchableOpacity 
             style={[styles.loginButton, { backgroundColor: isButtonEnabled ? '#2C3E50' : '#BDC3C7' }]} 
-            onPress={handleLogin}
+            onPress={() => loginPost(userId, password, navigation)}
             disabled={!isButtonEnabled}
           >
             <Text style={styles.buttonText}>로그인</Text>
           </TouchableOpacity>
           <TouchableOpacity 
-            style={[styles.loginButton, styles.signUpButton]} 
             onPress={() => navigation.navigate('SignIn')}
           >
-            <Text style={styles.buttonText}>회원가입</Text>
+            <Text style={styles.signinText}>회원가입하고 더 멋진 운동을 즐겨요!</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -133,10 +111,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  signinText: {
+    color: '#2C3E50',
+    fontSize: 16,
+    marginTop:16,
+    textDecorationLine:'underline',
+  },
   image: {
     width: 120,
     height: 120,
-    tintColor: '#2C3E50',
   },
   input: {
     marginBottom: 16,
