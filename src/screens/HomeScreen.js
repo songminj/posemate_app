@@ -30,7 +30,7 @@ const HiUser = ({ navigation, userId, isLoggedIn, handleLogout }) => {
       <View style={styles.avatarContainer}>
         <Icon name="person" size={24} color="#007AFF" />
       </View>
-      <Text style={styles.hiUserText}>{isLoggedIn ? `${userId}님 반갑습니다!` : '오늘도 운동하세요'}</Text>
+      <Text style={styles.hiUserText}>{isLoggedIn ? `${userId}님\n달릴 준비가 완료되었습니다!` : '오늘도 운동하세요'}</Text>
     </TouchableOpacity>
   )
 }
@@ -39,9 +39,8 @@ const HomeImage = () => {
   return (
     <View style={styles.imageContainer}>
       <Image
-        style={styles.homeImage}
         resizeMode="cover"
-        source={require('../../assets/mainrun.gif')}
+        source={require('../../assets/runrun.gif')}
       />
     </View>
   )
@@ -121,18 +120,13 @@ const HomeScreen = ({ navigation }) => {
         </View>
         <View style={styles.container}>
           <HomeImage />
-          <View>
+          <View style={styles.dateContainer}>
             <CurrentDate/>
           </View>
           <View style={styles.buttonContainer}>
             <LargeButton
               title='영상 분석하기'
               toward='Select'
-              navigation={navigation}
-            />
-            <LargeButton
-              title='Api Test'
-              toward='ApiTest'
               navigation={navigation}
             />
           </View>
@@ -159,10 +153,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal:16,
-    paddingVertical: 12,
+    paddingVertical: 16,
   },
   hiUserText: {
-    fontSize: 16,
+    fontSize: 20,
     color: '#212529',
     fontWeight: '600',
   },
@@ -177,6 +171,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    alignItems:'center',
     padding: 16,
   },
   imageContainer: {
@@ -186,24 +181,24 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     // overflow: 'hidden',
     marginBottom: 24,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+
   },
   dateText: {
     fontSize: 24,
     color: '#212529',
     fontWeight: '300',
   },
-  homeImage: {
-    width: '100%',
-    height: '100%',
+  dateContainer: {
+    position: 'absolute',
+    bottom: 100,                // Distance from the bottom of the screen
+    alignItems: 'center',      // Center button horizontally within the container
+    // width: width, 
   },
   buttonContainer: {
-    gap: 16,
-    alignItems: 'center',
+    position: 'absolute',
+    bottom: 20,                // Distance from the bottom of the screen
+    alignItems: 'center',      // Center button horizontally within the container
+    width: width,              // Optional: set width of the container to match screen width
   },
   logoContainer: {
     paddingVertical:16,

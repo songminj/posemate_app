@@ -28,6 +28,7 @@ const AnalysisResult = ({ navigation }) => {
   const [selectedVideoId, setSelectedVideoId] = useState(null);
   const [exerciseId, setExerciseId] = useState(null);
   const [isGood, setIsGood] = useState(false)
+  const [userId, setUserId] = useState(false)
 
   const reportHandler = () => {
     setReport(!report);
@@ -36,23 +37,32 @@ const AnalysisResult = ({ navigation }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const id = await AsyncStorage.getItem("selectedVideoId");
-        const tk = await AsyncStorage.getItem("userToken");
+        const videoId = await AsyncStorage.getItem("selectedVideoId");
         const exId = await AsyncStorage.getItem("exerciseId");
-        setSelectedVideoId(id);
-        setToken(tk);
+        const token = await AsyncStorage.getItem("userToken");
+        const userId = await AsyncStorage.getItem("userId")
+        
+        setSelectedVideoId(videoId);
+        setUserId(userId)
         setExerciseId(exId);
-        const response = await aiPost(exerciseId, tk);
-        setData(response?.score || []);
-        setMsg(response?.message || []);
-  
+        setToken(token);
+
+        if (exId && token) {
+          const response = await aiPost(exId);
+          setData(response?.score || []);
+          setMsg(response?.message || []);
+          
+        } else {
+          console.log("No exerciseId or token found");
+          setError(new Error("Missing exerciseId or token"));
+        }
       } catch (err) {
+        console.error("Error fetching data:", err);
         setError(err);
       } finally {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
@@ -62,8 +72,8 @@ const AnalysisResult = ({ navigation }) => {
   };
 
   const totalData = {
-    // labels: ["운동 결과"],
-    data: [100 * 0.01]
+    labels: ["운동 결과"],
+    data: [data.body* 0.01]
   };
   const chartConfig = {
     backgroundGradientFrom: "#ffffff",
@@ -104,11 +114,11 @@ const AnalysisResult = ({ navigation }) => {
                     <View>
                       {!isGood? (
                         <>
-                          <Text>아주 잘하고 있어요!</Text>
+                          <Text style={styles.modalText}>잘하고 있어요!</Text>
                         </>
                       ) : (
                         <>
-                          <Text>조금만 더 노력해요!</Text>
+                          <Text style={styles.modalText}>조금만 더 노력해요!</Text>
                         </>
                       )}
                       
@@ -127,7 +137,7 @@ const AnalysisResult = ({ navigation }) => {
             </Modal>
           ) : (
             <>
-              <Text style={styles.headerText}>님의 분석 결과</Text>
+              <Text style={styles.headerText}>{userId}님의 분석 결과</Text>
               <View style={styles.reviewContainer}>
                 <Video
                   source={{
@@ -157,6 +167,19 @@ const AnalysisResult = ({ navigation }) => {
                 toward={reportHandler}
                 buttonStyle={styles.largeButton}
               />
+              {exerciseId? (
+                <>
+                  <LargeButton
+                    title='비디오 저장하기'
+                    toward='VideoTrim'
+                    navigation={navigation}
+                    buttonStyle={styles.largeButton}
+                  />
+                </>
+              ) : (
+                <>
+                </>
+              )}
               <TouchableOpacity
                 onPress={() => navigation.navigate('Home')}
               >

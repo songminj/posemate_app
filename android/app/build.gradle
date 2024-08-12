@@ -113,6 +113,7 @@ dependencies {
     // implementation ‘androidx.multidex:multidex:2.0.1’
     implementation 'com.facebook.fresco:animated-gif:3.1.3'
     implementation project(':react-native-fs')
+    implementation project(':rn-fetch-blob')
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
     } else {
