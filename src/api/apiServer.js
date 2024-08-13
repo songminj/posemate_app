@@ -131,11 +131,11 @@ const videoGet = async () => {
 //   }
 // }
 
-const videoPost = async (video) => {
-  const abortController = createAbortController(10000) // 10초로 늘리기
+const videoPost = async (formData) => {
+  const abortController = createAbortController(100000) // 10초로 늘리기
   try {
     const apiInstance = await videoApi()
-    const response = await apiInstance.post('/api-video/video', video, { signal: abortController.signal })
+    const response = await apiInstance.post('/api-video', formData, { signal: abortController.signal })
     console.log('여깁니다~', response)
     return response
   } catch (error) {
@@ -147,6 +147,7 @@ const videoPost = async (video) => {
     }
   }
 }
+
 
 
 const videoJsonPost = async () => {

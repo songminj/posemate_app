@@ -10,20 +10,28 @@ import {
 import LargeButton from './LargeButton'
 import Video from "react-native-video"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import Loading from "./Loading"
+import axios from "axios"
 import { videoPost } from "../api/ApiServer"
 
 const SelectOnDevice = ({navigation}) => {
   const [afterSelect, setAfterSelect] = useState(false)
   const [modalVisible, setModalVisible] = useState(false)  // 초기 값 false로 설정
   const [selectedVideo, setSelectedVideo] = useState(null)
+  const [token, setToken] = useState(null)
   
 
   useEffect(()=> {
+    const fetchtoken = async () => {
+      tk = await AsyncStorage.getItem('userToken')
+      setToken(tk)
+    }
+    fetchtoken()
     pickVideo()
   }, [])
 
   // 갤러리에 접근하여 비디오를 선택할 수 있도록 설정
-  const pickVideo = () => {
+  const pickVideo = async () => {
     ImagePicker.openPicker({
       mediaType: "video",
     }).then((video) => {
@@ -31,39 +39,71 @@ const SelectOnDevice = ({navigation}) => {
       setModalVisible(true)  // 비디오를 선택한 후 모달을 띄움
     }).catch(error => {
       console.log('Error picking video: ', error)
-    })
+    }) 
   }
 
+  // const sendVideoToServer = async () => {
+  //   if (selectedVideo) {
+  //     try {
+  //       console.log("Selected video:", JSON.stringify(selectedVideo));
+  //       setAfterSelect(true);
+  
+  //       const formData = new FormData();
+  //       formData.append('video', {
+  //         uri: selectedVideo.path,
+  //         type: selectedVideo.mime,
+  //         name: 'video.mp4'
+  //       });
+  //       console.log("FormData content:", formData);
+  
+  //       const response = videoPost(formData);
+        
+  //       if (response && response.data !== undefined) {
+  //         const videoIdString = String(response.data);
+  //         await AsyncStorage.setItem('selectedVideoId', videoIdString);
+  //         console.log('Video ID saved:', videoIdString);
+  //       } else {
+  //         console.error('Invalid response from server:', response);
+  //         Alert.alert("오류", "서버로부터 유효한 응답을 받지 못했습니다.");
+  //       }
+  //     } catch (error) {
+  //       console.error('Error in sendVideoToServer:', error);
+  //       Alert.alert("앗!", "악😥");
+  //     }
+  //   }
+  //   setModalVisible(false);
+  //   return(
+  //     <Loading/>
+  //   )
+  // };
   const sendVideoToServer = async () => {
+    console.log(selectedVideo)
     if (selectedVideo) {
+      setAfterSelect(true)
+      const formData = new FormData()
+      formData.append('formData', {
+        uri: selectedVideo.path,
+        type: selectedVideo.mime,
+        name: 'video.mp4',
+      })
+
       try {
-        console.log("Selected video:", String(selectedVideo));
-        setAfterSelect(true);
-    
-        const formData = new FormData();
-        formData.append('video', {
-          uri: selectedVideo.path,
-          type: selectedVideo.mime,
-          name: 'video.mp4'
-        });
-        
-        const response = await videoPost(formData);
-        
-        if (response && response.data !== undefined) {
-          const videoIdString = String(response.data);
-          await AsyncStorage.setItem('selectedVideoId', videoIdString);
-          console.log('Video ID saved:', videoIdString);
-        } else {
-          console.error('Invalid response from server:', response);
-          Alert.alert("오류", "서버로부터 유효한 응답을 받지 못했습니다.");
-        }
+        const response = await axios.post('http://i11a202.p.ssafy.io:8080/api-video', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': token
+          },
+        })
+        console.log('Video uploaded successfully:', response.data)
+        Alert.alert("Success", "Video uploaded successfully.")
+
       } catch (error) {
-        console.error('Error in sendVideoToServer:', error);
-        Alert.alert("앗!", "비디오 저장에 실패했습니다😥");
+        console.error('Error uploading video:', error)
+        Alert.alert("Error", "Error uploading video.")
       }
     }
-    setModalVisible(false);
-  };
+    setModalVisible(false)
+  }
   
 
   return (
