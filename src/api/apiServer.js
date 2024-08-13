@@ -113,27 +113,29 @@ const videoGet = async () => {
   }
 }
 
-// const videoTargetGet = async (videoId) => {
+
+// const videoPost = async (video) => {
 //   const abortController = createAbortController(3000)
 //   try {
-//     const apiInstance = await api()
-//     const response = await apiInstance.get(`/api-video/${videoId}`, { signal: abortController.signal })
-//     // console.log(response.data)
+//     const apiInstance = await videoApi()
+//     const response = await apiInstance.post('/api-video/video', video, { signal: abortController.signal })
+//     console.log('여깁니다~', response)
 //     return response
 //   } catch (error) {
 //     if (abortController.signal.aborted) {
-//       console.log('비디오 데이터 get 실패')
+//       console.log('비디오 데이터 post 실패')
 //     } else {
 //       console.log('API 호출 중 오류', error)
+//       alert("앗! 비디오 저장에 실패했습니다😥")
 //     }
 //   }
 // }
 
 const videoPost = async (video) => {
-  const abortController = createAbortController(3000)
+  const abortController = createAbortController(10000) // 10초로 늘리기
   try {
-    const apiInstance = await videoPostApi()
-    const response = await apiInstance.post('/api-video', video, { signal: abortController.signal })
+    const apiInstance = await videoApi()
+    const response = await apiInstance.post('/api-video/video', video, { signal: abortController.signal })
     console.log('여깁니다~', response)
     return response
   } catch (error) {
@@ -145,6 +147,7 @@ const videoPost = async (video) => {
     }
   }
 }
+
 
 const videoJsonPost = async () => {
   const abortController = createAbortController(3000)
@@ -161,30 +164,14 @@ const videoJsonPost = async () => {
   }
 }
 
-const videoVideoPost = async () => {
-  const abortController = createAbortController(3000)
-  try {
-    const response = await api.post('/api-video/video', {}, { signal: abortController.signal })
-    console.log(response.data)
-  } catch (error) {
-    if (abortController.signal.aborted) {
-      console.log('비디오 파일 post 실패')
-    } else {
-      console.log('API 호출 중 오류', error)
-    }
-  }
-}
 
 export { 
   aiGet, 
   aiPost, 
   healthGet, 
   healthPost, 
-  // joinPost, 
   loginPost, 
   videoGet,
-  // videoTargetGet, 
   videoPost, 
-  videoJsonPost, 
-  videoVideoPost 
+  videoJsonPost,  
 }

@@ -15,6 +15,7 @@ import Loading from "../components/Loading";
 import LargeButton from '../components/LargeButton';
 import Video from "react-native-video";
 import { aiPost } from "../api/ApiServer";
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 const { width } = Dimensions.get('window');
 
@@ -29,6 +30,7 @@ const AnalysisResult = ({ navigation }) => {
   const [exerciseId, setExerciseId] = useState(null);
   const [isGood, setIsGood] = useState(false)
   const [userId, setUserId] = useState(false)
+  const [memberName, setMemberName] = useState('')
 
   const reportHandler = () => {
     setReport(!report);
@@ -41,11 +43,13 @@ const AnalysisResult = ({ navigation }) => {
         const exId = await AsyncStorage.getItem("exerciseId");
         const token = await AsyncStorage.getItem("userToken");
         const userId = await AsyncStorage.getItem("userId")
+        const name = await AsyncStorage.getItem("memberName")
         
         setSelectedVideoId(videoId);
         setUserId(userId)
         setExerciseId(exId);
         setToken(token);
+        setMemberName(name)
 
         if (exId && token) {
           const response = await aiPost(exId);
@@ -75,10 +79,11 @@ const AnalysisResult = ({ navigation }) => {
     labels: ["운동 결과"],
     data: [data.body* 0.01]
   };
+
   const chartConfig = {
     backgroundGradientFrom: "#ffffff",
     backgroundGradientTo: "#ffffff",
-    color: (opacity = 1) => `rgba(44, 62, 80, ${opacity})`, 
+    color: (opacity = 1) => `rgba(0, 74, 173, ${opacity})`, 
     strokeWidth: 2,
     barPercentage: 0.5,
     useShadowColorFromDataset: false,
@@ -137,7 +142,7 @@ const AnalysisResult = ({ navigation }) => {
             </Modal>
           ) : (
             <>
-              <Text style={styles.headerText}>{userId}님의 분석 결과</Text>
+              <Text style={styles.headerText}>{memberName}님의 분석 결과</Text>
               <View style={styles.reviewContainer}>
                 <Video
                   source={{
@@ -162,24 +167,38 @@ const AnalysisResult = ({ navigation }) => {
                   hideLegend={false}
                 />
               </View>
-              <LargeButton
-                title='부위별 리포트 확인하기'
-                toward={reportHandler}
-                buttonStyle={styles.largeButton}
-              />
-              {exerciseId? (
-                <>
-                  <LargeButton
-                    title='비디오 저장하기'
-                    toward='VideoTrim'
-                    navigation={navigation}
-                    buttonStyle={styles.largeButton}
+              <View style={styles.iconButtonContainer}>
+                <TouchableOpacity
+                  style={styles.iconButton}
+                  onPress={() => {reportHandler()}}
+                >
+                  <Icon
+                    name='bar-chart'
+                    size={24}
+                    color='#004AAD'
                   />
+                  <Text style={styles.iconButtonText}>리포트보기</Text>
+                </TouchableOpacity>
+                {exerciseId? (
+                <>
+                  <TouchableOpacity
+                  style={styles.iconButton}
+                  onPress={() => navigation.navigate('VideoTrim')} // 로봇카 버튼을 클릭하면 'Server' 화면으로 이동
+                  >
+                    <Icon
+                      name='cloud-download'
+                      size={24}
+                      color='#004AAD'
+                    />
+                    <Text style={styles.iconButtonText}>다운로드</Text>
+                  </TouchableOpacity>
                 </>
               ) : (
                 <>
                 </>
               )}
+                
+              </View>
               <TouchableOpacity
                 onPress={() => navigation.navigate('Home')}
               >
@@ -197,7 +216,7 @@ const AnalysisResult = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: '#F1F2F6',
     padding: 20,
   },
   scrollContainer: {
@@ -245,6 +264,34 @@ const styles = StyleSheet.create({
   largeButton: {
     width: '80%',
     marginVertical: 10,
+  },
+  buttonContainer: {
+    margin: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  iconButtonContainer: {
+    flexDirection: 'row', // Align icons horizontally
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 30,
+  },
+  iconButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 15, // Space between buttons
+    padding: 20,
+    backgroundColor: '#F0F0F0',
+    borderRadius: 8,
+  },
+  iconButtonText: {
+    fontSize: 20,
+    marginLeft: 8,
   },
 });
 

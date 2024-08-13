@@ -32,7 +32,7 @@ const HiUser = ({ navigation, userId, isLoggedIn, handleLogout }) => {
           const decodedToken = jwtDecode(bodyTk[1]);
           setMemberName(decodedToken["memberName"]);
           if (memberName){
-            setMemberName(userId)
+            await AsyncStorage.setItem("memberName", memberName)
           }
         } else {
           console.log("No token found");
@@ -68,7 +68,7 @@ const HomeImage = () => {
     <View style={styles.imageContainer}>
       <Image
         resizeMode="cover"
-        source={require('../../assets/runrun.gif')}
+        source={require('../../assets/run_unscreen.gif')}
       />
     </View>
   )
@@ -155,14 +155,10 @@ const HomeScreen = ({ navigation }) => {
           </View>
           <View style={styles.buttonContainer}>
             <LargeButton
-              title='영상 분석하기'
+              title='      영상 분석하기   🎯      '
               toward='Select'
               navigation={navigation}
-            />
-            <LargeButton
-              title='API'
-              toward='ApiTest'
-              navigation={navigation}
+              buttonStyle={styles.buttonStyle}
             />
           </View>
         </View>
@@ -174,7 +170,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: '#F1F2F6',
   },
   scrollViewContent: {
     flexGrow: 1,
@@ -212,11 +208,10 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: '100%',
     aspectRatio: 16 / 9,
+    alignItems: 'center',
+    marginVertical: 24,
     gap: 16,
     borderRadius: 12,
-    // overflow: 'hidden',
-    marginBottom: 24,
-
   },
   dateText: {
     fontSize: 24,
@@ -225,15 +220,20 @@ const styles = StyleSheet.create({
   },
   dateContainer: {
     position: 'absolute',
-    bottom: 100,                // Distance from the bottom of the screen
+    bottom: 160,                // Distance from the bottom of the screen
     alignItems: 'center',      // Center button horizontally within the container
     // width: width, 
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 20,                // Distance from the bottom of the screen
+    bottom: 60,                // Distance from the bottom of the screen
     alignItems: 'center',      // Center button horizontally within the container
     width: width,              // Optional: set width of the container to match screen width
+    boxSizing: 'content-box',
+    padding: 20
+  },
+  buttonStyle:{
+    padding:100,
   },
   logoContainer: {
     paddingVertical:16,

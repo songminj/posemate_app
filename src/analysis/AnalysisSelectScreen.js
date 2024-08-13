@@ -5,9 +5,11 @@ import {
   StyleSheet,
   SafeAreaView,
   Dimensions,
+  TouchableOpacity
 } from 'react-native'
-import LargeButton from '../components/LargeButton'
 import CarouselComponent from '../components/CarouselComponent'
+import Icon from 'react-native-vector-icons/FontAwesome'
+
 
 
 const SelectScreen = ({ navigation }) => {
@@ -29,16 +31,31 @@ const SelectScreen = ({ navigation }) => {
       </View>
       <CarouselComponent/>
       <View style={styles.buttonContainer}>
-        <LargeButton
-          title='갤러리에서 영상 가져오기'
-          toward='Device'
-          navigation={navigation}
-        />
-        <LargeButton
-          title='로봇카로 촬영한 영상 찾아보기'
-          toward='Server'
-          navigation={navigation}
-        />
+        <Text style={styles.buttonTitle}>어디서 동영상을 가져올까요?</Text>
+          <View style={styles.iconButtonContainer}>
+            <TouchableOpacity
+              style={styles.iconButton}
+              onPress={() => navigation.navigate('Device')} // 갤러리 버튼을 클릭하면 'Device' 화면으로 이동
+            >
+              <Icon
+                name='folder'
+                size={24}
+                color='#004AAD'
+              />
+              <Text style={styles.iconButtonText}>갤러리</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.iconButton}
+              onPress={() => navigation.navigate('Server')} // 로봇카 버튼을 클릭하면 'Server' 화면으로 이동
+            >
+              <Icon
+                name='car'
+                size={24}
+                color='#004AAD'
+              />
+              <Text style={styles.iconButtonText}>로봇카</Text>
+            </TouchableOpacity>
+          </View>
       </View>
     </SafeAreaView>
   )
@@ -70,6 +87,32 @@ const styles = StyleSheet.create({
     margin: 20,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  buttonTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  iconButtonContainer: {
+    flexDirection: 'row', // Align icons horizontally
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 30,
+  },
+  iconButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 10, // Space between buttons
+    padding: 20,
+    paddingHorizontal:30,
+    backgroundColor: '#F0F0F0',
+    borderRadius: 8,
+    gap: 20
+  },
+  iconButtonText: {
+    fontSize: 20,
+    marginLeft: 8,
+    color: '#202020'
   },
 })
 

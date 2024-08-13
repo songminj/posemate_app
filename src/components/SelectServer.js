@@ -27,17 +27,22 @@ const SelectOnServer = ({ navigation }) => {
   const [exerciseId, setExerciseId] = useState(null)
   const [userId, setUserId] = useState(null)
   const [token, setToken] = useState(null)
+  const [memberName, setMemberName] = useState('')
+
+
 
   useEffect(() => {
     const fetchTokenAndVideos = async () => {
       const storedToken = await AsyncStorage.getItem('userToken')
       const userId = await AsyncStorage.getItem('userId')
+      const name = await AsyncStorage.getItem("memberName")
+
       setToken(storedToken)
       setUserId(userId)
+      setMemberName(name)
       const data = await videoGet()
       if (data) {
         setVideos(data)
-        console.log
       }
       setLoading(false) // Set loading to false once data is fetched
     }
@@ -49,8 +54,6 @@ const SelectOnServer = ({ navigation }) => {
     setSelectedVideoId(vId)
     setExerciseId(eId)
     setModalVisible(true)
-    console.log(vId)
-    console.log(eId)
   }
   const closeModal = async () => {
     setModalVisible(false)
@@ -114,7 +117,7 @@ const SelectOnServer = ({ navigation }) => {
             <Text 
               style={styles.headerText}
             >
-              {userId}님의 운동 기록입니다
+              {memberName}님의 운동 기록입니다
             </Text>
           </View>
           <View>
@@ -130,7 +133,11 @@ const SelectOnServer = ({ navigation }) => {
                     source={require('../../assets/video.png')}
                     resizeMode="cover"
                   />
-                  <Text>{video.video.saveDate}에 촬영한 영상</Text>
+                  <Text
+                    style={styles.videoText}
+                  >
+                    {video.video.saveDate}에 촬영한 영상
+                  </Text>
                 </TouchableOpacity>
               ))
             ) : (
@@ -164,8 +171,10 @@ const styles = StyleSheet.create({
     marginTop: 50, // 상단에 여백을 주어 텍스트 위치 조정
   },
   videoItem: {
+    flexDirection: 'row',
     marginBottom: 20, // 요소 간 간격을 더 넓게 설정
     padding: 15, // 내부 패딩을 넉넉히 설정
+    paddingVertical: 30,
     backgroundColor: '#ffffff', // 비디오 아이템 배경색을 흰색으로 설정
     borderRadius: 10, // 모서리를 둥글게 설정
     shadowColor: '#000', // 그림자 색상 설정
@@ -175,6 +184,7 @@ const styles = StyleSheet.create({
     elevation: 3, // Android에서 그림자 표현을 위한 속성
     width: width * 0.9, // 화면 너비의 90%로 설정
     alignItems: 'center',
+    gap:15,
   },
   modalContainer: {
     flex: 1,
@@ -188,9 +198,13 @@ const styles = StyleSheet.create({
     height: width * 0.6,
     borderRadius: 10, // 비디오의 모서리를 둥글게 설정
   },
+  videoText:{
+    fontSize: 20,
+    color: '#202020'
+  },
   videoImage: {
-    width: width * 0.3, 
-    height: width * 0.3, 
+    width: width * 0.2, 
+    height: width * 0.2, 
     marginBottom: 15, // 이미지와 텍스트 간 간격을 더 넓게 설정
   },
   buttonContainer: {
@@ -201,18 +215,18 @@ const styles = StyleSheet.create({
     marginTop: 20, // 버튼과 비디오 사이의 여백
   },
   cancelButtonStyle: {
-    backgroundColor: '#D3D3D3', // 밝은 회색 버튼 배경
-    width: '45%', // 두 버튼이 나란히 배치될 수 있도록 너비 조정
+    backgroundColor: '#F1F2F6',
+    width: '50%', 
   },
   selectButtonStyle: {
-    backgroundColor: '#2C3E50', // 기존 선택하기 버튼 색상
-    width: '45%', // 두 버튼이 나란히 배치될 수 있도록 너비 조정
+    backgroundColor: '#004AAD', 
+    width: '50%', 
   },
   cancelButtonTextStyle: {
-    color: '#000', // 취소하기 버튼 텍스트 색상 (검은색)
+    color: '#000',
   },
   selectButtonTextStyle: {
-    color: '#fff', // 선택하기 버튼 텍스트 색상 (흰색)
+    color: '#fff',
   },
 })
 

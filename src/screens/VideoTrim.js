@@ -125,11 +125,10 @@ const VideoTrim = ({ navigation }) => {
           }}
           resizeMode="contain"
           paused={paused}
-          // onProgress={onVideoProgress}
         />
       </TouchableOpacity>
       <View style={styles.trimContainer}>
-        <Text style={styles.label}>Select Trim Range</Text>
+        <Text style={styles.label}>구간 길이</Text>
         <Slider
           style={styles.slider}
           width={300}
@@ -145,12 +144,12 @@ const VideoTrim = ({ navigation }) => {
           thumbTintColor="#1E90FF"
         />
         <View style={styles.trimLabels}>
-          <Text style={styles.timeLabel}>Start: {formatTime(startTime)}</Text>
-          <Text style={styles.timeLabel}>End: {formatTime(endTime)}</Text>
+          <Text style={styles.timeLabel}>시작: {formatTime(startTime)}</Text>
+          <Text style={styles.timeLabel}>끝: {formatTime(endTime)}</Text>
         </View>
       </View>
       <TouchableOpacity onPress={trimVideo} style={styles.button}>
-        <Text style={styles.buttonText}>Trim Video</Text>
+        <Text style={styles.buttonText}>비디오 저장하기</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate('Home')}
@@ -166,7 +165,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F1F2F6',
   },
   videoContainer: {
     width: '100%',
@@ -192,7 +191,7 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 15,
-    backgroundColor: '#4682B4',
+    backgroundColor: '#004AAD',
     borderRadius: 10,
     marginTop: 20,
   },
