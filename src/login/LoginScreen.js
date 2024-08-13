@@ -58,7 +58,7 @@ const LoginScreen = ({ navigation }) => {
             style={styles.input}
           />
           <TouchableOpacity 
-            style={[styles.loginButton, { backgroundColor: isButtonEnabled ? '#2C3E50' : '#BDC3C7' }]} 
+            style={[styles.loginButton, { backgroundColor: isButtonEnabled ? '#004AAD' : '#BDC3C7' }]} 
             onPress={() => loginPost(userId, password, navigation)}
             disabled={!isButtonEnabled}
           >

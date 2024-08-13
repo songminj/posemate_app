@@ -20,13 +20,11 @@ const { width } = Dimensions.get('window');
 const VideoTrim = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
   const [paused, setPaused] = useState(true);
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(10);
   const videoPlayer = useRef(null);
   const [selectedVideoId, setSelectedVideoId] = useState('');
-  const [trimmedVideoUri, setTrimmedVideoUri] = useState('');
   const [token, setToken] = useState(null);
 
   useEffect(() => {
@@ -78,7 +76,6 @@ const VideoTrim = ({ navigation }) => {
 
         await RNFS.moveFile(outputUri, finalPath);
         console.log('Trimmed video moved to download directory:', finalPath);
-        setTrimmedVideoUri(finalPath);
 
         Alert.alert('Success', `Video trimmed and saved to: ${finalPath}`);
       } else {
@@ -100,14 +97,7 @@ const VideoTrim = ({ navigation }) => {
     setPaused(!paused);
   };
 
-  const onSliderValueChange = (value) => {
-    videoPlayer.current.seek(value);
-    setCurrentTime(value);
-  };
 
-  const onVideoProgress = (data) => {
-    setCurrentTime(data.currentTime);
-  };
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -135,7 +125,7 @@ const VideoTrim = ({ navigation }) => {
           }}
           resizeMode="contain"
           paused={paused}
-          onProgress={onVideoProgress}
+          // onProgress={onVideoProgress}
         />
       </TouchableOpacity>
       <View style={styles.trimContainer}>

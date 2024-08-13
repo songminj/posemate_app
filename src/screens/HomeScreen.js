@@ -14,11 +14,37 @@ import {
 } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 import LargeButton from '../components/LargeButton'
+import { jwtDecode } from "jwt-decode"
 
 const width = Dimensions.get('window')
 
+
 // User정보 및 로그인 여부를 확인시켜주는 상단바 
 const HiUser = ({ navigation, userId, isLoggedIn, handleLogout }) => {
+  const [memberName, setMemberName] = useState(null)
+
+  useEffect(() => {
+    const getToken = async () => {
+      try {
+        const tk = await AsyncStorage.getItem("userToken"); // 비동기적으로 토큰 가져오기
+        if (tk) {
+          const bodyTk = String(tk).split(" ");
+          const decodedToken = jwtDecode(bodyTk[1]);
+          setMemberName(decodedToken["memberName"]);
+          if (memberName){
+            setMemberName(userId)
+          }
+        } else {
+          console.log("No token found");
+        }
+      } catch (error) {
+        console.error("Error getting token:", error);
+      }
+    };
+
+    getToken();
+  }, []);
+
   return (
     <TouchableOpacity 
       style={styles.hiUserContainer}
@@ -30,7 +56,9 @@ const HiUser = ({ navigation, userId, isLoggedIn, handleLogout }) => {
       <View style={styles.avatarContainer}>
         <Icon name="person" size={24} color="#007AFF" />
       </View>
-      <Text style={styles.hiUserText}>{isLoggedIn ? `${userId}님\n달릴 준비가 완료되었습니다!` : '오늘도 운동하세요'}</Text>
+      <Text style={styles.hiUserText}>
+        {isLoggedIn ? `${memberName}님\n오늘도 달려볼까요!` : '오늘도 운동하세요'}
+      </Text>
     </TouchableOpacity>
   )
 }
@@ -62,6 +90,7 @@ const CurrentDate = () => {
 const HomeScreen = ({ navigation }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userId, setUserId] = useState('')
+  const [token, setToken] = useState(null)
 
   useFocusEffect(
     React.useCallback(() => {
@@ -74,8 +103,9 @@ const HomeScreen = ({ navigation }) => {
       const token = await AsyncStorage.getItem('userToken')
       const id = await AsyncStorage.getItem('userId')
       if (token) {
-        setIsLoggedIn(true)
-        setUserId(id)
+        await setIsLoggedIn(true)
+        await setUserId(id)
+        setToken(String(token))
         console.log(token)
       } else {
         setIsLoggedIn(false)
@@ -91,7 +121,7 @@ const HomeScreen = ({ navigation }) => {
       await AsyncStorage.clear()
       setIsLoggedIn(false)
       setUserId('')
-      navigation.navigate('Login')
+      navigation.navigate('Home')
     } catch (error) {
       console.error('Error logging out:', error)
     }
@@ -127,6 +157,11 @@ const HomeScreen = ({ navigation }) => {
             <LargeButton
               title='영상 분석하기'
               toward='Select'
+              navigation={navigation}
+            />
+            <LargeButton
+              title='API'
+              toward='ApiTest'
               navigation={navigation}
             />
           </View>

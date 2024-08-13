@@ -10,6 +10,7 @@ import {
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import Input from '../components/Input'
+import LargeButton from '../components/LargeButton'
 
 
 
@@ -96,17 +97,22 @@ const SignInScreen = ({ navigation }) => {
       <StatusBar barStyle="dark-content" />
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <Text style={styles.title}>회원가입</Text>
-        <Input
-          title="이름"
-          placeholder="이름을 입력하세요"
-          value={username}
-          onChangeText={text => setUsername(text)}
-        />
-        {usernameError ? <Text style={styles.errorText}>{usernameError}</Text> : null}
+        <View style={styles.nameContainer}>
+          <Input
+            title="이름"
+            placeholder="최소 2자 이상 문자"
+            value={username}
+            onChangeText={text => setUsername(text)}
+          />
+          {usernameError ? <Text style={styles.errorText}>{usernameError}</Text> : null}
+          {/* <LargeButton>
+
+          </LargeButton> */}
+        </View>
 
         <Input
           title="전화번호"
-          placeholder="전화번호를 입력하세요"
+          placeholder="000-0000-0000"
           value={phone}
           onChangeText={text => setPhone(text)}
         />
@@ -114,7 +120,7 @@ const SignInScreen = ({ navigation }) => {
 
         <Input
           title="아이디"
-          placeholder="아이디를 입력하세요"
+          placeholder="영어+숫자 조합 4~12자"
           value={userId}
           onChangeText={text => setUserId(text)}
         />
@@ -122,7 +128,7 @@ const SignInScreen = ({ navigation }) => {
 
         <Input
           title="비밀번호"
-          placeholder="비밀번호를 입력하세요"
+          placeholder="최소 4자 이상"
           secureTextEntry={true}
           value={password}
           onChangeText={text => setPassword(text)}
@@ -178,6 +184,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     alignSelf: 'flex-start',  // 에러 메시지를 왼쪽 정렬
   },
+  nameContainer:{
+    // flexDirection:'row'
+  }
 })
 
 export default SignInScreen

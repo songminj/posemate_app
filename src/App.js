@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { NavigationContainer, useFocusEffect } from '@react-navigation/native'
+import { 
+  NavigationContainer, 
+  useFocusEffect, 
+  suseISFocused, 
+  useIsFocused
+} from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -18,44 +23,39 @@ import ApiTest from './screens/ApiTest'
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
-const LogoutScreen = ({ navigation }) => {
-  useFocusEffect(
-    React.useCallback(() => {
-      const performLogout = async () => {
-        try {
-          await AsyncStorage.clear()
-          await setIsLoggedIn(false)
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'Home' }],
-          })
-        } catch (error) {
-          console.log('Error logging out:', error)
-        }
-      }
-      performLogout()
-    }, [navigation])
-  )
 
-  return null // 로그아웃 처리 후, 화면에 아무것도 렌더링하지 않음
-}
 
 const MainTabNavigator = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  useFocusEffect(
-    React.useCallback(() => {
-      const checkLoginStatus = async () => {
-        try {
-          const token = await AsyncStorage.getItem('userToken')
-          setIsLoggedIn(!!token)
-        } catch (error) {
-          console.log('Error checking login status:', error)
+  const isFocused = useIsFocused()
+  const LogoutScreen = ({ navigation }) => {
+    useFocusEffect(
+      React.useCallback(() => {
+        const performLogout = async () => {
+          try {
+            await AsyncStorage.clear()
+            await setIsLoggedIn(false)
+            navigation.navigate('Home')
+          } catch (error) {
+            console.log('Error logging out:', error)
+          }
         }
+        performLogout()
+      }, [isFocused])
+    )
+  }
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const token = await AsyncStorage.getItem('userToken')
+        await setIsLoggedIn(token)
+      } catch (error) {
+        console.log('Error checking login status:', error)
       }
-      checkLoginStatus()
-    }, [])
-  )
+    }
+    checkLoginStatus()
+  }, [isFocused]) // isLoggedIn 상태가 변경될 때마다 실행
 
   return (
     <Tab.Navigator
@@ -63,19 +63,14 @@ const MainTabNavigator = () => {
         tabBarStyle: {
           backgroundColor: '#0C1B2E',
           borderTopColor: '#1A2A42',
+          height: 60, // Increase tab bar height for better visibility
+          paddingBottom: 5,
         },
-        tabBarActiveTintColor: '#007BFF',
+        tabBarActiveTintColor: '#7CBBF3',
         tabBarInactiveTintColor: '#C0C0C0',
         tabBarLabelStyle: {
           fontSize: 12,
           fontWeight: '600',
-        },
-        headerStyle: {
-          backgroundColor: '#1A2A42',
-        },
-        headerTintColor: '#FFFFFF',
-        headerTitleStyle: {
-          fontWeight: 'bold',
         },
       }}
     >
@@ -90,6 +85,7 @@ const MainTabNavigator = () => {
               size={size}
             />
           ),
+          unmountOnBlur: true,
           headerShown: false
         }}
       />
@@ -119,7 +115,7 @@ const App = () => {
         initialRouteName='MainTabs'
         screenOptions={{
           contentStyle: {
-            backgroundColor: '#F5F5F5',
+            backgroundColor: '#F1F2F6',
           },
         }}
       >

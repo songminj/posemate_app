@@ -41,7 +41,7 @@ const LargeButton = ({
 const styles = StyleSheet.create({
   buttonStyle: {
     margin: 10,
-    backgroundColor: '#2C3E50',
+    backgroundColor: '#004AAD',
     paddingVertical: 12,
     paddingHorizontal: 12,
     borderRadius: 8,
