@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Icon from 'react-native-vector-icons/Ionicons'
+// import Icon from 'react-native-vector-icons/FontAwesome'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
   SafeAreaView,
@@ -55,6 +56,8 @@ const HiUser = ({ navigation, userId, isLoggedIn, handleLogout }) => {
     >
       <View style={styles.avatarContainer}>
         <Icon name="person" size={24} color="#007AFF" />
+        {/* <Icon name="user" size={24} color="#007AFF" /> */}
+
       </View>
       <Text style={styles.hiUserText}>
         {isLoggedIn ? `${memberName}님\n오늘도 달려볼까요!` : '오늘도 운동하세요'}
