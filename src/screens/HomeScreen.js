@@ -106,7 +106,6 @@ const HomeScreen = ({ navigation }) => {
         await setIsLoggedIn(true)
         await setUserId(id)
         setToken(String(token))
-        console.log(token)
       } else {
         setIsLoggedIn(false)
         setUserId('')
@@ -150,10 +149,8 @@ const HomeScreen = ({ navigation }) => {
         </View>
         <View style={styles.container}>
           <HomeImage />
-          <View style={styles.dateContainer}>
-            <CurrentDate/>
-          </View>
           <View style={styles.buttonContainer}>
+            <CurrentDate/>
             <LargeButton
               title='      영상 분석하기   🎯      '
               toward='Select'
@@ -166,7 +163,6 @@ const HomeScreen = ({ navigation }) => {
     </SafeAreaView>
   )
 }
-
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
@@ -174,6 +170,7 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     flexGrow: 1,
+    justifyContent: 'space-between', 
   },
   headContainer: {
     backgroundColor: '#FFFFFF',
@@ -183,7 +180,7 @@ const styles = StyleSheet.create({
   hiUserContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal:16,
+    marginHorizontal: 16,
     paddingVertical: 16,
   },
   hiUserText: {
@@ -202,8 +199,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems:'center',
-    padding: 16,
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
   imageContainer: {
     width: '100%',
@@ -218,35 +215,27 @@ const styles = StyleSheet.create({
     color: '#212529',
     fontWeight: '300',
   },
-  dateContainer: {
-    position: 'absolute',
-    bottom: 160,                // Distance from the bottom of the screen
-    alignItems: 'center',      // Center button horizontally within the container
-    // width: width, 
-  },
   buttonContainer: {
-    position: 'absolute',
-    bottom: 60,                // Distance from the bottom of the screen
-    alignItems: 'center',      // Center button horizontally within the container
-    width: width,              // Optional: set width of the container to match screen width
-    boxSizing: 'content-box',
-    padding: 20
+    alignItems: 'center',
+    width: '80%',  
   },
-  buttonStyle:{
-    padding:100,
+  buttonStyle: {
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    backgroundColor: '#004AAD',
+    borderRadius: 10,
   },
   logoContainer: {
-    paddingVertical:16,
+    paddingVertical: 16,
     alignItems: 'center',
     borderBottomWidth: 1, 
     borderBottomColor: '#E9ECEF',  
   },
   mainLogo: {
     width: 150, 
-    height: 30,  
-    paddingBottom: 20,
+    height: 30,
     resizeMode: 'contain',
   },
-})
+});
 
 export default HomeScreen

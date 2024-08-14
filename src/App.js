@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { 
   NavigationContainer, 
   useFocusEffect, 
-  suseISFocused, 
   useIsFocused
 } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -14,16 +13,12 @@ import AnalysisSelectScreen from './analysis/AnalysisSelectScreen'
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './login/LoginScreen'
 import SignInScreen from './login/SignInScreen'
-import SlicingScreen from './screens/SlicingScreen'
 import VideoTrim from './screens/VideoTrim'
 import DeviceComponent from './components/SelectDevice'
 import ServerComponent from './components/SelectServer'
-import ApiTest from './screens/ApiTest'
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
-
-
 
 const MainTabNavigator = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -145,11 +140,6 @@ const App = () => {
           component={SignInScreen}
         />
         <Stack.Screen
-          name='Slicing'
-          options={{ headerShown: false }}
-          component={SlicingScreen}
-        />
-        <Stack.Screen
           name='Device'
           options={{ headerShown: false }}
           component={DeviceComponent}
@@ -163,10 +153,6 @@ const App = () => {
           name='VideoTrim'
           options={{ headerShown: false }}
           component={VideoTrim}
-        />
-        <Stack.Screen
-          name='ApiTest'
-          component={ApiTest}
         />
       </Stack.Navigator>
     </NavigationContainer>

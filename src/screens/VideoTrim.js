@@ -50,42 +50,38 @@ const VideoTrim = ({ navigation }) => {
     const outputUri = `${RNFS.CachesDirectoryPath}/${trimmedFileName}`;
   
     try {
-      // Step 1: Download the video
       await RNFS.downloadFile({
-        fromUrl: `http://i11a202.p.ssafy.io:8080/api-video/${selectedVideoId}`,
+        fromUrl: `https://i11a202.p.ssafy.io/api-video/${selectedVideoId}`,
         toFile: downloadPath,
         headers: {
           Authorization: token,
         },
       }).promise;
   
-      console.log('Video downloaded successfully');
   
-      // Step 2: Trim the downloaded video
-      const command = `-i ${downloadPath} -ss ${startTime} -t ${endTime - startTime} -c copy ${outputUri}`;
-  
+      // const command = `-i ${downloadPath} -ss ${startTime} -t ${endTime - startTime} -c copy ${outputUri}`;
+      const command = `\-i "${downloadPath}" -ss ${startTime} -t ${endTime - startTime} -c copy "${outputUri}"`
       const session = await FFmpegKit.execute(command);
       const returnCode = await session.getReturnCode();
-  
+      console.log('return code : ', returnCode)
       if (ReturnCode.isSuccess(returnCode)) {
         console.log('Video trimmed successfully');
 
-        // Step 3: Move trimmed video to the final download directory
         const downloadDir = RNFetchBlob.fs.dirs.DownloadDir;
         const finalPath = `${downloadDir}/${trimmedFileName}`;
 
         await RNFS.moveFile(outputUri, finalPath);
         console.log('Trimmed video moved to download directory:', finalPath);
 
-        Alert.alert('Success', `Video trimmed and saved to: ${finalPath}`);
+        Alert.alert('성공!', `갤러리에서 동영상을 확인하세요🎞`);
       } else {
         const logs = await session.getLogs();
         console.error('Error during FFmpeg execution:', logs);
-        Alert.alert('Error', 'Failed to trim video. Please try again.');
+        Alert.alert('앗!', '비디오 저장에 실패했어요.');
       }
     } catch (error) {
       console.error('Error in trimVideo:', error);
-      Alert.alert('Error', 'An unexpected error occurred. Please try again.');
+      Alert.alert('앗!', '문제가 발생했어요.');
     } finally {
       // Clean up: delete the downloaded file
       await RNFS.unlink(downloadPath).catch(err => console.warn('Error deleting downloaded file:', err));
@@ -111,7 +107,7 @@ const VideoTrim = ({ navigation }) => {
       <TouchableOpacity onPress={togglePlayPause} style={styles.videoContainer}>
         <Video
           source={{
-            uri: `http://i11a202.p.ssafy.io:8080/api-video/${selectedVideoId}`,
+            uri: `https://i11a202.p.ssafy.io/api-video/${selectedVideoId}`,
             headers: {
               Authorization: token,
             },
@@ -125,6 +121,8 @@ const VideoTrim = ({ navigation }) => {
           }}
           resizeMode="contain"
           paused={paused}
+          controls={true}
+
         />
       </TouchableOpacity>
       <View style={styles.trimContainer}>
@@ -153,6 +151,7 @@ const VideoTrim = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate('Home')}
+        style={styles.goBackContainer}
       >
         <Text>처음으로</Text>
       </TouchableOpacity>
@@ -213,6 +212,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
+  },
+  goBackContainer: {
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'center',
+    paddingVertical: 10,
+  },
+  goBackText: {
+    fontSize: 18,
+    color: '#004AAD',
   },
 });
 

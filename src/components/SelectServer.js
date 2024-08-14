@@ -120,7 +120,9 @@ const SelectOnServer = ({ navigation }) => {
               {memberName}님의 운동 기록입니다
             </Text>
           </View>
-          <View>
+          <View
+            style={styles.videoContainer}
+          >
             {videos.length > 0 ? (
               videos.map((video, index) => (
                 <TouchableOpacity 
@@ -154,73 +156,82 @@ const SelectOnServer = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA', 
-    padding: 20, 
+    backgroundColor: '#F8F9FA',
+    padding: 20,
+  },
+  scrollContainer: {
+    alignItems: 'center',
+    paddingBottom: 20,
   },
   headerText: {
-    fontSize: 28, // 텍스트 크기를 키워서 더 강조되게 설정
-    fontWeight: 'bold', // 폰트 두께를 굵게 설정
-    color: '#2C3E50', // 메인 컬러로 텍스트 색상 설정
-    marginBottom: 30, // 텍스트 아래 여백을 늘려서 요소 간 간격을 확장
-    textAlign: 'left', // 텍스트를 좌측 정렬
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#2C3E50',
+    marginBottom: 30,
+    textAlign: 'left',
   },
   loadingText: {
-    fontSize: 20, // 로딩 텍스트 크기를 키워서 읽기 쉽게 설정
-    color: '#888', // 색상을 약간 밝게 설정
-    textAlign: 'center', // 중앙 정렬
-    marginTop: 50, // 상단에 여백을 주어 텍스트 위치 조정
+    fontSize: 20,
+    color: '#888',
+    textAlign: 'center',
+    marginTop: 50,
+  },
+  videoContainer: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
   },
   videoItem: {
     flexDirection: 'row',
-    marginBottom: 20, // 요소 간 간격을 더 넓게 설정
-    padding: 15, // 내부 패딩을 넉넉히 설정
-    paddingVertical: 30,
-    backgroundColor: '#ffffff', // 비디오 아이템 배경색을 흰색으로 설정
-    borderRadius: 10, // 모서리를 둥글게 설정
-    shadowColor: '#000', // 그림자 색상 설정
-    shadowOffset: { width: 0, height: 2 }, // 그림자 오프셋 설정
-    shadowOpacity: 0.1, // 그림자 투명도 설정
-    shadowRadius: 5, // 그림자 반경 설정
-    elevation: 3, // Android에서 그림자 표현을 위한 속성
-    width: width * 0.9, // 화면 너비의 90%로 설정
+    marginBottom: 20,
+    padding: 15,
+    paddingVertical: 25,
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
+    width: width * 0.85,
     alignItems: 'center',
-    gap:15,
+    gap: 10,
   },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.7)', // 모달의 배경색을 어둡게 설정해 집중도를 높임
-    padding: 20, // 모달 안쪽에 여백을 설정
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    padding: 20,
   },
   video: {
     width: width * 0.9,
     height: width * 0.6,
-    borderRadius: 10, // 비디오의 모서리를 둥글게 설정
+    borderRadius: 10,
   },
-  videoText:{
-    fontSize: 20,
-    color: '#202020'
+  videoText: {
+    fontSize: 18,
+    color: '#202020',
   },
   videoImage: {
-    width: width * 0.2, 
-    height: width * 0.2, 
-    marginBottom: 15, // 이미지와 텍스트 간 간격을 더 넓게 설정
+    width: width * 0.2,
+    height: width * 0.2,
+    marginBottom: 15,
   },
   buttonContainer: {
-    flexDirection: 'row', // 버튼을 가로로 배치
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-evenly', // 버튼 사이의 공간을 균등하게 배치
-    width: '80%', // 두 버튼이 들어갈 수 있는 적절한 너비 설정
-    marginTop: 20, // 버튼과 비디오 사이의 여백
+    justifyContent: 'space-evenly',
+    width: '100%',
+    marginTop: 20,
   },
   cancelButtonStyle: {
     backgroundColor: '#F1F2F6',
-    width: '50%', 
+    width: '45%',
   },
   selectButtonStyle: {
-    backgroundColor: '#004AAD', 
-    width: '50%', 
+    backgroundColor: '#004AAD',
+    width: '45%',
   },
   cancelButtonTextStyle: {
     color: '#000',
@@ -228,8 +239,7 @@ const styles = StyleSheet.create({
   selectButtonTextStyle: {
     color: '#fff',
   },
-})
-
+});
 
 
 export default SelectOnServer

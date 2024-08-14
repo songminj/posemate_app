@@ -12,8 +12,8 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 
 
+const { width } = Dimensions.get('window')
 const SelectScreen = ({ navigation }) => {
-  const { width } = Dimensions.get('window')
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   header: {
-    marginTop: 30,
+    marginTop: 60,
     marginBottom: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -97,19 +97,22 @@ const styles = StyleSheet.create({
   },
   iconButtonContainer: {
     flexDirection: 'row', // Align icons horizontally
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 30,
+    paddingHorizontal: 30,
+    marginHorizontal:30,
   },
   iconButton: {
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal: 10, // Space between buttons
-    padding: 20,
-    paddingHorizontal:30,
+    padding: 15,
+    paddingHorizontal:20,
+    // width: width*0.45,
     backgroundColor: '#F0F0F0',
     borderRadius: 8,
-    gap: 20
+    gap: 15
   },
   iconButtonText: {
     fontSize: 20,

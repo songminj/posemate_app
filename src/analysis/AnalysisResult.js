@@ -29,7 +29,6 @@ const AnalysisResult = ({ navigation }) => {
   const [selectedVideoId, setSelectedVideoId] = useState(null);
   const [exerciseId, setExerciseId] = useState(null);
   const [isGood, setIsGood] = useState(false)
-  const [userId, setUserId] = useState(false)
   const [memberName, setMemberName] = useState('')
 
   const reportHandler = () => {
@@ -42,11 +41,9 @@ const AnalysisResult = ({ navigation }) => {
         const videoId = await AsyncStorage.getItem("selectedVideoId");
         const exId = await AsyncStorage.getItem("exerciseId");
         const token = await AsyncStorage.getItem("userToken");
-        const userId = await AsyncStorage.getItem("userId")
         const name = await AsyncStorage.getItem("memberName")
         
         setSelectedVideoId(videoId);
-        setUserId(userId)
         setExerciseId(exId);
         setToken(token);
         setMemberName(name)
@@ -76,7 +73,6 @@ const AnalysisResult = ({ navigation }) => {
   };
 
   const totalData = {
-    labels: ["운동 결과"],
     data: [data.body* 0.01]
   };
 
@@ -89,10 +85,6 @@ const AnalysisResult = ({ navigation }) => {
     useShadowColorFromDataset: false,
   };
 
-  const segmentColors = ['#FF00FF', '#00FFFF', '#FFFF00'];
-  const getColorForIndex = (index) => {
-    return segmentColors[index % segmentColors.length];
-  };
 
   if (loading) {
     return <Loading />;
@@ -146,7 +138,7 @@ const AnalysisResult = ({ navigation }) => {
               <View style={styles.reviewContainer}>
                 <Video
                   source={{
-                    uri: `http://i11a202.p.ssafy.io:8080/api-video/${selectedVideoId}`,
+                    uri: `https://i11a202.p.ssafy.io/api-video/${selectedVideoId}`,
                     headers: {
                       Authorization: token,
                     },
@@ -160,12 +152,17 @@ const AnalysisResult = ({ navigation }) => {
                 <ProgressChart
                   data={totalData}
                   width={width * 0.9}
-                  height={220}
-                  strokeWidth={16}
-                  radius={32}
+                  height={200}
+                  strokeWidth={24}
+                  radius={68}
                   chartConfig={chartConfig}
-                  hideLegend={false}
+                  hideLegend={true}
                 />
+                <Text
+                  style={styles.resultText}
+                >
+                  운동 점수는 {data.body}점 입니다!
+                </Text>
               </View>
               <View style={styles.iconButtonContainer}>
                 <TouchableOpacity
@@ -201,6 +198,7 @@ const AnalysisResult = ({ navigation }) => {
               </View>
               <TouchableOpacity
                 onPress={() => navigation.navigate('Home')}
+                style={styles.goBackContainer}
               >
                 <Text>처음으로</Text>
               </TouchableOpacity>
@@ -222,6 +220,10 @@ const styles = StyleSheet.create({
   scrollContainer: {
     alignItems: 'center',
     paddingBottom: 20,
+  },
+  resultText:{
+    color:"#202020",
+    fontSize: 20,
   },
   modalContainer: {
     flex: 1,
@@ -248,6 +250,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#2C3E50',
+    marginTop:20,
     marginBottom: 20,
   },
   reviewContainer: {
@@ -260,6 +263,7 @@ const styles = StyleSheet.create({
     height: 200,
     backgroundColor: '#000',
     borderRadius: 10,
+    marginVertical:30, 
   },
   largeButton: {
     width: '80%',
@@ -267,7 +271,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     margin: 20,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
   },
   buttonTitle: {
@@ -277,12 +281,13 @@ const styles = StyleSheet.create({
   },
   iconButtonContainer: {
     flexDirection: 'row', // Align icons horizontally
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     marginVertical: 30,
   },
   iconButton: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginHorizontal: 15, // Space between buttons
     padding: 20,
@@ -293,6 +298,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 8,
   },
+  goBackcontainer:{
+    // flex:1,
+    position:"absolute",
+    bottom: 20
+  }
 });
 
 

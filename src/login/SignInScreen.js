@@ -5,12 +5,12 @@ import {
   TouchableOpacity, 
   Text,
   StatusBar,
-  ScrollView
+  ScrollView,
+  Dimensions,
 } from 'react-native'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import Input from '../components/Input'
-import LargeButton from '../components/LargeButton'
 
 
 
@@ -146,47 +146,46 @@ const SignInScreen = ({ navigation }) => {
   )
 }
 
+const { width, height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',  // 배경색을 흰색으로 변경
+    backgroundColor: '#FFFFFF',  
   },
   scrollViewContent: {
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 24,
+    padding: width * 0.06,  
   },
   title: {
-    fontSize: 28,
+    fontSize: width * 0.07,  
     fontWeight: 'bold',
-    color: '#000000',  // 제목 색상을 검정색으로 변경
-    marginBottom: 24,
+    color: '#000000',  
+    marginBottom: height * 0.03, 
   },
   signUpButton: {
-    marginTop: 24,
+    marginTop: height * 0.03,  
     backgroundColor: '#007BFF',
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    paddingVertical: height * 0.015, 
+    paddingHorizontal: width * 0.06, 
     borderRadius: 8,
     width: '100%',
     alignItems: 'center',
   },
   signUpButtonText: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: width * 0.04,  // 화면 너비의 4%를 글꼴 크기로 설정
     fontWeight: 'bold',
   },
   errorText: {
     color: 'red',
-    fontSize: 12,
-    marginBottom: 10,
-    marginLeft: 10,
-    alignSelf: 'flex-start',  // 에러 메시지를 왼쪽 정렬
+    fontSize: width * 0.03,  // 화면 너비의 3%를 글꼴 크기로 설정
+    marginBottom: height * 0.012,  // 화면 높이의 1.2%를 margin-bottom으로 설정
+    marginLeft: width * 0.025,  // 화면 너비의 2.5%를 margin-left로 설정
+    alignSelf: 'flex-start',  
   },
-  nameContainer:{
-    // flexDirection:'row'
-  }
 })
 
 export default SignInScreen

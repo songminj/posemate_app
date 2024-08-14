@@ -94,15 +94,14 @@ const SelectOnDevice = ({navigation}) => {
             'Authorization': token
           },
         })
-        console.log('Video uploaded successfully:', response.data)
-        Alert.alert("Success", "Video uploaded successfully.")
+        console.log('비디오 업로드 성공:', response.data)
+        await AsyncStorage.setItem('videoId', String(response.data))
+        setModalVisible(false)
 
       } catch (error) {
         console.error('Error uploading video:', error)
-        Alert.alert("Error", "Error uploading video.")
       }
     }
-    setModalVisible(false)
   }
   
 

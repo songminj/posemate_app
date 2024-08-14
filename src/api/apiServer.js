@@ -1,4 +1,4 @@
-import {api, userApi, videoApi, videoPostApi } from './Index'
+import {api, userApi } from './Index'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { jwtDecode } from "jwt-decode"
 
@@ -88,6 +88,7 @@ const loginPost = async (userId, password, navigation) => {
       const token = response.headers.authorization
       await AsyncStorage.setItem('userToken', token)
       await AsyncStorage.setItem('userId', userId)
+
       if (token) {
         const bodyTk = String(token).split(" ");
         const decodedToken = jwtDecode(bodyTk[1])
@@ -124,56 +125,6 @@ const videoGet = async () => {
 }
 
 
-// const videoPost = async (video) => {
-//   const abortController = createAbortController(3000)
-//   try {
-//     const apiInstance = await videoApi()
-//     const response = await apiInstance.post('/api-video/video', video, { signal: abortController.signal })
-//     console.log('여깁니다~', response)
-//     return response
-//   } catch (error) {
-//     if (abortController.signal.aborted) {
-//       console.log('비디오 데이터 post 실패')
-//     } else {
-//       console.log('API 호출 중 오류', error)
-//       alert("앗! 비디오 저장에 실패했습니다😥")
-//     }
-//   }
-// }
-
-const videoPost = async (formData) => {
-  const abortController = createAbortController(100000) // 10초로 늘리기
-  try {
-    const apiInstance = await videoApi()
-    const response = await apiInstance.post('/api-video', formData, { signal: abortController.signal })
-    console.log('여깁니다~', response)
-    return response
-  } catch (error) {
-    if (abortController.signal.aborted) {
-      console.log('비디오 데이터 post 실패')
-    } else {
-      console.log('API 호출 중 오류', error)
-      alert("앗! 비디오 저장에 실패했습니다😥")
-    }
-  }
-}
-
-
-
-const videoJsonPost = async () => {
-  const abortController = createAbortController(3000)
-  try {
-    const apiInstance = await videoApi()
-    const response = await apiInstance.post('/api-video/json', {}, { signal: abortController.signal })
-    console.log(response.data)
-  } catch (error) {
-    if (abortController.signal.aborted) {
-      console.log('비디오 JSON 데이터 post 실패')
-    } else {
-      console.log('API 호출 중 오류', error)
-    }
-  }
-}
 
 
 export { 
@@ -183,6 +134,4 @@ export {
   healthPost, 
   loginPost, 
   videoGet,
-  videoPost, 
-  videoJsonPost,  
 }

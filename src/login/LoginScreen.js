@@ -7,7 +7,7 @@ import {
   Image,
   StatusBar,
   SafeAreaView,
-  Alert
+  Dimensions
 } from 'react-native'
 import Input from '../components/Input'
 import { loginPost } from '../api/ApiServer'
@@ -72,6 +72,8 @@ const LoginScreen = ({ navigation }) => {
   )
 }
 
+const { width, height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -81,47 +83,43 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: width * 0.06, 
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: height * 0.05, 
   },
   formContainer: {
     width: '100%',
     alignItems: 'center',
   },
   loginButton: {
-    marginTop: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    marginTop: height * 0.02, 
+    paddingVertical: height * 0.015, 
+    paddingHorizontal: width * 0.06,
     borderRadius: 8,
     width: '100%',
     alignItems: 'center',
   },
-  signUpButton: {
-    backgroundColor: '#34495E',
-    marginTop: 12,
-  },
   buttonText: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: width * 0.04,
     fontWeight: 'bold',
   },
   signinText: {
     color: '#2C3E50',
-    fontSize: 16,
-    marginTop:16,
-    textDecorationLine:'underline',
+    fontSize: width * 0.04, 
+    marginTop: height * 0.02, 
+    textDecorationLine: 'underline',
   },
   image: {
-    width: 120,
-    height: 120,
+    width: width * 0.3,
+    height: width * 0.3, 
   },
   input: {
-    marginBottom: 16,
+    marginBottom: height * 0.02, 
     width: '100%',
   }
-})
+});
 
 export default LoginScreen
