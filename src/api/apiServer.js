@@ -1,5 +1,7 @@
 import {api, userApi, videoApi, videoPostApi } from './Index'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { jwtDecode } from "jwt-decode"
+
 
 // 공통된 AbortController와 타임아웃 설정 로직을 함수로 분리
 const createAbortController = (timeout) => {
@@ -86,6 +88,14 @@ const loginPost = async (userId, password, navigation) => {
       const token = response.headers.authorization
       await AsyncStorage.setItem('userToken', token)
       await AsyncStorage.setItem('userId', userId)
+      if (token) {
+        const bodyTk = String(token).split(" ");
+        const decodedToken = jwtDecode(bodyTk[1])
+        const userName = decodedToken["memberName"]
+        await AsyncStorage.setItem("memberName", userName)
+      } else {
+        console.log("No token found");
+      }
       navigation.navigate('Home')
     } else {
       alert('아이디 또는 비밀번호가 올바르지 않습니다.')

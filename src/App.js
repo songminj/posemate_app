@@ -126,42 +126,42 @@ const App = () => {
         />
         <Stack.Screen
           name='AnalysisResult'
-          // options={{ headerShown: false }}
+          options={{ headerShown: false }}
           component={AnalysisResult}
         />
         <Stack.Screen
           name='Select'
           component={AnalysisSelectScreen}
-          // options={{ headerShown: false }}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name='Login'
-          // options={{ headerShown: false }}
+          options={{ headerShown: false }}
           component={LoginScreen}
         />
         <Stack.Screen
           name='SignIn'
-          // options={{ headerShown: false }}
+          options={{ headerShown: false }}
           component={SignInScreen}
         />
         <Stack.Screen
           name='Slicing'
-          // options={{ headerShown: false }}
+          options={{ headerShown: false }}
           component={SlicingScreen}
         />
         <Stack.Screen
           name='Device'
-          // options={{ headerShown: false }}
+          options={{ headerShown: false }}
           component={DeviceComponent}
         />
         <Stack.Screen
           name='Server'
-          // options={{ headerShown: false }}
+          options={{ headerShown: false }}
           component={ServerComponent}
         />
         <Stack.Screen
           name='VideoTrim'
-          // options={{ headerShown: false }}
+          options={{ headerShown: false }}
           component={VideoTrim}
         />
         <Stack.Screen

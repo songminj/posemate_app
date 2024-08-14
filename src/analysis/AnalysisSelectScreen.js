@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: '#202020'
   },
   container: {
     margin: 20,
@@ -82,6 +83,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     textAlign: 'center',
+    color: '#202020'
   },
   buttonContainer: {
     margin: 20,
