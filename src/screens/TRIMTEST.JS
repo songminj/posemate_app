@@ -26,6 +26,7 @@ const VideoTrim = ({ navigation }) => {
   const videoPlayer = useRef(null);
   const [selectedVideoId, setSelectedVideoId] = useState('');
   const [token, setToken] = useState(null);
+  const [videoUri, setVideoUri] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +35,11 @@ const VideoTrim = ({ navigation }) => {
         const tk = await AsyncStorage.getItem('userToken');
         setSelectedVideoId(videoId);
         setToken(tk);
+        
+        // Download the video when the component mounts
+        if (videoId && tk) {
+          await downloadVideo(videoId, tk);
+        }
       } catch (err) {
         console.error('Error fetching data:', err);
       }
@@ -42,41 +48,59 @@ const VideoTrim = ({ navigation }) => {
     fetchData();
   }, []);
 
-  const trimVideo = async () => {
+  const downloadVideo = async (videoId, token) => {
     setIsLoading(true);
     const videoFileName = `downloadedVideo_${Date.now()}.mp4`;
     const downloadPath = `${RNFS.CachesDirectoryPath}/${videoFileName}`;
-    const trimmedFileName = `trimmedVideo_${Date.now()}.mp4`;
-    const outputUri = `${RNFS.CachesDirectoryPath}/${trimmedFileName}`;
-  
+
     try {
-      // 비디오 파일 다운로드
-      await RNFS.downloadFile({
-        fromUrl: `https://i11a202.p.ssafy.io/api-video/${selectedVideoId}`,
+      const response = await RNFS.downloadFile({
+        fromUrl: `https://i11a202.p.ssafy.io/api-video/${videoId}`,
         toFile: downloadPath,
         headers: {
           Authorization: token,
         },
       }).promise;
-  
-      // moov atom을 파일의 시작 부분으로 이동시키기 위한 명령어 추가
-      const prepareCommand = `-i ${downloadPath} -c copy -movflags faststart ${downloadPath}_prepared.mp4`;
-      await FFmpegKit.execute(prepareCommand);
-      
-      // 트리밍 작업
-      const command = `-i ${downloadPath}_prepared.mp4 -ss ${startTime} -t ${endTime - startTime} -c copy ${outputUri}`;
+
+      if (response.statusCode === 200) {
+        console.log('Video downloaded successfully');
+        setVideoUri(downloadPath);
+      } else {
+        console.error('Failed to download video:', response);
+        Alert.alert('오류', '비디오 다운로드에 실패했습니다.');
+      }
+    } catch (error) {
+      console.error('Error downloading video:', error);
+      Alert.alert('오류', '비디오 다운로드 중 문제가 발생했습니다.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const trimVideo = async () => {
+    if (!videoUri) {
+      Alert.alert('오류', '먼저 비디오를 다운로드해주세요.');
+      return;
+    }
+
+    setIsLoading(true);
+    const trimmedFileName = `trimmedVideo_${Date.now()}.mp4`;
+    const outputUri = `${RNFS.CachesDirectoryPath}/${trimmedFileName}`;
+
+    try {
+      const command = `-ss ${startTime} -i "${videoUri}" -t ${endTime - startTime} -c copy "${outputUri}"`;
       const session = await FFmpegKit.execute(command);
       const returnCode = await session.getReturnCode();
       
       if (ReturnCode.isSuccess(returnCode)) {
         console.log('Video trimmed successfully');
-  
+
         const downloadDir = RNFetchBlob.fs.dirs.DownloadDir;
         const finalPath = `${downloadDir}/${trimmedFileName}`;
-  
+
         await RNFS.moveFile(outputUri, finalPath);
         console.log('Trimmed video moved to download directory:', finalPath);
-  
+
         Alert.alert('성공!', `갤러리에서 동영상을 확인하세요🎞`);
       } else {
         const logs = await session.getLogs();
@@ -87,18 +111,13 @@ const VideoTrim = ({ navigation }) => {
       console.error('Error in trimVideo:', error);
       Alert.alert('앗!', '문제가 발생했어요.');
     } finally {
-      // Cleanup
-      await RNFS.unlink(downloadPath).catch(err => console.warn('Error deleting downloaded file:', err));
       setIsLoading(false);
     }
   };
-  
 
   const togglePlayPause = () => {
     setPaused(!paused);
   };
-
-
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -109,27 +128,22 @@ const VideoTrim = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {isLoading && <ActivityIndicator size="large" color="#000000" />}
-      <TouchableOpacity onPress={togglePlayPause} style={styles.videoContainer}>
-        <Video
-          source={{
-            uri: `https://i11a202.p.ssafy.io/api-video/${selectedVideoId}`,
-            headers: {
-              Authorization: token,
-            },
-            type: 'mp4',
-          }}
-          ref={videoPlayer}
-          style={styles.video}
-          onLoad={(data) => {
-            setDuration(data.duration);
-            setEndTime(data.duration);
-          }}
-          resizeMode="contain"
-          paused={paused}
-          controls={true}
-
-        />
-      </TouchableOpacity>
+      {videoUri && (
+        <TouchableOpacity onPress={togglePlayPause} style={styles.videoContainer}>
+          <Video
+            source={{ uri: videoUri }}
+            ref={videoPlayer}
+            style={styles.video}
+            onLoad={(data) => {
+              setDuration(data.duration);
+              setEndTime(data.duration);
+            }}
+            resizeMode="contain"
+            paused={paused}
+            controls={true}
+          />
+        </TouchableOpacity>
+      )}
       <View style={styles.trimContainer}>
         <Text style={styles.label}>구간 길이</Text>
         <Slider
@@ -163,72 +177,3 @@ const VideoTrim = ({ navigation }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#F1F2F6',
-  },
-  videoContainer: {
-    width: '100%',
-    aspectRatio: 16 / 9,
-  },
-  video: {
-    width: '100%',
-    height: '100%',
-  },
-  sliderContainer: {
-    width: 300,
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  trimContainer: {
-    width: width * 0.9,
-    alignItems: 'center',
-    marginVertical: 20,
-  },
-  slider: {
-    width: 300,
-    height: 40,
-  },
-  button: {
-    padding: 15,
-    backgroundColor: '#004AAD',
-    borderRadius: 10,
-    marginTop: 20,
-  },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  label: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  timeLabel: {
-    fontSize: 16,
-    color: '#333333',
-  },
-  trimLabels: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  goBackContainer: {
-    position: 'absolute',
-    bottom: 20,
-    alignSelf: 'center',
-    paddingVertical: 10,
-  },
-  goBackText: {
-    fontSize: 18,
-    color: '#004AAD',
-  },
-});
-
-export default VideoTrim;
-
