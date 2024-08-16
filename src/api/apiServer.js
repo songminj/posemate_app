@@ -1,4 +1,4 @@
-import {api, userApi } from './Index'
+import { api, userApi } from './Index'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { jwtDecode } from "jwt-decode"
 
@@ -123,9 +123,6 @@ const videoGet = async () => {
     }
   }
 }
-
-
-
 
 export { 
   aiGet, 

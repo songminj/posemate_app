@@ -109,6 +109,7 @@ const HomeScreen = ({ navigation }) => {
         await setIsLoggedIn(true)
         await setUserId(id)
         setToken(String(token))
+        console.log(token)
       } else {
         setIsLoggedIn(false)
         setUserId('')

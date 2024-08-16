@@ -14,8 +14,6 @@ const api = async () =>{
   }); 
 } 
 
-
-
 const userApi = async () => {
   return axios.create({
     baseURL: config.API_URL,
@@ -26,7 +24,5 @@ const userApi = async () => {
   })
   
 }
-
-
 
 export { api, userApi };

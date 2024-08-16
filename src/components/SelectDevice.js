@@ -10,9 +10,7 @@ import {
 import LargeButton from './LargeButton'
 import Video from "react-native-video"
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import Loading from "./Loading"
 import axios from "axios"
-import { videoPost } from "../api/ApiServer"
 
 const SelectOnDevice = ({navigation}) => {
   const [afterSelect, setAfterSelect] = useState(false)
@@ -42,40 +40,7 @@ const SelectOnDevice = ({navigation}) => {
     }) 
   }
 
-  // const sendVideoToServer = async () => {
-  //   if (selectedVideo) {
-  //     try {
-  //       console.log("Selected video:", JSON.stringify(selectedVideo));
-  //       setAfterSelect(true);
-  
-  //       const formData = new FormData();
-  //       formData.append('video', {
-  //         uri: selectedVideo.path,
-  //         type: selectedVideo.mime,
-  //         name: 'video.mp4'
-  //       });
-  //       console.log("FormData content:", formData);
-  
-  //       const response = videoPost(formData);
-        
-  //       if (response && response.data !== undefined) {
-  //         const videoIdString = String(response.data);
-  //         await AsyncStorage.setItem('selectedVideoId', videoIdString);
-  //         console.log('Video ID saved:', videoIdString);
-  //       } else {
-  //         console.error('Invalid response from server:', response);
-  //         Alert.alert("오류", "서버로부터 유효한 응답을 받지 못했습니다.");
-  //       }
-  //     } catch (error) {
-  //       console.error('Error in sendVideoToServer:', error);
-  //       Alert.alert("앗!", "악😥");
-  //     }
-  //   }
-  //   setModalVisible(false);
-  //   return(
-  //     <Loading/>
-  //   )
-  // };
+
   const sendVideoToServer = async () => {
     console.log(selectedVideo)
     if (selectedVideo) {
@@ -95,7 +60,7 @@ const SelectOnDevice = ({navigation}) => {
           },
         })
         console.log('비디오 업로드 성공:', response.data)
-        await AsyncStorage.setItem('videoId', String(response.data))
+        await AsyncStorage.setItem("selectedVideoId", String(response.data))
         setModalVisible(false)
 
       } catch (error) {
