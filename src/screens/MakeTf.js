@@ -7,7 +7,7 @@ import {
   Modal, 
   Alert 
 } from 'react-native'
-import LargeButton from './LargeButton'
+import LargeButton from '../components/LargeButton'
 import Video from "react-native-video"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import axios from "axios"

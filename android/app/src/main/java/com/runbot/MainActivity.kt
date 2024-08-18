@@ -6,6 +6,10 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnable
 import com.facebook.react.defaults.DefaultReactActivityDelegate
 import android.os.Bundle;
 import com.oblador.vectoricons.VectorIconsPackage;
+// tensorflowlite
+import com.facebook.react.ReactPackage
+// import com.reactlibrary.RNTensorflowLitePackage;
+
 class MainActivity : ReactActivity() {
 
   /**

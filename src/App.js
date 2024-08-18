@@ -16,6 +16,7 @@ import SignInScreen from './login/SignInScreen'
 import VideoTrim from './screens/VideoTrim'
 import DeviceComponent from './components/SelectDevice'
 import ServerComponent from './components/SelectServer'
+import MakeTf from './screens/MakeTf'
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -153,6 +154,12 @@ const App = () => {
           name='VideoTrim'
           options={{ headerShown: false }}
           component={VideoTrim}
+        />
+        {/* 삭제할거 */}
+        <Stack.Screen
+          name='MakeTf'
+          options={{ headerShown: false }}
+          component={MakeTf}
         />
       </Stack.Navigator>
     </NavigationContainer>

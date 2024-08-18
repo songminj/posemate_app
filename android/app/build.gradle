@@ -104,6 +104,11 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    // tensorflow options
+    // aaptOptions {
+    //     noCompress 'tflite'
+    //     noCompress 'lite'
+    // }
 }
 
 dependencies {

@@ -62,7 +62,7 @@ const VideoTrim = ({ navigation }) => {
       // moov atom을 파일의 시작 부분으로 이동시키기 위한 명령어 추가
       const prepareCommand = `-i ${downloadPath} -c copy -movflags faststart ${downloadPath}_prepared.mp4`;
       await FFmpegKit.execute(prepareCommand);
-      
+      console.log('시작, 끝', startTime, endTime)
       // 트리밍 작업
       const command = `-i ${downloadPath}_prepared.mp4 -ss ${startTime} -t ${endTime - startTime} -c copy ${outputUri}`;
       const session = await FFmpegKit.execute(command);

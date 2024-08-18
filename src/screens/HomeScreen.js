@@ -161,6 +161,13 @@ const HomeScreen = ({ navigation }) => {
               navigation={navigation}
               buttonStyle={styles.buttonStyle}
             />
+            <LargeButton
+              title='      trimtest      '
+              toward='TrimTest'
+              navigation={navigation}
+              buttonStyle={styles.buttonStyle}
+            />
+            
           </View>
         </View>
       </ScrollView>
