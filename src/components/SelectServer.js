@@ -29,8 +29,6 @@ const SelectOnServer = ({ navigation }) => {
   const [token, setToken] = useState(null)
   const [memberName, setMemberName] = useState('')
 
-
-
   useEffect(() => {
     const fetchTokenAndVideos = async () => {
       const storedToken = await AsyncStorage.getItem('userToken')
@@ -43,6 +41,7 @@ const SelectOnServer = ({ navigation }) => {
       const data = await videoGet()
       if (data) {
         setVideos(data)
+        console.log(data)
       }
       setLoading(false) // Set loading to false once data is fetched
     }
@@ -112,7 +111,7 @@ const SelectOnServer = ({ navigation }) => {
       </Modal>
       
       <SafeAreaView>
-        <ScrollView>
+        <ScrollView> 
           <View>
             <Text 
               style={styles.headerText}
@@ -135,10 +134,13 @@ const SelectOnServer = ({ navigation }) => {
                     source={require('../../assets/video.png')}
                     resizeMode="cover"
                   />
-                  <Text
-                    style={styles.videoText}
-                  >
-                    {video.video.saveDate}에 촬영한 영상
+                  <Text style={styles.videoText}>
+                    {`   ${video.video.saveDate.split('-')[1]}월 ${video.video.saveDate.split('-')[2]}일 \n   ${video.message ? (video.message.good ? '좋은자세' : '나쁜자세') : '분석이 필요한'} 운동`}
+                    {/* {(() => {
+                      if (index === 0) return `   ${video.video.saveDate.split('-')[1]}월 ${video.video.saveDate.split('-')[2]}일 \n   ${video.message ? (video.message.good ? '좋은자세' : '나쁜자세') : '분석이 필요한 운동'} 운동`;
+                      else if (index === 1) return `   ${video.video.saveDate.split('-')[1]}월 ${video.video.saveDate.split('-')[2]}일 \n   BAD 러닝`;
+                      else return `   ${video.video.saveDate.split('-')[1]}월 ${video.video.saveDate.split('-')[2]}일에 촬영한 영상`;
+                    })()} */}
                   </Text>
                 </TouchableOpacity>
               ))

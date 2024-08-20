@@ -52,7 +52,7 @@ const AnalysisResult = ({ navigation }) => {
           const response = await aiPost(exId);
           setData(response?.score || []);
           setMsg(response?.message || []);
-          
+          setIsGood(response?.message?.good || true);
         } else {
           console.log("No exerciseId or token found");
           setError(new Error("Missing exerciseId or token"));

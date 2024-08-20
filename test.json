@@ -1,51 +1,443 @@
 [
   {
-    "angle": {
-      "angleId": 1,
-      "leftArm": 161.54007160701414,
-      "leftLeg": 143
-.5099273437608,
-      "rightArm": 100.11087016558095,
-      "rightLeg": 147.5538751696934
-4,
-      "upperBody": 114.8035789829448
-    },
-    "exerciseId": 52,
+    "exerciseId": 1,
     "json": {
-      "originalName": "240802_16_16_50_output.json",
+      "originalName": "KakaoTalk_20240811_163943565.json",
       "saveDate": null,
-      "uuidName": "1722997374228
-_240802_16_16_50_output.json", "videoId": 202}, "score": {"arms": 39.60238265991211,
-      "body": 35.99787521362305,
-      "legs": 42.24266052246094,
-      "scoreId": 1, "
-upperBody": 70.94884490966797}, "video": {"originalName": "240801_17_27_06_ou
-tput.mp4", "saveDate": "2024-08-07", "selected": false, "thumbnailUrl": null,"uuidName": "1722997374195_240801_17_27_06_output.mp4",
-      "videoId": 252
-    }
-  },
-  {"
-angle": null, "exerciseId": 53, "json": {"originalName": "240802_16_34_33_out
-put.json", "saveDate": null, "uuidName": "1723093271848_240802_16_34_33_outpu
-t.json", "videoId": 203}, "score": null, "video": {"originalName": "input_vid
-eo.mp4", "saveDate": "2024-08-08", "selected": false, "thumbnailUrl": null, "
-uuidName": "1723093271844_input_video.mp4", "videoId": 253}}, {"angle": null,"exerciseId": 54,
-    "json": {
-      "originalName": "240808_140440_output.json", "sav
-eDate": null, "uuidName": "1723093489267_240808_140440_output.json", "videoId
-": 204}, "score": null, "video": {"originalName": "240808_140440_output.mp4","saveDate": "2024-08-08",
-      "selected": false,
-      "thumbnailUrl": null, "uuidName": "1723093489266_240808_140440_output.mp4", "videoId": 254}}, {"angle": null,
-      "exerciseId": 55,
-      "json": {
-        "originalName": "240808_153727_output.json", "sa
-veDate": null, "uuidName": "1723099110021_240808_153727_output.json", "videoI
-d": 205}, "score": null, "video": {"originalName": "240808_153727_output.mp4",
-        "saveDate": "2024-08-08",
-        "selected": false,
-        "thumbnailUrl": null,
-        "uuidName": "1723099110018_240808_153727_output.mp4",
-        "videoId": 255
-      }
-    }
-  ]
+      "uuidName": "1723525339182_KakaoTalk_20240811_163943565.json", "vid
+eoId": 1}, "memberIdx": 1, "message": null, "score": null, "video": {"originalName": "input_video.mp4", "saveDate": "2024-08-13", "selected": false, "thumbnailUrl": null, "
+uuidName": "1723525339165_input_video.mp4", "videoId": 1}}, {"exerciseId": 2, "json": {"originalName": "KakaoTalk_20240811_163943565.json", "saveDate": null, "uuidName": "1
+723525420140_KakaoTalk_20240811_163943565.json", "videoId": 2}, "memberIdx": 1, "message": null, "score": null, "video": {"originalName": "input_video.mp4", "saveDate": "20
+24-08-13", "selected": false, "thumbnailUrl": null, "uuidName": "1723525420126_input_video.mp4", "videoId": 2}}, {"exerciseId": 3, "json": {"originalName": "700101_101846_output.json", "saveDate": null, "uuidName": "1723525468372_700101_101846_output.json", "videoId": 3}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 88점 입니다.   
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "현재 다리 점수는 100점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 7, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 88, "body": 83, "legs": 100, "scoreId": 7, "upperBody": 63}, "video": {"originalName": "700101
+_101846_output.mp4", "saveDate": "2024-08-13", "selected": false, "thumbnailUrl": null, "uuidName": "1723525468371_700101_101846_output.mp4", "videoId": 3}}, {"exerciseId":4,"json": {
+        "originalName": "700101_092331_output.json",
+        "saveDate": null,
+        "uuidName": "1723535219116_700101_092331_output.json",
+        "videoId": 4
+      },
+      "memberIdx": 1,
+      "message": {
+        "armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 6, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 67, "legs": 69, "scoreId": 6, "upperBody": 31}, "video": {"originalName": "700101
+_092331_output.mp4", "saveDate": "2024-08-13", "selected": false, "thumbnailUrl": null, "uuidName": "1723535219111_700101_092331_output.mp4", "videoId": 4}}, {"exerciseId":5,"json": {
+          "originalName": "700101_092759_output.json",
+          "saveDate": null,
+          "uuidName": "1723535439864_700101_092759_output.json",
+          "videoId": 5
+        },
+        "memberIdx": 1,
+        "message": {
+          "armMsg": "현재 팔의 점수는 90점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 2, "upperMsg": "현재 상체 점수는 71점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 90, "body": 76, "legs": 67, "scoreId": 2, "upperBody": 71}, "video": {"originalName": "700101_092759_output.mp4
+", "saveDate": "2024-08-13", "selected": false, "thumbnailUrl": null, "uuidName": "1723535439859_700101_092759_output.mp4", "videoId": 5}}, {"exerciseId": 6, "json": {"orig
+inalName": "700101_093047_output.json", "saveDate": null, "uuidName": "1723535579062_700101_093047_output.json", "videoId": 6}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 92점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 11, "upperMsg": "현재 상체 점수는 77점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 92, "body": 79, "legs": 69, "scoreId": 11, "upperBody": 77}, "video": {"originalName": "700101_093047_output.mp
+4", "saveDate": "2024-08-13", "selected": false, "thumbnailUrl": null, "uuidName": "1723535579060_700101_093047_output.mp4", "videoId": 6}}, {"exerciseId": 7, "json": {"ori
+ginalName": "700101_093938_output.json", "saveDate": null, "uuidName": "1723536135385_700101_093938_output.json", "videoId": 7}, "memberIdx": 1, "message": {"armMsg": "팔  자세의 교정이 필요합니다.
+올바르지 않은 팔 동작은 어깨통증을 유발할 수 있습니다.
+팔꿈치를 85~95˚를 유지하며 달려보세요.", "good": false, "legMsg": "현재 다리 점수는 88점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 10, "upperMsg": "현재 상체 점수는 88점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 50, "body": 75, "legs": 88, "scoreId": 10, "upperBody": 88}, "video": {"originalName": "700101_093938_output.mp
+4", "saveDate": "2024-08-13", "selected": false, "thumbnailUrl": null, "uuidName": "1723536135383_700101_093938_output.mp4", "videoId": 7}}, {"exerciseId": 9, "json": {"ori
+ginalName": "700101_094549_output.json", "saveDate": null, "uuidName": "1723536462930_700101_094549_output.json", "videoId": 9}, "memberIdx": 1, "message": {"armMsg": "현재팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 3, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 67, "legs": 50, "scoreId": 3, "upperBody": 50}, "video": {"originalName": "700101
+_094549_output.mp4", "saveDate": "2024-08-13", "selected": false, "thumbnailUrl": null, "uuidName": "1723536462929_700101_094549_output.mp4", "videoId": 9}}, {"exerciseId":10,"json": {
+            "originalName": "240814_105026_output.json",
+            "saveDate": null,
+            "uuidName": "1723600254961_240814_105026_output.json",
+            "videoId": 10
+          },
+          "memberIdx": 1,
+          "message": null,
+          "score": null,
+          "video": {
+            "originalName": "240814_105026_output.mp4",
+            "saveDate": "2024-08-14",
+            "selected": false,
+            "thumbnailUrl": null,
+            "uuidName": "1723600254959_240814_105026_output.mp4", "videoId": 16}}, {"exerciseId": 11, "json": {"originalName": "240814_110057_output.json", "saveDate": null, "uuidName": "1723600870115_240814_110057_output.json", "videoId": 11}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": true, "legMsg": "현재 다리 점수는 100점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 9, "upperMsg": "현재 상체 점수는 100점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 100, "body": 100, "legs": 100, "scoreId": 9, "upperBody": 100}, "video": {"originalName": "240814_110057_output
+.mp4", "saveDate": "2024-08-14", "selected": false, "thumbnailUrl": null, "uuidName": "1723600870114_240814_110057_output.mp4", "videoId": 17}}, {"exerciseId": 12, "json": {"originalName": "240814_110301_output.json",
+            "saveDate": null,
+            "uuidName": "1723600988390_240814_110301_output.json",
+            "videoId": 12
+          },
+          "memberIdx": 1,
+          "message": {
+            "armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": true, "legMsg": "현재 다리 점수는 100점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 8, "upperMsg": "현재 상체 점수는 100점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 100, "body": 100, "legs": 100, "scoreId": 8, "upperBody": 100}, "video": {"originalName": "240814_110301_output
+.mp4", "saveDate": "2024-08-14", "selected": false, "thumbnailUrl": null, "uuidName": "1723600988389_240814_110301_output.mp4", "videoId": 18}}, {"exerciseId": 13, "json": {"originalName": "240814_110350_output.json",
+            "saveDate": null,
+            "uuidName": "1723601318544_240814_110350_output.json",
+            "videoId": 13
+          },
+          "memberIdx": 1,
+          "message": null, "sco
+re": null, "video": {"originalName": "240814_110350_output.mp4", "saveDate": "2024-08-14", "selected": false, "thumbnailUrl": null, "uuidName": "1723601318543_240814_110350
+_output.mp4", "videoId": 19}}, {"exerciseId": 14, "json": {"originalName": "240802_16_41_27_output.json", "saveDate": null, "uuidName": "1723608666066_240802_16_41_27_output.json", "videoId": 14}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 12, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 70, "legs": 67, "scoreId": 12, "upperBody": 44}, "video": {"originalName": "24080
+2_16_41_27_output_pose.mp4", "saveDate": "2024-08-14", "selected": false, "thumbnailUrl": null, "uuidName": "1723608666064_240802_16_41_27_output_pose.mp4", "videoId": 22}},{
+            "exerciseId": 15,
+            "json": {
+              "originalName": "240802_16_31_49_output.json",
+              "saveDate": null,
+              "uuidName": "1723608733437_240802_16_31_49_output.json",
+              "videoId": 15
+            },
+            "memberIdx": 1,
+            "message": {
+              "armMsg": "현재 팔의 점수는 78점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": true, "legMsg": "현재 다리 점수는 89점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 13, "upperMsg": "현재 상체 점수는 78점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 78, "body": 81, "legs": 89, "scoreId": 13, "upperBody": 78}, "video": {"originalName": "240802_16_31_49_output_
+pose.mp4", "saveDate": "2024-08-14", "selected": false, "thumbnailUrl": null, "uuidName": "1723608733435_240802_16_31_49_output_pose.mp4", "videoId": 23}}, {"exerciseId": 16,"json": {
+                "originalName": "240802_16_41_27_output.json",
+                "saveDate": null,
+                "uuidName": "1723608820836_240802_16_41_27_output.json",
+                "videoId": 16
+              },
+              "memberIdx": 1,
+              "message": {
+                "armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 14, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 70, "legs": 67, "scoreId": 14, "upperBody": 44}, "video": {"originalName": "24080
+2_16_41_27_output_pose.mp4", "saveDate": "2024-08-14", "selected": false, "thumbnailUrl": null, "uuidName": "1723608820834_240802_16_41_27_output_pose.mp4", "videoId": 24}},{
+                  "exerciseId": 52,
+                  "json": {
+                    "originalName": "240814_143546_output.json",
+                    "saveDate": null,
+                    "uuidName": "1723613763255_240814_143546_output.json",
+                    "videoId": 52
+                  }, "memberI
+dx": 1, "message": null, "score": null, "video": {"originalName": "240814_143546_output.mp4", "saveDate": "2024-08-14", "selected": false, "thumbnailUrl": null, "uuidName":"1723613763224_240814_143546_output.mp4","videoId": 52
+                }
+              },
+              {
+                "exerciseId": 53,
+                "json": {
+                  "originalName": "240802_16_41_27_output.json",
+                  "saveDate": null,
+                  "uuidName": "1723621114529_240802_16_41_27_output.json",
+                  "videoId": 53
+                },
+                "memberIdx": 1,
+                "message": {
+                  "armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 52, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 70, "legs": 67, "scoreId": 52, "upperBody": 44}, "video": {"originalName": "24080
+2_16_41_27_output_pose.mp4", "saveDate": "2024-08-14", "selected": false, "thumbnailUrl": null, "uuidName": "1723621114527_240802_16_41_27_output_pose.mp4", "videoId": 53}},{
+                    "exerciseId": 60,
+                    "json": {
+                      "originalName": "240816_161023_output.json",
+                      "saveDate": null,
+                      "uuidName": "1723792260121_240816_161023_output.json",
+                      "videoId": 60
+                    },
+                    "memberIdx": 1,
+                    "message": {
+                      "armMsg": "현재 팔의 점수는 82점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 57, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 82, "body": 70, "legs": 64, "scoreId": 57, "upperBody": 64}, "video": {"originalName": "240816
+_161023_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723792260117_240816_161023_output.mp4", "videoId": 66}}, {"exerciseId": 61,"json": {
+                        "originalName": "240816_161117_output.json",
+                        "saveDate": null,
+                        "uuidName": "1723792311253_240816_161117_output.json",
+                        "videoId": 61
+                      },
+                      "memberIdx": 1,
+                      "message": {
+                        "armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "현재 다리 점수는 70점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 63, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 77, "legs": 70, "scoreId": 63, "upperBody": 60}, "video": {"originalName": "24081
+6_161117_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723792311250_240816_161117_output.mp4", "videoId": 67}}, {"exerciseId
+": 62, "json": {"originalName": "240816_161221_output.json", "saveDate": null, "uuidName": "1723792373944_240816_161221_output.json", "videoId": 62}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 58, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 72, "legs": 67, "scoreId": 58, "upperBody": 50}, "video": {"originalName": "24081
+6_161221_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723792373940_240816_161221_output.mp4", "videoId": 68}}, {"exerciseId
+": 63, "json": {"originalName": "240816_164045_output.json", "saveDate": null, "uuidName": "1723794074438_240816_164045_output.json", "videoId": 63}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 89점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 59, "upperMsg": "현재 상체 점수는 78점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 89, "body": 78, "legs": 67, "scoreId": 59, "upperBody": 78}, "video": {"originalName": "240816_164045_output.mp
+4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723794074436_240816_164045_output.mp4", "videoId": 69}}, {"exerciseId": 64, "json": {"o
+riginalName": "240816_164256_output.json", "saveDate": null, "uuidName": "1723794209933_240816_164256_output.json", "videoId": 64}, "memberIdx": 1, "message": {"armMsg": " 현재 팔의 점수는 75점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 60, "upperMsg": "현재 상체 점수는 88점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 75, "body": 75, "legs": 63, "scoreId": 60, "upperBody": 88}, "video": {"originalName": "240816_164256_output.mp
+4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723794209931_240816_164256_output.mp4", "videoId": 70}}, {"exerciseId": 65, "json": {"o
+riginalName": "240816_164601_output.json", "saveDate": null, "uuidName": "1723794385238_240816_164601_output.json", "videoId": 65}, "memberIdx": 1, "message": {"armMsg": " 현재 팔의 점수는 75점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 61, "upperMsg": "현재 상체 점수는 100점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 75, "body": 75, "legs": 50, "scoreId": 61, "upperBody": 100}, "video": {"originalName": "240816_164601_output.m
+p4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723794385236_240816_164601_output.mp4", "videoId": 71}}, {"exerciseId": 66, "json": {"
+originalName": "240816_164750_output.json", "saveDate": null, "uuidName": "1723794506327_240816_164750_output.json", "videoId": 66}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 75점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 62, "upperMsg": "현재 상체 점수는 83점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 75, "body": 69, "legs": 50, "scoreId": 62, "upperBody": 83}, "video": {"originalName": "240816_164750_output.mp
+4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723794506325_240816_164750_output.mp4", "videoId": 72}}, {"exerciseId": 67, "json": {"o
+riginalName": "240816_170001_output.json", "saveDate": null, "uuidName": "1723795249506_240816_170001_output.json", "videoId": 67}, "memberIdx": 1, "message": null, "score": null,"video": {
+                          "originalName": "240816_170001_output.mp4",
+                          "saveDate": "2024-08-16",
+                          "selected": false,
+                          "thumbnailUrl": null,
+                          "uuidName": "1723795249503_240816_170001_ou
+tput.mp4", "videoId": 73}}, {"exerciseId": 68, "json": {"originalName": "240816_170523_output.json", "saveDate": null, "uuidName": "1723795549982_240816_170523_output.json", "videoId": 68}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 83점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 64, "upperMsg": "현재 상체 점수는 100점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 83, "body": 78, "legs": 50, "scoreId": 64, "upperBody": 100}, "video": {"originalName": "240816_170523_output.m
+p4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723795549981_240816_170523_output.mp4", "videoId": 74}}, {"exerciseId": 102, "json": {"originalName": "240816_172409_output.json","saveDate": null,
+                          "uuidName": "1723796688324_240816_172409_output.json",
+                          "videoId": 102
+                        },
+                        "memberIdx": 1,
+                        "message": {
+                          "armMsg": "현재 팔의 점수는 91점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 102, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 91, "body": 67, "legs": 55, "scoreId": 102, "upperBody": 55}, "video": {"originalName": "24081
+6_172409_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723796688296_240816_172409_output.mp4", "videoId": 102}}, {"exerciseI
+d": 103, "json": {"originalName": "240816_172503_output.json", "saveDate": null, "uuidName": "1723796732870_240816_172503_output.json", "videoId": 103}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 103, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 75, "legs": 63, "scoreId": 103, "upperBody": 63}, "video": {"originalName": "2408
+16_172503_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723796732868_240816_172503_output.mp4", "videoId": 103}}, {"exercise
+Id": 104, "json": {"originalName": "240816_172603_output.json", "saveDate": null, "uuidName": "1723796797232_240816_172603_output.json", "videoId": 104}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 104, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 73, "legs": 60, "scoreId": 104, "upperBody": 60}, "video": {"originalName": "2408
+16_172603_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723796797228_240816_172603_output.mp4", "videoId": 104}}, {"exercise
+Id": 105, "json": {"originalName": "240816_172816_output.json", "saveDate": null, "uuidName": "1723796937458_240816_172816_output.json", "videoId": 105}, "memberIdx": 1, "message": {"armMsg": "팔 자세의 교정이 필요합니다.
+올바르지 않은 팔 동작은 어깨통증을 유발할 수 있습니다.
+팔꿈치를 85~95˚를 유지하며 달려보세요.", "good": false, "legMsg": "현재 다리 점수는 75점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 105, "upperMsg": "현재 상체 점수는 83점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 67, "body": 75, "legs": 75, "scoreId": 105, "upperBody": 83}, "video": {"originalName": "240816_172816_output.m
+p4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723796937454_240816_172816_output.mp4", "videoId": 105}}, {"exerciseId": 106, "json": {"originalName": "240816_172955_output.json",
+                          "saveDate": null,
+                          "uuidName": "1723797024834_240816_172955_output.json",
+                          "videoId": 106
+                        },
+                        "memberIdx": 1,
+                        "message": {
+                          "armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 106, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 70, "legs": 67, "scoreId": 106, "upperBody": 44}, "video": {"originalName": "2408
+16_172955_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723797024831_240816_172955_output.mp4", "videoId": 106}}, {"exercise
+Id": 107, "json": {"originalName": "240816_173122_output.json", "saveDate": null, "uuidName": "1723797125725_240816_173122_output.json", "videoId": 107}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 78점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 107, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 78, "body": 67, "legs": 56, "scoreId": 107, "upperBody": 67}, "video": {"originalName": "24081
+6_173122_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723797125723_240816_173122_output.mp4", "videoId": 107}}, {"exerciseI
+d": 108, "json": {"originalName": "240816_173244_output.json", "saveDate": null, "uuidName": "1723797213152_240816_173244_output.json", "videoId": 108}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 108, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 72, "legs": 46, "scoreId": 108, "upperBody": 69}, "video": {"originalName": "2408
+16_173244_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723797213149_240816_173244_output.mp4", "videoId": 108}}, {"exercise
+Id": 109, "json": {"originalName": "240816_173428_output.json", "saveDate": null, "uuidName": "1723797298759_240816_173428_output.json", "videoId": 109}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 86점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": true, "legMsg": "현재 다리 점수는 86점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 109, "upperMsg": "현재 상체 점수는 86점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 86, "body": 86, "legs": 86, "scoreId": 109, "upperBody": 86}, "video": {"originalName": "240816_173428_output.m
+p4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723797298757_240816_173428_output.mp4", "videoId": 109}}, {"exerciseId": 110, "json": {"originalName": "240816_173747_output.json",
+                          "saveDate": null,
+                          "uuidName": "1723797536112_240816_173747_output.json",
+                          "videoId": 110
+                        },
+                        "memberIdx": 1,
+                        "message": {
+                          "armMsg": "현재 팔의 점수는 82점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": true, "legMsg": "현재 다리 점수는 73점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 110, "upperMsg": "현재 상체 점수는 73점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 82, "body": 76, "legs": 73, "scoreId": 110, "upperBody": 73}, "video": {"originalName": "240816_173747_output.m
+p4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723797536109_240816_173747_output.mp4", "videoId": 110}}, {"exerciseId": 111, "json": {"originalName": "240816_173905_output.json",
+                          "saveDate": null,
+                          "uuidName": "1723797639058_240816_173905_output.json",
+                          "videoId": 111
+                        },
+                        "memberIdx": 1,
+                        "message": {
+                          "armMsg": "팔 자세의 교정이 필요합니다.
+올바르지 않은 팔 동작은 어깨통증을 유발할 수 있습니다.
+팔꿈치를 85~95˚를 유지하며 달려보세요.", "good": false, "legMsg": "현재 다리 점수는 79점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 111, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 63, "body": 68, "legs": 79, "scoreId": 111, "upperBody": 63}, "video": {"originalName": "24081
+6_173905_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723797639052_240816_173905_output.mp4", "videoId": 111}}, {"exerciseI
+d": 112, "json": {"originalName": "240816_174048_output.json", "saveDate": null, "uuidName": "1723797683708_240816_174048_output.json", "videoId": 112}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 75점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "현재 다리 점수는 75점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 112, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 75, "body": 71, "legs": 75, "scoreId": 112, "upperBody": 63}, "video": {"originalName": "24081
+6_174048_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723797683705_240816_174048_output.mp4", "videoId": 112}}, {"exerciseI
+d": 113, "json": {"originalName": "240816_174200_output.json", "saveDate": null, "uuidName": "1723797758156_240816_174200_output.json", "videoId": 113}, "memberIdx": 1, "me
+ssage": null, "score": null, "video": {"originalName": "240816_174200_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "172379775
+8155_240816_174200_output.mp4", "videoId": 113}}, {"exerciseId": 114, "json": {"originalName": "240816_174247_output.json", "saveDate": null, "uuidName": "1723797784296_240
+816_174247_output.json", "videoId": 114}, "memberIdx": 1, "message": null, "score": null, "video": {"originalName": "240816_174247_output.mp4", "saveDate": "2024-08-16", "s
+elected": false, "thumbnailUrl": null, "uuidName": "1723797784295_240816_174247_output.mp4", "videoId": 114}}, {"exerciseId": 115, "json": {"originalName": "240816_174312_output.json", "saveDate": null, "uuidName": "1723797821595_240816_174312_output.json", "videoId": 115}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 113, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 67, "legs": 60, "scoreId": 113, "upperBody": 40}, "video": {"originalName": "2408
+16_174312_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723797821593_240816_174312_output.mp4", "videoId": 115}}, {"exercise
+Id": 116, "json": {"originalName": "240816_174652_output.json", "saveDate": null, "uuidName": "1723798050463_240816_174652_output.json", "videoId": 116}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 83점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 114, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 83, "body": 72, "legs": 67, "scoreId": 114, "upperBody": 67}, "video": {"originalName": "24081
+6_174652_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723798050461_240816_174652_output.mp4", "videoId": 116}}, {"exerciseI
+d": 117, "json": {"originalName": "240816_174755_output.json", "saveDate": null, "uuidName": "1723798111337_240816_174755_output.json", "videoId": 117}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 115, "upperMsg": "현재 상체 점수는 83점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 100, "body": 83, "legs": 67, "scoreId": 115, "upperBody": 83}, "video": {"originalName": "240816_174755_output.
+mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723798111335_240816_174755_output.mp4", "videoId": 117}}, {"exerciseId": 118, "json":{"originalName": "240816_174903_output.json",
+                          "saveDate": null,
+                          "uuidName": "1723798211402_240816_174903_output.json",
+                          "videoId": 118
+                        },
+                        "memberIdx": 1,
+                        "message": {
+                          "armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "다리 자세의 교정이 필요합니다.
+곧게 편 다리는 충격을 분산할 수 없어 몸에 그대로 전달됩니다.
+무릎을 150~160˚ 정도로 약간 구부려 충격을 나눠보세요.", "msgId": 116, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 100, "body": 69, "legs": 69, "scoreId": 116, "upperBody": 38}, "video": {"originalName": "2408
+16_174903_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723798211399_240816_174903_output.mp4", "videoId": 118}}, {"exercise
+Id": 119, "json": {"originalName": "240816_175019_output.json", "saveDate": null, "uuidName": "1723798258533_240816_175019_output.json", "videoId": 119}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 78점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": false, "legMsg": "현재 다리 점수는 78점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 117, "upperMsg": "상체(허리, 목)에 교정이 필요합니다.
+너무 숙인 자세는 경추와 척추에 큰 부담을 줍니다.
+시선은 전방을 향하고 허리를 너무 숙이지 않게 달려보세요."}, "score": {"arms": 78, "body": 74, "legs": 78, "scoreId": 117, "upperBody": 67}, "video": {"originalName": "24081
+6_175019_output.mp4", "saveDate": "2024-08-16", "selected": false, "thumbnailUrl": null, "uuidName": "1723798258530_240816_175019_output.mp4", "videoId": 119}}, {"exerciseI
+d": 120, "json": {"originalName": "240816_175148_output.json", "saveDate": null, "uuidName": "1723798347030_240816_175148_output.json", "videoId": 120}, "memberIdx": 1, "message": {"armMsg": "현재 팔의 점수는 100점 입니다.
+앞으로도 현재의 팔 자세를 유지하시면,
+어깨통증 없이 안정감 있는 러닝이 될 수 있어요!", "good": true, "legMsg": "현재 다리 점수는 78점 입니다.
+앞으로도 현재의 다리 자세를 유지하시면,
+부상 없이 먼 거리를 달릴 수 있어요!", "msgId": 118, "upperMsg": "현재 상체 점수는 78점 입니다.
+앞으로도 올바른 상체 각도를 유지하시면,
+작은 동작으로 큰 힘을 사용할 수 있어요!"}, "score": {"arms": 100, "body": 85, "legs": 78, "scoreId": 118, "upperBody": 78}, "video": {"originalName": "240816_175148_output.: "2024-08-16",
+                          "selected": false,
+                          "thumbnailUrl": null,
+                          "uuidName": "1723798347027_240816_175148_output.mp4",
+                          "videoId": 120
+                        }
+                      }
+                    ]
