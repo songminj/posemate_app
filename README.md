@@ -1,79 +1,119 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# POSEMATE
 
-# Getting Started
+<p align="center">
+  <br>
+  <img src="assets\posemate1.png">
+  <br>
+</p>
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-## Step 1: Start the Metro Server
+<br>
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## 프로젝트 소개
 
-To start Metro, run the following command from the _root_ of your React Native project:
+<p align="justify">
+   <img src="ppts/1.png"/>
+   <img src="ppts/5.png"/>
+   <img src="ppts/7.png"/>
+   <img src="ppts/8.png"/>
+   <img src="ppts/9.png"/>
+   <img src="ppts/10.png"/>
+   <img src="ppts/11.png"/>
+   <img src="ppts/12.png"/>
+   <img src="ppts/13.png"/>
+   <img src="ppts/14.png"/>
+   <img src="ppts/15.png"/>
+   <img src="ppts/17.png"/>
+   <img src="ppts/22.png"/>
+   <img src="ppts/24.png"/>
+</p>
+
+
+<br>
+
+## 기술 스택
+
+### 기술스택
+
+- **Mobile** : React-Native-cli: 2.0.1, React-Native 0.74.3, NodeJS v8.20.4 LTS, Android Studio Koala.
+- **BackEnd** : Oracle Java 17.0.12, Spring boot 3.3.1, SpringSecurity 6.3.1, JPA, Swagger 2.9.2, MariaDB 10.3.23
+- **AI** : python 3.10.14, FAST-API 0.111.1, tensorflow 2.12.0
+- **CI/CD** : Jenkins, Docker, AWS ec2
+- **AIoT** : Jetson Orin Nano Dev-Kit, Python3.8.10, YOLOv8n-pose, YOLOv8s, OpenCV
+- **이슈관리** : Git, Jira, Notion, Mattermost
+<br>
+
+## 아키텍쳐 
+![architecture](assets/architecture_posemate.png)
+
+<br>
+<br>
+
+
+## APP 구성
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+📦src
+ ┣ 📂analysis
+ ┃ ┣ 📜AnalysisResult.js
+ ┃ ┗ 📜AnalysisSelectScreen.js
+ ┣ 📂api
+ ┃ ┣ 📜ApiServer.js
+ ┃ ┗ 📜Index.js
+ ┣ 📂components
+ ┃ ┣ 📜CarouselComponent.js
+ ┃ ┣ 📜Input.js
+ ┃ ┣ 📜LargeButton.js
+ ┃ ┣ 📜Loading.js
+ ┃ ┣ 📜SelectDevice.js
+ ┃ ┗ 📜SelectServer.js
+ ┣ 📂login
+ ┃ ┣ 📜LoginScreen.js
+ ┃ ┗ 📜SignInScreen.js
+ ┣ 📂screens
+ ┃ ┣ 📜HomeScreen.js
+ ┃ ┗ 📜VideoTrim.js
+ ┣ 📜App.js
+ ┗ 📜config.js
 ```
 
-## Step 2: Start your Application
+### analysis
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+- 운동 정보 데이터 분석 결과 확인 페이지
+- 운동 정보 데이터(영상)을 갤러리/서버 조회 선택할 수 있는 페이지
 
-### For Android
+### 📂api
 
-```bash
-# using npm
-npm run android
+- 서버 조회 및 axios 요청 함수
 
-# OR using Yarn
-yarn android
-```
+### 📂components
 
-### For iOS
+- 버튼, Input box, Loading페이지 등을 컴포넌트화 하여 구현
 
-```bash
-# using npm
-npm run ios
+### 📂login
 
-# OR using Yarn
-yarn ios
-```
+- 로그인 및 회원가입 페이지
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### 📂screens
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+- Home화면과 video Trim화면 페이지
 
-## Step 3: Modifying your App
+### 🧩 App.js
 
-Now that you have successfully run the app, let's modify it.
+- 내비게이션 기능 및 bottom Tab
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+### 1. 회원가입 (회원가입/로그인)
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+![회원가입](ppts/app1.png)
 
-## Congratulations! :tada:
+### 메인화면 (로그인 전/로그인 후)
+![메인화면](ppts/app2.png)
 
-You've successfully run and modified your React Native App. :partying_face:
+### 동영상 선택 (로봇카로 촬영한 영상 선택 / 갤러리에서 동영상 선택)
+![server](ppts/app3.png)
 
-### Now what?
+### 결과분석 (분석 결과 / 상세 분석 결과)
+![result](ppts/app4.png)
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+<br>
 
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
